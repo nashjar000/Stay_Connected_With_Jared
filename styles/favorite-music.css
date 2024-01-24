@@ -1,0 +1,17 @@
+/* Favorite Music */
+#music-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    padding-top: 5%;
+}
+
+.music-link {
+    color: #D4AC0D
+}
+
+.music-link:hover {
+    color: #594AE3;
+
+}

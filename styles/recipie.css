@@ -1,0 +1,79 @@
+/* Recipies */
+.recipies-title {
+    color: #594AE3;
+    font-size: 100px;
+}
+
+.recipie-links {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    padding: 50px;
+    gap: 30px;
+}
+
+#recipie-link {
+    color: #D4AC0D; 
+    font-size: 25px;
+}
+
+#recipie-link:hover {
+    color: #594AE3; 
+}
+
+#top-rec {
+    color: #D4AC0D;
+    font-size: 25px;
+}
+
+#top-rec:hover {
+    color: #594AE3;
+}
+
+.celestial-cookie-button {
+    background-color: rgb(72, 71, 71);
+    cursor: pointer;
+    color: #D4AC0D;
+    font-size: large;
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+.ingred-title {
+    color: #D4AC0D;
+    font-size: 30px;
+    padding-right: 70%;
+}
+
+.ingredients {
+    color: white;
+    text-align: left;
+}
+
+.cinnamon-roll {
+    color: #594AE3;
+    text-align: center;
+    font-size: 50px;
+    padding-top: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.cinnamon {
+    color: #D4AC0D;
+    text-align: left;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    padding-top: 2%;
+}
+
+.directions {
+    text-align: left;
+    color: white;
+}
+
+.directions-title {
+    color: #D4AC0D;
+    text-align: left;
+    padding-left: 10%;
+    padding-top: 5%;
+}

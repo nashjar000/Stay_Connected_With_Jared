@@ -1,0 +1,88 @@
+/* Paintings */
+.paintings-title {
+    color: #594AE3;
+    font-size: 80px;
+}
+
+.tardis{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.hogwarts {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.duck {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.perry {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, .19);
+}
+
+.t-rex {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Sauraun {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.perry-potter{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.elephant{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.death-star{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Download button */
+.download-link{
+    color: #594AE3;
+    text-decoration: none;
+}
+
+.download-link:hover{
+    color: #D4AC0D;
+    text-decoration: underline;
+}

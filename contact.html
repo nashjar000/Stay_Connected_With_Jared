@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me - Stay Connected With Jared</title>
+    <link rel="icon" type="image/x-icon" href="images/mylogo.png">
+    <link rel="stylesheet" href="styles/style.css">
+    <script defer src="./js/header.js"></script>
+    <link rel="stylesheet" href="./styles/contact.css">
+</head>
+<script defer src="./js/mobile-menu.js"></script>
+<body>
+    <div id="content">
+        <div id="header"></div>
+        <!-- <button onclick="darklightmode()">Dark/Light</button>
+        <script>
+            function darklightmode(){
+                var element = document.body;
+                element.classList.toggle("dark-mode");
+            }
+        </script> -->
+    <main class="Home-grid">
+                <img id="contact-img" src="images/contactMeImage.png" alt="contact me image">
+
+            <section id ="contact">
+                <p>Click on the link below to email me. <span style="font-weight: bold;">Please include your name!</span> I'll respond back when I'm able to. :)</p>
+
+                <h1><a href="mailto: stayconnected.jared@gmail.com" class="email">email me</a></p>
+                <!-- <h1><a href="sms:" class="text">text me</a></h1> -->
+                
+            </section>
+        </div>
+
+    </main>
+            
+        </main>
+        <footer>
+            <h3>Stay Connected With Jared &copy;2022-2023 Jared Nash</h3>
+            <h3><a href="site-plan.html">Site Plan</a></h3>
+            <div class="social">
+                <button id="shareButton" class="share-button">Share This Page</button>
+                <script>
+             // Add a click event listener to the share button
+             document.getElementById("shareButton").addEventListener("click", sharePage);
+     
+             // Function to share the current page using the Web Share API
+             function sharePage() {
+                 if (navigator.share) {
+                     navigator.share({
+                         title: "Your Website",
+                         text: "Check out this website!",
+                         url: window.location.href
+                     })
+                     .then(() => {
+                         console.log("Shared successfully");
+                     })
+                     .catch(error => {
+                         console.error("Error sharing:", error);
+                     });
+                 } else {
+                     console.log("Web Share API not supported on this device.");
+                     // You can provide a fallback sharing option here if the Web Share API is not supported.
+                 }
+             }
+         </script>
+                <a href="https://www.facebook.com/jared.nash.108/" target="_blank">
+                    <img src="images/facebook.png" alt="fb icon">
+                </a>
+    
+                <a href="https://www.instagram.com/jared_nash0509/" target="_blank">
+                    <img src="images/Instagram_logo.png" alt="instagram icon" width="64" height="64">
+                </a>
+        </footer>
+    </div>
+</body>
+</html>

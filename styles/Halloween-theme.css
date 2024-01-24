@@ -1,0 +1,1046 @@
+#content {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.storm {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    animation: flash 5s linear infinite;
+}
+
+@keyframes flash {
+
+    0%,
+    95%,
+    98% {
+        background-color: transparent
+    }
+
+    96%,
+    99%,
+    100% {
+        background-color: #fff
+    }
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 600px) {
+    /* Adjust the header layout for mobile */
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .logo {
+        width: 120px; /* Adjust logo size for mobile */
+        margin-bottom: 10px;
+    }
+
+    #quote-container {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .mobile-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px 20px;
+    }
+
+    .menu-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    .bar {
+        width: 30px;
+        height: 3px;
+        background-color: white;
+    }
+
+    .mobile-menu {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        padding: 10px;
+    }
+
+    .mobile-menu a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 0;
+    }
+
+    /* Show mobile menu when menu icon is clicked */
+    .mobile-nav.active .mobile-menu {
+        display: flex;
+    }
+
+    /* Adjust hero image */
+    #hero-img {
+        width: 100%;
+        max-width: 300px; /* Adjust image width */
+        margin: 20px 0;
+    }
+
+    /* Adjust hero overlay text */
+    .hero-overlay-text {
+        font-size: 14px; /* Adjust font size */
+    }
+
+    /* Adjust other content */
+    h4,
+    p {
+        padding: 0 10px; 
+        font-size: 16px; 
+    }
+
+    .home-title{
+        font-size: 50px;
+    }
+
+    .mobile-nav {
+        position: relative;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9); /* Transparent background */
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999; /* Make sure the menu is on top */
+    }
+
+    .mobile-menu.active {
+        display: flex;
+    }
+
+    .mobile-menu a {
+        color: rgb(255, 0, 0);
+        text-decoration: none;
+        padding: 15px 0;
+    }
+
+    /* Adjust the menu icon to close the overlay */
+    .menu-icon.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .menu-icon.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-icon.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    .menu-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        width: 30px; /* Set a width for the icon */
+        height: 20px; /* Set a height for the icon */
+    }
+    
+    .bar {
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        transition: 0.3s;
+    }
+    
+    /* Adjust the icon appearance when active */
+    .menu-icon.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .menu-icon.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-icon.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+
+#quote-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.mobileShow{
+    text-align: center;
+    padding: 10%;
+    color: yellow;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.608);
+    font-size: 40px;
+}
+
+
+.spider-man-main{
+    font-family: 'Spiderman-Homecoming', 'Monsterrat','sans-serif';
+    color: blue;
+    text-shadow: 2px 2px red;
+    font-size: 3em;
+    padding: 10%;
+}
+
+.spider-man{
+    font-family: 'Spiderman-Homecoming', 'Monsterrat','sans-serif';
+}
+
+.countup {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.countup .timeel {
+    display: inline-block;
+    padding: 10px;
+    background: gray;
+    margin: 0;
+    color: white;
+    min-width: 2.6rem;
+    margin-left: 13px;
+    border-radius: 10px 0 0 10px;
+}
+
+.countup span[class*="timeRef"] {
+    border-radius: 0 10px 10px 0;
+    margin-left: 0;
+    background: #594AE3;
+    color: #D4AC0D;
+}
+
+.live-title {
+    color: #D4AC0D;
+    text-align: center;
+    padding-top: 10%;
+}
+
+#quote-container{
+    text-align: center;
+    background-color: darkred;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+/* Header and Navagation */
+header {
+    display: grid;
+    grid-template-columns: 150px auto;
+    background-color: rgba(13, 19, 30, 0.495);
+    background-color: #242325a0;
+    /* Halloween */ 
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+nav a {
+    text-align: center;
+    color:rgba(255, 238, 0, 0.646);
+    text-decoration: none;
+    padding: 15px;
+}
+
+nav a:hover {
+    background-color: rgba(0, 0, 0, 0.45);
+    /* Halloween */
+    text-decoration: underline;
+}
+
+.logo {
+    width: 200px;
+}
+
+#logo_link {
+    padding-top: 5px;
+    justify-self: center;
+    align-self: center;
+}
+
+#halloween-count-down {
+    text-align: center;
+    font-size: 80px;
+    margin-top: 0px;
+    font-family: 'ravenscroft', 'Monsterrat', 'sans-serif';
+    color: darkorange;
+    background-color: darkred;
+}
+
+.count-down-title {
+    color: darkorange;
+    font-family: "Burton's Nightmare", 'ravenscroft', 'Monsterrat', 'sans-serif';
+    font-size: 80px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+/* footer */
+footer {
+    background-color: #242325;
+    padding: 25px 50px;
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer h3 {
+    color: darkorange;
+}
+
+footer h3 a:hover {
+    text-decoration: underline;
+}
+
+footer a {
+    color: darkred;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: rgb(100, 4, 4);
+    /* color: white */
+}
+
+footer .social img {
+    margin-top: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* main section */
+
+.home-title {
+    color: darkorange;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5em;
+    margin-top: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 10%;
+}
+
+.Halloween {
+    color: darkred;
+    font-family: 'CF Halloween', 'Montserrat', sans-serif;
+    font-size: 100px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#hero-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 20px;
+}
+
+#hero-msg h1,
+#hero-msg h4 {
+    text-align: center;
+}
+
+main section {
+    text-align: center;
+}
+
+#background {
+    height: 725px;
+    background-color: #242325;
+}
+
+body {
+    background-color: black;
+    font-family: sans-serif;
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+}
+
+.dark-mode{
+    background-color: #242325;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+h4 {
+    padding-left: 10%;
+    padding-right: 10%;
+    color: black; 
+}
+
+main section img {
+    box-sizing: border-box;
+}
+
+.logo-img-big {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    /* top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    z-index: -1; */
+}
+
+.snow-background{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    z-index: -1;
+}
+
+.author {
+    font-style: italic;
+    text-align: center;
+}
+
+.quote {
+    padding-left: 30%;
+    padding-right: 30%;
+    text-align: center;
+}
+
+/* Video Journal Page */
+#videos {
+    text-align: center;
+    border: 3px
+}
+
+.video-journal {
+    text-align: center;
+    border: 3px
+}
+
+#video-journal-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    padding-top: 5%;
+}
+
+.video-journal-title {
+    color: darkorange;
+    font-size: 100px;
+}
+
+.year-links {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    padding: 50px;
+    gap: 30px;
+}
+
+#year-link {
+    color: red;
+    font-size: 25px;
+}
+
+#year-link:hover {
+    color: darkred;
+}
+
+#top-video {
+    color: red;
+}
+
+#top-video:hover {
+    color: darkred;
+}
+
+.year {
+    color: darkred;
+    font-size: 200px;
+}
+
+h2 {
+    color: darkorange;
+    padding-top: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#star_wars{
+    font-family:'Star Jedi Hollow' ;
+    font-size: 50px;
+}
+
+p {
+    color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.vlog {
+    color: red;
+}
+
+.video-journal-intro {
+    color: darkorange;
+    padding-top: 10%;
+}
+
+.fat-cats {
+    color: #594AE3;
+    font-size: 50px;
+}
+
+/* videos page */
+
+.video-main-title{
+    color: darkorange;
+    /* Halloween */
+    font-size: 100px;
+}
+
+.video-section{
+    color: darkred;
+    font-size: 80px;
+    padding-top: 10%;
+}
+.video-title{
+    color: darkorange;
+    padding-top: 8%;
+    font-size: 50px;
+}
+
+.video-links{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    padding: 50px;
+    gap: 30px;
+}
+
+/* .video-grid{
+    padding: 20%;
+    text-align: center;
+}
+
+.BGTV-videos, .animation-videos, .fun-videos{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10%;
+} */
+
+/* Piano Video Page */
+.piano-title {
+    color: darkorange;
+    font-size: 100px;
+}
+
+.peanuts {
+    color: darkred;
+    font-size: 50px;
+    font-family: 'peanuts', 'Montserrat', 'sans-serif';
+}
+
+.grim-grinning-ghosts {
+    font-size: 100px;
+    color: darkred;
+    font-family:'Ravenscroft', 'Monsterrat', 'sans-serif';
+}
+
+.hocus{
+    font-size: 60px;
+    color: darkred;
+    font-family: 'waltograph','Monsterrat', 'sans-serif';
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+.truman {
+    color: darkred;
+    /* Halloween */
+    font-size: 80px;
+    font-family: 'Trumania EEN', 'Montserrat', 'sans-serif';
+}
+
+.music {
+    color: #D4AC0D;
+    font-size: 200px;
+}
+
+#piano-main-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    padding-top: 5%;
+}
+
+.piano-videos {
+    text-align: center;
+    border: 3px
+}
+
+.batman1966 {
+    color: darkred;
+    font-size: 80px;
+    font-family: 'POW_', 'Montserrat', 'sans-serif';
+}
+
+.skyfall {
+    color: darkred;
+    font-size: 100px;
+    font-family: '007 Goldeneye', 'Montserrat', 'sans-serif';
+}
+
+.shadows-lie{
+    color: darkred;
+    font-size: 70px;
+    font-family: 'Ringbearer', 'Montserrat', 'sans-serif';
+}
+
+.gollum{
+    color: darkred;
+    font-size: 60px;
+    font-family: 'Ringbearer', 'Montserrat', 'sans-serif';
+}
+
+.batmandogcars {
+    color: darkred;
+    /* Halloween */
+    font-size: 50px;
+}
+
+/* About Me Page */
+#about-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    padding-top: 5%;
+    padding-top: 5%;
+}
+
+.question {
+    color: darkred;
+    font-size: 50px;
+}
+
+.answer {
+    color: white; 
+    font-size: 25px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.about-me-title {
+    color: darkorange;
+    font-size: 100px;
+}
+
+/* Overlay Home Page Image */
+.content {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 25%;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0, 0, 0, 0.698);
+}
+
+.content:hover .overlay {
+    opacity: 1;
+}
+
+.hero-overlay-text {
+    color: darkred;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* contact me */
+.contactinfo {
+    color: #D4AC0D;
+}
+
+.email {
+    color: #D4AC0D;
+}
+
+.email:hover {
+    color: #594AE3;
+}
+
+.text {
+    color: #D4AC0D;
+}
+
+.text:hover {
+    color: #594AE3;
+}
+
+.call {
+    color: #D4AC0D;
+}
+
+.call:hover {
+    color: #594AE3;
+}
+
+#contact-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+/* Favorite Music */
+#music-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    padding-top: 5%;
+}
+
+.music-link {
+    color: darkorange
+}
+
+.music-link:hover {
+    color: rgb(100, 4, 4);
+
+}
+
+/* coming-soon */
+#coming-soon {
+    color: #594AE3
+}
+
+/* Mission-audio-files */
+
+#mission-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-top: 5%;
+}
+
+.mission-title-main {
+    color: darkorange;
+    font-size: 90px;
+}
+
+#Mission-audio-files {
+    color: #594AE3;
+    /* Normal */
+}
+
+.mission-area {
+    color: darkred;
+    font-size: 80px;
+}
+
+/* Paintings */
+.paintings-title {
+    color: darkred;
+    font-size: 80px;
+}
+
+.hogwarts {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.duck {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.perry {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, .19);
+}
+
+.t-rex {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Sauraun {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.perry-potter{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.elephant{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.death-star{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Recipies */
+.recipies-title {
+    color: darkred;
+    font-size: 100px;
+}
+
+.recipie-links {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    padding: 50px;
+    gap: 30px;
+}
+
+#recipie-link {
+    color: red;
+    font-size: 25px;
+}
+
+#recipie-link:hover {
+    color: darkred;
+}
+
+#top-rec {
+    color: red;
+    font-size: 25px;
+}
+
+#top-rec:hover {
+    color: darkred;
+}
+
+.celestial-cookie-button {
+    background-color: gray;
+    cursor: pointer;
+    color: #D4AC0D;
+    font-size: large;
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+.ingred-title {
+    color: darkorange;
+    font-size: 30px;
+    padding-right: 70%;
+}
+
+.ingredients {
+    color: white;
+    text-align: left;
+}
+
+.cinnamon-roll {
+    color: darkorange;
+    text-align: center;
+    font-size: 50px;
+    padding-top: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.cinnamon {
+    color: darkorange;
+    text-align: left;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    padding-top: 2%;
+}
+
+.directions {
+    text-align: left;
+    color: white;
+}
+
+.directions-title {
+    text-align: left;
+    color: darkorange;
+    padding-left: 10%;
+    padding-top: 5%;
+}
+
+h4 {
+    color: white;
+}
+
+.dropdown-content a {
+    color:#D4AC0D;
+}
+
+#videoButton {
+    color:#D4AC0D;
+}
+
+/* .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color:#fb0707e6;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  } */
+
+  .dropdown-content a:hover {
+    background-color:#19070799;
+    color:rgba(255, 252, 248, 0.491);
+  }
+
+ /* Share Button Styles */
+.share-button {
+    background-color: #FF6600; /* Pumpkin orange background color */
+    color: #000; /* Black text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.share-button:hover {
+    background-color: #FF0000; /* Blood red background color on hover */
+    color: #FFF; /* White text color on hover */
+}
