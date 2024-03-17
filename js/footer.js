@@ -1,6 +1,8 @@
 footer.innerHTML = `
 <footer>
-<h3>Stay Connected With Jared &copy;2022-2023 Jared Nash</h3>
+<h3>Stay Connected With Jared &copy;
+<%= new Date().getFullYear() %>-
+<%= new Date().getFullYear()+1 %> Jared Nash</h3>
 <h3><a href="site-plan.html">Site Plan</a></h3>
 <div class="social">
     <button id="shareButton" class="share-button">Share This Page</button>
