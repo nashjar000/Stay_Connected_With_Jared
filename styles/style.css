@@ -16,6 +16,8 @@
     background-color: #594AE3;
     margin-left: 400px;
     margin-right: 400px;
+    border-radius: 20px;
+    box-shadow: #000000 5px 5px 10px;
 }
 
 #GC{
@@ -221,6 +223,7 @@ footer .social img {
     width: 50%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-top: 20px;
+    box-shadow: #000000 10px 10px 10px;
 }
 
 #hero-msg h1,
