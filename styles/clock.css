@@ -1,0 +1,23 @@
+
+#clock-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #594AE3;
+    box-shadow: #000000 5px 5px 10px;
+    color: #D4AC0D;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.608);
+    margin: 0 auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.timeel {
+    font-size: 2.5rem;
+    color: #D4AC0D;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.608);
+}
+
