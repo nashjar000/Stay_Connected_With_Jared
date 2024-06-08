@@ -892,3 +892,28 @@ p {
 .code-link{
     color: green;
 }
+
+/* clock */
+
+.clock-container {
+    background-color: #fb0707e6;
+    color: #F0E68C;
+    border: 2px solid #F0E68C;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px #F0E68C;
+}
+
+.clock-container span {
+    color: #F0E68C;
+}
+
+.clock-container .time {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.clock-container .date {
+    font-size: 20px;
+    font-style: italic;
+}
