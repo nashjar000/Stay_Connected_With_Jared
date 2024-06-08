@@ -29,7 +29,13 @@
             <div id="hero-box" class="content">
                 <img id="hero-img" src="images/spider-man-mask-off.jpg" alt="main profile picture" class="image">
                 <div class="overlay">
-                    <div class="hero-overlay-text">Jared Nash &copy;2024</div>
+                    <script>
+                        const year = new Date().getFullYear();
+                        const heroOverlayText = document.createElement('div');
+                        heroOverlayText.classList.add('hero-overlay-text');
+                        heroOverlayText.textContent = `Jared Nash ${String.fromCharCode(169)}${year}`;
+                        document.querySelector('.overlay').appendChild(heroOverlayText);
+                    </script>
                 </div>
             </div>
             
