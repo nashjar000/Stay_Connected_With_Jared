@@ -1044,38 +1044,3 @@ h4 {
     background-color: #FF0000; /* Blood red background color on hover */
     color: #FFF; /* White text color on hover */
 }
-
-/* Halloween Clock */
-
-.clock-container {
-    background-color: #331C1C; /* Dark brown background color */
-    color: #FFD700; /* Gold yellow text color */
-    border-radius: 20px;
-    padding: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-}
-
-.clock-time {
-    font-size: 48px;
-    font-weight: bold;
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.clock-date {
-    font-size: 24px;
-    font-style: italic;
-    display: inline-block;
-}
-
-.clock-ampm {
-    font-size: 24px;
-    font-weight: bold;
-    display: inline-block;
-}
-
-.clock-divider {
-    font-size: 24px;
-    display: inline-block;
-    margin: 0 5px;
-}
