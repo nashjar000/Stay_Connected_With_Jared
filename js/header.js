@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const header = document.getElementById("header");
 
     // Create header element
@@ -50,13 +50,30 @@ document.addEventListener("DOMContentLoaded", function() {
     closeButton.innerHTML = "&times;";
     mobileMenu.appendChild(closeButton);
 
-    const menuItems = [
-        { href: "index.html", text: "Home" },
-        { href: "about-me.html", text: "About Me (FAQ)" },
-        { href: "contact.html", text: "Contact Me" },
-        { href: "favorite-music.html", text: "Favorite Music" },
-        { href: "painting.html", text: "Paintings" },
-        { href: "recipies.html", text: "Recipes" },
+    const menuItems = [{
+            href: "index.html",
+            text: "Home"
+        },
+        {
+            href: "about-me.html",
+            text: "About Me (FAQ)"
+        },
+        {
+            href: "contact.html",
+            text: "Contact Me"
+        },
+        {
+            href: "favorite-music.html",
+            text: "Favorite Music"
+        },
+        {
+            href: "painting.html",
+            text: "Paintings"
+        },
+        {
+            href: "recipies.html",
+            text: "Recipes"
+        },
     ];
 
     menuItems.forEach(item => {
@@ -75,10 +92,18 @@ document.addEventListener("DOMContentLoaded", function() {
     dropbtn.innerHTML = 'Videos <i class="fa fa-caret-down"></i>';
     const dropdownContent = document.createElement("div");
     dropdownContent.className = "dropdown-content";
-    const videoLinks = [
-        { href: "video-journals.html", text: "Video Journals" },
-        { href: "piano.html", text: "Piano" },
-        { href: "videos.html", text: "Other" },
+    const videoLinks = [{
+            href: "video-journals.html",
+            text: "Video Journals"
+        },
+        {
+            href: "piano.html",
+            text: "Piano"
+        },
+        {
+            href: "videos.html",
+            text: "Other"
+        },
     ];
 
     videoLinks.forEach(item => {

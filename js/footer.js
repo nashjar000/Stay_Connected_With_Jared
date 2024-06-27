@@ -17,16 +17,16 @@ function sharePage() {
   // Check if the Web Share API is supported
   if (navigator.share) {
     navigator.share({
-      title: "Your Website",
-      text: "Check out this website!",
-      url: window.location.href
-    })
-    .then(() => {
-      console.log("Shared successfully");
-    })
-    .catch(error => {
-      console.error("Error sharing:", error);
-    });
+        title: "Your Website",
+        text: "Check out this website!",
+        url: window.location.href
+      })
+      .then(() => {
+        console.log("Shared successfully");
+      })
+      .catch(error => {
+        console.error("Error sharing:", error);
+      });
   } else {
     console.log("Web Share API not supported on this device.");
 
