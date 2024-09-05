@@ -1,6 +1,6 @@
 const footer = document.createElement("footer");
 footer.innerHTML = `
-  <h3>Stay Connected With Jared &copy; ${new Date().getFullYear()} Jared Nash</h3>
+  <p>&copy; ${new Date().getFullYear()} Stay Connected With Jared</p>
   <h3><a href="site-plan.html">Site Plan</a></h3>
   <div class="social">
     <button id="shareButton" class="share-button">Share This Page</button>
