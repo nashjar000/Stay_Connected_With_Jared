@@ -1,5 +1,5 @@
 /* scroll button */
-.scroll-to-top-button {
+/* .scroll-to-top-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -17,7 +17,7 @@
 .scroll-to-top-button:hover {
     background-color: #594AE3;
     color: #D4AC0D;
-}
+} */
 
 /* Christmas */
 /* .scroll-to-top-button {
@@ -46,12 +46,12 @@
 } */
 
 /* scroll button */
-/* .scroll-to-top-button {
+.scroll-to-top-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
     background-color: darkorange;
-    color: black;
+    color: white;
     border: none;
     border-radius: 50%;
     padding: 10px;
@@ -62,6 +62,6 @@
 }
 
 .scroll-to-top-button:hover {
-    background-color: black;
+    background-color: rgb(112, 7, 7);
     color: #D4AC0D;
-} */
+}

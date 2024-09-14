@@ -7,13 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add stylesheets
     const style1 = document.createElement("link");
     style1.rel = "stylesheet";
-    style1.href = "styles/styles.css";
+    style1.href = "/styles/Halloween-theme.css";
     const style2 = document.createElement("link");
     style2.rel = "stylesheet";
     style2.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css";
     const style3 = document.createElement("link");
     style3.rel = "stylesheet";
     style3.href = "./styles/scroll-button.css";
+
+    // Add background image
+    const backgroundImage = document.createElement("style");
+    backgroundImage.innerHTML = "body{background:url(/images/spider-web.avif)no-repeat center/cover fixed; background-color:rgba(0,0,0,0.7);}"
+    document.head.appendChild(backgroundImage);
 
     // Append styles to the document head
     document.head.appendChild(style1);
@@ -25,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     logoLink.href = "index.html";
     const logoImg = document.createElement("img");
     logoImg.className = "logo";
-    logoImg.src = "images/mylogo.png";
+    logoImg.src = "images/mylogo-halloween.png";
     logoImg.alt = "Stay Connected With Jared Logo";
     logoLink.appendChild(logoImg);
 
@@ -179,10 +184,10 @@ document.addEventListener("DOMContentLoaded", function () {
     audio2.hidden = true;
 
     // Uncomment and update the source as needed
-    // const source2 = document.createElement("source");
-    // source2.src = "Audio/『Grim Grinning Ghosts + Come Little Children』(Vocal Cover) _【Alice Flare】.mp3";
-    // source2.type = "audio/mpeg";
-    // audio2.appendChild(source2);
+    const source2 = document.createElement("source");
+    source2.src = "Audio/rain-lightning-thunder-121739.mp3";
+    source2.type = "audio/mpeg";
+    audio2.appendChild(source2);
 
     const buttonBox2 = document.createElement("div");
     buttonBox2.className = "button-box";
