@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add stylesheets
     const style1 = document.createElement("link");
     style1.rel = "stylesheet";
-    style1.href = "../styles/Halloween-theme.css";
+    style1.href = "./styles/Halloween-theme.css";
     const style2 = document.createElement("link");
     style2.rel = "stylesheet";
     style2.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css";
     const style3 = document.createElement("link");
     style3.rel = "stylesheet";
-    style3.href = "../styles/scroll-button.css";
+    style3.href = "./styles/scroll-button.css";
 
     // Add background image
     const backgroundImage = document.createElement("style");
