@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Uncomment and update the source as needed
     const source2 = document.createElement("source");
-    source2.src = "Audio/rain-lightning-thunder-121739.mp3";
+    source2.src = "./Audio/rain-lightning-thunder-121739.mp3";
     source2.type = "audio/mpeg";
     audio2.appendChild(source2);
 
