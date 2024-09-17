@@ -42,6 +42,11 @@
     /* Hide the message by default */
 }
 
+.toothless {
+    width: 50%;
+    height: auto;
+}
+
 @media (max-width: 600px) {
     .mobileShow {
         display: block;
