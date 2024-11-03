@@ -25,7 +25,7 @@ var x = setInterval(function() {
     clearInterval(x);
     document.getElementById("NYE").innerHTML = 
     ` 
-    <h1 class="NYE-msg" style= "color: white;">HAPPY NEW YEAR <span style="color: gold;">2024</span>!!!</h1>
+    <h1 class="NYE-msg" style="color: white; text-align:center; font-family: 'Pacifico', cursive; font-size: 1em; text-shadow: 3px 3px 3px #333; text-align: center;">HAPPY <span style="color: gold;">NEW</span> YEAR <span style="color: gold;">2025</span>!!!</h1>
  `
   }
 }, 1000);
