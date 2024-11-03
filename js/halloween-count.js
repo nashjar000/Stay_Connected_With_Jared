@@ -21,7 +21,9 @@
   + minutes + "m " + seconds + "s ";
                         
  // If the count down is over, write some text 
- if (distance < 0) {
-  clearInterval(x);
-  document.getElementById("halloween-count-down").innerHTML = "Happy Halloween!";}
-  }, 1000);
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("halloween-count-down").innerHTML = 
+    `<h1 class="spooky-msg" style="color: orange; font-family: 'Creepster', cursive;">🎃 Happy Halloween! 🎃</h1>`;
+  }
+}, 1000);
