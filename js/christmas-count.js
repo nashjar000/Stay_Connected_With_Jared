@@ -25,7 +25,7 @@ var x = setInterval(function() {
     clearInterval(x);
     document.getElementById("christmas-count-down").innerHTML = 
     ` 
-    <h1 class="Christmas" style= "color: darkred;">MERRY CHRISTMAS <span style="color: white;">!!!</span></h1>
+    <h1 class="Christmas" style="color: darkred; font-size: 1em; text-shadow: 2px 2px rgba(0, 0, 0, 0.608);">MERRY <span style="color: lightgreen;">CHRISTMAS</span> <span style="color: white;">!</span></h1>
  `
   }
 }, 1000);

@@ -1,5 +1,5 @@
   // Set the date we're counting down to
-  var countDownDate = Date.parse("Oct 31, 2024 00:00:00");
+  var countDownDate = Date.parse("Oct 31, 2025 00:00:00");
                     
  // Update the count down every 1 second
   var x = setInterval(function() {
@@ -24,6 +24,6 @@
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("halloween-count-down").innerHTML = 
-    `<h1 class="spooky-msg" style="color: orange; font-family: 'Creepster', cursive;">🎃 Happy Halloween! 🎃</h1>`;
+    `<h1 class="spooky-msg" style="color: orange; text-align: center; font-family: 'Creepster', cursive;">🎃 Happy Halloween! 🎃</h1>`;
   }
 }, 1000);
