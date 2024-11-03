@@ -20,7 +20,7 @@
 } */
 
 /* Christmas */
-/* .scroll-to-top-button {
+.scroll-to-top-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -38,7 +38,7 @@
 .scroll-to-top-button:hover {
     background-color: red;
     color: green;
-} */
+}
 
 /* Halloween */
 /* .directions, .ingredients{
@@ -46,7 +46,7 @@
 } */
 
 /* scroll button */
-.scroll-to-top-button {
+/* .scroll-to-top-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -64,4 +64,4 @@
 .scroll-to-top-button:hover {
     background-color: rgb(112, 7, 7);
     color: #D4AC0D;
-}
+} */

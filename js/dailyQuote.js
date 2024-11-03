@@ -35,34 +35,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Halloween Quotes:
       // Charlie Brown:
-      {quote: "On Halloween night, the Great Pumpkin rises from his pumpkin patch and flies through the air with his bag of toys to all the children.", author: "Linus"},
-      {quote: "Never jump into a pile of leaves with a wet sucker.", author: "Linus"},
+      // {quote: "On Halloween night, the Great Pumpkin rises from his pumpkin patch and flies through the air with his bag of toys to all the children.", author: "Linus"},
+      // {quote: "Never jump into a pile of leaves with a wet sucker.", author: "Linus"},
 
-      // Garfield:
-      {quote: "That's right, kids! Tonight is Halloween night, and we want to be in great shape to trick-or-treat for all that candy, DOOOOOOOOOON'T WE?", author:"Binky the Clown"},
-      {quote: "If we can make it across the river, the candy is all mine, do you hear me? ALL MINE! Ah, wait a minute. Am I being too greedy? Should I share my candy with those less fortunate than me? Am I missing the spirit of Halloween? Nah. All mine! Mine, I tell you!", author: "Garfield"},
-      {quote: "My boat's gone, my candy's gone, dead pirates are coming any minute, it's past my bedtime. I wanna go home.", author: "Garfield"},
+      // // Garfield:
+      // {quote: "That's right, kids! Tonight is Halloween night, and we want to be in great shape to trick-or-treat for all that candy, DOOOOOOOOOON'T WE?", author:"Binky the Clown"},
+      // {quote: "If we can make it across the river, the candy is all mine, do you hear me? ALL MINE! Ah, wait a minute. Am I being too greedy? Should I share my candy with those less fortunate than me? Am I missing the spirit of Halloween? Nah. All mine! Mine, I tell you!", author: "Garfield"},
+      // {quote: "My boat's gone, my candy's gone, dead pirates are coming any minute, it's past my bedtime. I wanna go home.", author: "Garfield"},
 
-      // Haunted Mansion:
-      {quote:"Hey, honey, you know they have dead people in the backyard?", author: "Jim Evers"},
+      // // Haunted Mansion:
+      // {quote:"Hey, honey, you know they have dead people in the backyard?", author: "Jim Evers"},
 
-      // Nightmare Before Christmas
-      {quote:"Eureka! This year, Christmas will be ours!", author:"Jack Skellington"},
+      // // Nightmare Before Christmas
+      // {quote:"Eureka! This year, Christmas will be ours!", author:"Jack Skellington"},
 
       // Christmas
-      // {quote:"The best way to spread Christmas cheer is singing loud for all to hear", author:"Buddy The Elf"},
-      // {quote:"We elves try to stick to the four main food groups: Candy, candy canes, candy corn, and syrup.", author:"Buddy The Elf"},
-      // {quote:"Buddy the Elf, what’s your favorite color?", author:"Buddy The Elf"},
+      {quote:"The best way to spread Christmas cheer is singing loud for all to hear", author:"Buddy The Elf"},
+      {quote:"We elves try to stick to the four main food groups: Candy, candy canes, candy corn, and syrup.", author:"Buddy The Elf"},
+      {quote:"Buddy the Elf, what’s your favorite color?", author:"Buddy The Elf"},
 
-      // {quote:"Now you listen to me, young lady! Even if we’re horribly mangled, there’ll be no sad faces on Christmas.", author:"The Grinch"},
+      {quote:"Now you listen to me, young lady! Even if we’re horribly mangled, there’ll be no sad faces on Christmas.", author:"The Grinch"},
 
-      // {quote:"Faith is believing in things when common sense tells you not to.", author:"Fred Gailey"},
-      // {quote:"Oh, Christmas isn’t just a day, it’s a frame of mind.", author:"Kris Kringle"},
+      {quote:"Faith is believing in things when common sense tells you not to.", author:"Fred Gailey"},
+      {quote:"Oh, Christmas isn’t just a day, it’s a frame of mind.", author:"Kris Kringle"},
 
-      // {quote:"Just remember, the true spirit of Christmas lies in hour heart.", author:"Santa Claus"},
-      // {quote:"Try your other pocket!", author:"Train Conductor"},
+      {quote:"Just remember, the true spirit of Christmas lies in hour heart.", author:"Santa Claus"},
+      {quote:"Try your other pocket!", author:"Train Conductor"},
 
-      // {quote:"Christmas, it's not the giving, it's not the getting, it's the loving", author:"Garfield"}
+      {quote:"Christmas, it's not the giving, it's not the getting, it's the loving", author:"Garfield"}
 
 
 

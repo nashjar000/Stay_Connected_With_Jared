@@ -23,5 +23,5 @@
  // If the count down is over, write some text 
  if (distance < 0) {
   clearInterval(x);
-  document.getElementById("halloween-count-down").innerHTML = "- - -";}
+  document.getElementById("halloween-count-down").innerHTML = "Happy Halloween!";}
   }, 1000);
