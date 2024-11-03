@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     logoLink.href = "index.html";
     const logoImg = document.createElement("img");
     logoImg.className = "logo";
-    logoImg.src = "/images/mylogo-red.png";
+    logoImg.src = "/images/mylogo-Red.png";
     logoImg.alt = "Stay Connected With Jared Logo";
     logoLink.appendChild(logoImg);
 
