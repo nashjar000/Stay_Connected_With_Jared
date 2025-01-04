@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add stylesheets
     const style1 = document.createElement("link");
     style1.rel = "stylesheet";
-    style1.href = "./styles/Christmas-theme.css";
+    style1.href = "./styles/style.css";
     const style2 = document.createElement("link");
     style2.rel = "stylesheet";
     style2.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css";
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add background image
     const backgroundImage = document.createElement("style");
-    backgroundImage.innerHTML = "body{background:url(./images/christmas-background-with-falling-snow_275806-1176.webp)no-repeat center/cover fixed; background-color:rgba(0,0,0,0.7);}"
+    // backgroundImage.innerHTML = "body{background:url(./images/christmas-background-with-falling-snow_275806-1176.webp)no-repeat center/cover fixed; background-color:rgba(0,0,0,0.7);}"
     document.head.appendChild(backgroundImage);
 
     // Append styles to the document head
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     logoLink.href = "index.html";
     const logoImg = document.createElement("img");
     logoImg.className = "logo";
-    logoImg.src = "./images/mylogo-Red.png";
+    logoImg.src = "./images/mylogo.png";
     logoImg.alt = "Stay Connected With Jared Logo";
     logoLink.appendChild(logoImg);
 

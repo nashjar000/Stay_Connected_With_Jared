@@ -1,5 +1,5 @@
 /* scroll button */
-/* .scroll-to-top-button {
+.scroll-to-top-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -17,10 +17,10 @@
 .scroll-to-top-button:hover {
     background-color: #594AE3;
     color: #D4AC0D;
-} */
+}
 
 /* Christmas */
-.scroll-to-top-button {
+/* .scroll-to-top-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -38,7 +38,7 @@
 .scroll-to-top-button:hover {
     background-color: red;
     color: green;
-}
+} */
 
 /* Halloween */
 /* .directions, .ingredients{
