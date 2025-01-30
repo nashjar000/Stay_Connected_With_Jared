@@ -1,37 +1,37 @@
 document.addEventListener("DOMContentLoaded", function () {
     const quotes = [
       // Doctor Who
-      // { quote: "Nine hundred years of time and space and I've never met someone who wasn't important.", author: "The Doctor" },
-      // { quote: "Everything's got to end sometime. Otherwise, nothing would ever get started.", author: "The Doctor" },
-      // {quote: "We all change, when you think about it. We're all different people through our lives. And that's okay, that's good, you gotta keep moving, so long as you remember all the people that you used to be.", author: "The Doctor"},
-      // {quote: "The name I choose is the Doctor. The name you choose it's like, it's like a promise you make.", author: "The Doctor"},
-      // {quote: "I'll be a story in your head. But that's OK: We're all stories, in the end. Just make it a good one, eh? Because it was, you know, it was the best: A daft old man, who stole a magic box and ran away.", author: "The Doctor"},
+      { quote: "Nine hundred years of time and space and I've never met someone who wasn't important.", author: "The Doctor" },
+      { quote: "Everything's got to end sometime. Otherwise, nothing would ever get started.", author: "The Doctor" },
+      {quote: "We all change, when you think about it. We're all different people through our lives. And that's okay, that's good, you gotta keep moving, so long as you remember all the people that you used to be.", author: "The Doctor"},
+      {quote: "The name I choose is the Doctor. The name you choose it's like, it's like a promise you make.", author: "The Doctor"},
+      {quote: "I'll be a story in your head. But that's OK: We're all stories, in the end. Just make it a good one, eh? Because it was, you know, it was the best: A daft old man, who stole a magic box and ran away.", author: "The Doctor"},
 
-      // // Church leaders
+      // Church leaders
       // {quote:"How can I tell when I’m being prompted by the Spirit?…Quit worrying about it. Quit fussing with it. Quit analyzing it. You be a good boy, you be a good girl, you honor your covenants, you keep the commandments; and I promise you in the name of the Lord Jesus Christ that as you press forward with faith in Christ, your footsteps will be guided. As you open your mouth, it will be filled, and you will be where you need to be, and most of the time, you will not even have any idea how you got there.", author:"Elder David A. Bednar"},
 
-      // // // Harry Potter
-      // {quote: "My philosophy is that worrying means you suffer twice.", author: "Newt Scamander"},
-      // {quote: "Even if we make mistakes, the terrible things, we can try to make things right.", author: "Newt Scamander"},
+      // Harry Potter
+      {quote: "My philosophy is that worrying means you suffer twice.", author: "Newt Scamander"},
+      {quote: "Even if we make mistakes, the terrible things, we can try to make things right.", author: "Newt Scamander"},
 
-      // {quote: "Happiness can be found, even in the darkest of times, if one only remembers to turn on the light", author: "Albus Dumbledore"},
+      {quote: "Happiness can be found, even in the darkest of times, if one only remembers to turn on the light", author: "Albus Dumbledore"},
 
-      // {quote: "My mum has always said things we loose have a way of coming back to us in the end. If not always in the way we expect.", author: "Luna Lovegood"},
-      // {quote: "You're just as sane as I am.", author: "Luna Lovegood"},
-      // {quote: "Being different isn't a bad thing. It means you're brave enough to be yourself", author: "Luna Lovegood"},
-      // {quote: "Well if I were You-Know-Who, I’d want you to feel cut off from everyone else. Because if it’s just you alone you’re not as much of a threat.", author: "Luna Lovegood"},
+      {quote: "My mum has always said things we loose have a way of coming back to us in the end. If not always in the way we expect.", author: "Luna Lovegood"},
+      {quote: "You're just as sane as I am.", author: "Luna Lovegood"},
+      {quote: "Being different isn't a bad thing. It means you're brave enough to be yourself", author: "Luna Lovegood"},
+      {quote: "Well if I were You-Know-Who, I’d want you to feel cut off from everyone else. Because if it’s just you alone you’re not as much of a threat.", author: "Luna Lovegood"},
 
-      // // // Famous People in History
-      // {quote: "I have not failed. I've just found 10,000 ways that won't work.", author: "Thomas Edison"},
+      // Famous People in History
+      {quote: "I have not failed. I've just found 10,000 ways that won't work.", author: "Thomas Edison"},
 
-      // // // Back to the Future
-      // {quote: "...your future hasn't been written yet. No one's has. Your future is whatever you make it. So make it a good one...", author: "Doc Brown"},
+      // Back to the Future
+      {quote: "...your future hasn't been written yet. No one's has. Your future is whatever you make it. So make it a good one...", author: "Doc Brown"},
 
-      // // // LotR & Hobbit
-      // {quote: "I have found it is the small things, everyday deeds of ordinary folk, that keeps the darkness at bay. Simple acts of kindness and love.", author: "Gandalf"},
+      // LotR & Hobbit
+      {quote: "I have found it is the small things, everyday deeds of ordinary folk, that keeps the darkness at bay. Simple acts of kindness and love.", author: "Gandalf"},
 
-      // {quote: "I don't know half of you half as well as I should like and I like less than half of you half as well as you deserve!", author: "Bilbo Baggins"},
-      // {quote: "I am going on an adventure!", author: "Bilbo Baggins"},
+      {quote: "I don't know half of you half as well as I should like and I like less than half of you half as well as you deserve!", author: "Bilbo Baggins"},
+      {quote: "I am going on an adventure!", author: "Bilbo Baggins"},
 
       // Halloween Quotes:
       // Charlie Brown:
@@ -50,19 +50,19 @@ document.addEventListener("DOMContentLoaded", function () {
       // {quote:"Eureka! This year, Christmas will be ours!", author:"Jack Skellington"},
 
       // Christmas
-      {quote:"The best way to spread Christmas cheer is singing loud for all to hear", author:"Buddy The Elf"},
-      {quote:"We elves try to stick to the four main food groups: Candy, candy canes, candy corn, and syrup.", author:"Buddy The Elf"},
-      {quote:"Buddy the Elf, what’s your favorite color?", author:"Buddy The Elf"},
+      // {quote:"The best way to spread Christmas cheer is singing loud for all to hear", author:"Buddy The Elf"},
+      // {quote:"We elves try to stick to the four main food groups: Candy, candy canes, candy corn, and syrup.", author:"Buddy The Elf"},
+      // {quote:"Buddy the Elf, what’s your favorite color?", author:"Buddy The Elf"},
 
-      {quote:"Now you listen to me, young lady! Even if we’re horribly mangled, there’ll be no sad faces on Christmas.", author:"The Grinch"},
+      // {quote:"Now you listen to me, young lady! Even if we’re horribly mangled, there’ll be no sad faces on Christmas.", author:"The Grinch"},
 
-      {quote:"Faith is believing in things when common sense tells you not to.", author:"Fred Gailey"},
-      {quote:"Oh, Christmas isn’t just a day, it’s a frame of mind.", author:"Kris Kringle"},
+      // {quote:"Faith is believing in things when common sense tells you not to.", author:"Fred Gailey"},
+      // {quote:"Oh, Christmas isn’t just a day, it’s a frame of mind.", author:"Kris Kringle"},
 
-      {quote:"Just remember, the true spirit of Christmas lies in hour heart.", author:"Santa Claus"},
-      {quote:"Try your other pocket!", author:"Train Conductor"},
+      // {quote:"Just remember, the true spirit of Christmas lies in hour heart.", author:"Santa Claus"},
+      // {quote:"Try your other pocket!", author:"Train Conductor"},
 
-      {quote:"Christmas, it's not the giving, it's not the getting, it's the loving", author:"Garfield"}
+      // {quote:"Christmas, it's not the giving, it's not the getting, it's the loving", author:"Garfield"}
 
 
 
