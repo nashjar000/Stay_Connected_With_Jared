@@ -28,7 +28,7 @@
     <div id="content">
         <div id="hero">
             <div id="hero-box" class="content">
-                <img id="hero-img" src="images/spider-man-mask-off.jpg" alt="main profile picture" class="image">
+                <img id="hero-img" src="images/spider-man-mask-off.jpg" alt="main profile" class="image">
                 <div class="overlay">
                     <script>
                         const year = new Date().getFullYear();
@@ -67,6 +67,22 @@
 
 
                 <h1 class="home-title">Stay Connected With Jared</h1>
+
+                <h1>Best Video Editing Award</h1>
+                <div class="image-container" style="position: relative; display: inline-block;">
+                    <img src="images/IMG_5735.jpeg" alt="Best Video Editing Award" id="award">
+                    <div class="overlay" style="position: absolute; top: 5%; left: 40%; width: 20%; height: 95%; background-color: #594ae3cb; color: #D4AC0D; display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s;">
+                        I won the best video editing award at the BYU-Idaho Spring Fest Film Festival 2024!
+                    </div>
+                </div>
+                <script>
+                    document.querySelector('.image-container').addEventListener('mouseover', function() {
+                        this.querySelector('.overlay').style.opacity = 1;
+                    });
+                    document.querySelector('.image-container').addEventListener('mouseout', function() {
+                        this.querySelector('.overlay').style.opacity = 0;
+                    });
+                </script>
 
                 <!-- Thanksgiving msg -->
                 <!-- <h1 class="thanks">HAPPY THANKSGIVING!!!</h1> -->

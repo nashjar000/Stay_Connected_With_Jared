@@ -246,6 +246,20 @@ footer .social img:hover {
     text-align: center;
 }
 
+h1 {
+    color: #D4AC0D;
+}
+
+#award {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 20px;
+    box-shadow: #000000 10px 10px 10px;
+}
+
 #link {
     display: block;
     color: #D4AC0D;
