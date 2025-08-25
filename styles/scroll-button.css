@@ -1,0 +1,67 @@
+/* scroll button */
+.scroll-to-top-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #D4AC0D;
+    color: #594AE3;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-to-top-button:hover {
+    background-color: #594AE3;
+    color: #D4AC0D;
+}
+
+/* Christmas */
+/* .scroll-to-top-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-to-top-button:hover {
+    background-color: red;
+    color: green;
+} */
+
+/* Halloween */
+/* .directions, .ingredients{
+    color: white;
+} */
+
+/* scroll button */
+/* .scroll-to-top-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: darkorange;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-to-top-button:hover {
+    background-color: rgb(112, 7, 7);
+    color: #D4AC0D;
+} */
