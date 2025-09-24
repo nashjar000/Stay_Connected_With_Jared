@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add stylesheets
     const style1 = document.createElement("link");
     style1.rel = "stylesheet";
-    style1.href = "./styles/style.css";
+    style1.href = "./styles/Halloween-theme.css";
     const style2 = document.createElement("link");
     style2.rel = "stylesheet";
     style2.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css";
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     logoLink.href = "index.html";
     const logoImg = document.createElement("img");
     logoImg.className = "logo";
-    logoImg.src = "./images/mylogo.png";
+    logoImg.src = "./images/mylogo-halloween.png";
     logoImg.alt = "Stay Connected With Jared Logo";
     logoLink.appendChild(logoImg);
 
