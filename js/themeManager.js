@@ -16,15 +16,23 @@ class ThemeManager {
                 favicon: 'images/mylogo-halloween.png',
                 quotes: 'halloween',
                 audio: 'Audio/Come Little Children (From \'Hocus Pocus\') (Children of the Night).mp3',
-                specialElements: ['halloween-message', 'halloween-countdown']
+                specialElements: ['halloween-countdown']
+            },
+            thanksgiving: {
+                css: './styles/Thanksgiving-theme.css',
+                logo: './images/mylogo-red.png',
+                favicon: 'images/mylogo-red.png',
+                quotes: 'thanksgiving',
+                audio: null,
+                specialElements: ['thanksgiving-countdown']
             },
             christmas: {
                 css: './styles/Christmas-theme.css',
-                logo: './images/mylogo-christmas.png',
-                favicon: 'images/mylogo-christmas.png',
+                logo: './images/mylogo-red.png',
+                favicon: 'images/mylogo-green.png',
                 quotes: 'christmas',
                 audio: 'Audio/All I Want for Christmas is You.mp3',
-                specialElements: ['christmas-message', 'christmas-countdown']
+                specialElements: ['christmas-countdown', 'christmas-background']
             }
         };
         
@@ -36,19 +44,83 @@ class ThemeManager {
         const now = new Date();
         const month = now.getMonth() + 1; // JavaScript months are 0-based
         const day = now.getDate();
+        const year = now.getFullYear();
 
         // Halloween Season: September 15 - October 31
         if ((month === 9 && day >= 15) || month === 10) {
             return 'halloween';
         }
         
-        // Christmas Season: November 1 - January 7
-        if (month === 11 || month === 12 || (month === 1 && day <= 7)) {
+        // Calculate Thanksgiving (fourth Thursday of November)
+        const getThanksgivingDate = (year) => {
+            const firstOfNovember = new Date(year, 10, 1); // Month 10 = November (0-based)
+            const firstThursday = new Date(firstOfNovember);
+            const dayOfWeek = firstOfNovember.getDay(); // 0 = Sunday, 4 = Thursday
+            const daysUntilThursday = (4 - dayOfWeek + 7) % 7;
+            firstThursday.setDate(1 + daysUntilThursday);
+            
+            // Fourth Thursday is 3 weeks after first Thursday
+            const fourthThursday = new Date(firstThursday);
+            fourthThursday.setDate(firstThursday.getDate() + 21);
+            
+            return fourthThursday.getDate();
+        };
+        
+        const thanksgivingDate = getThanksgivingDate(year);
+        const dayAfterThanksgiving = thanksgivingDate + 1;
+        
+        // Thanksgiving Season: November 1 - day of Thanksgiving
+        if (month === 11 && day <= thanksgivingDate) {
+            return 'thanksgiving';
+        }
+        
+        // Christmas Season: Day after Thanksgiving - January 7
+        if ((month === 11 && day >= dayAfterThanksgiving) || month === 12 || (month === 1 && day <= 7)) {
             return 'christmas';
         }
         
         // Normal theme: January 8 - September 14
         return 'normal';
+    }
+
+    getActiveSpecialElements() {
+        const now = new Date();
+        const month = now.getMonth() + 1;
+        const day = now.getDate();
+        const year = now.getFullYear();
+        const currentTheme = this.getCurrentTheme();
+        const baseElements = [...(this.themes[currentTheme].specialElements || [])];
+        
+        // Remove date-specific messages first
+        const filteredElements = baseElements.filter(element => 
+            !['halloween-message', 'thanksgiving-message', 'christmas-message', 'new-year-message'].includes(element)
+        );
+        
+        // Add date-specific messages only on the actual holidays
+        if (month === 10 && day === 31) { // Halloween
+            filteredElements.push('halloween-message');
+        } else if (month === 11 && day === this.getThanksgivingDate(year)) { // Thanksgiving
+            filteredElements.push('thanksgiving-message');
+        } else if (month === 12 && day === 25) { // Christmas
+            filteredElements.push('christmas-message');
+        } else if (month === 1 && day === 1) { // New Year's Day
+            filteredElements.push('new-year-message');
+        }
+        
+        return filteredElements;
+    }
+    
+    getThanksgivingDate(year) {
+        const firstOfNovember = new Date(year, 10, 1);
+        const firstThursday = new Date(firstOfNovember);
+        const dayOfWeek = firstOfNovember.getDay();
+        const daysUntilThursday = (4 - dayOfWeek + 7) % 7;
+        firstThursday.setDate(1 + daysUntilThursday);
+        
+        const fourthThursday = new Date(firstThursday);
+        fourthThursday.setDate(firstThursday.getDate() + 21);
+        
+        return fourthThursday.getDate();
     }
 
     getCurrentTheme() {
@@ -80,13 +152,19 @@ class ThemeManager {
         // Apply favicon
         this.setFavicon(themeConfig.favicon);
         
+        // Create dynamic theme config with date-specific elements
+        const dynamicThemeConfig = {
+            ...themeConfig,
+            specialElements: this.getActiveSpecialElements()
+        };
+        
         // Store current theme for other scripts
         window.currentTheme = theme;
-        window.currentThemeConfig = themeConfig;
+        window.currentThemeConfig = dynamicThemeConfig;
         
         // Dispatch theme change event
         window.dispatchEvent(new CustomEvent('themeChanged', { 
-            detail: { theme, config: themeConfig }
+            detail: { theme, config: dynamicThemeConfig }
         }));
     }
 

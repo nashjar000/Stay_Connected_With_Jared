@@ -1,0 +1,320 @@
+/* Simple Thanksgiving Theme CSS */
+
+/* Quote container styling */
+#quote-container {
+    text-align: center;
+    background-color: #8B4513;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+#author, #quote {
+    color: #FFF8DC;
+}
+
+#content {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.mobileShow {
+    text-align: center;
+    padding: 10%;
+    color: #D2691E;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.608);
+    font-size: 40px;
+}
+
+/* Body styling */
+body {
+    background-color: #DEB887 !important;
+    color: #2F1B14 !important;
+}
+
+html {
+    background-color: #DEB887 !important;
+}
+
+/* Header styling */
+header {
+    background-color: #8B4513 !important;
+    color: #FFF8DC !important;
+}
+
+header a {
+    color: #FFF8DC !important;
+}
+
+header a:hover {
+    color: #FFE4B5 !important;
+}
+
+/* Navigation styling */
+nav {
+    background-color: #A0522D !important;
+}
+
+nav a {
+    color: #FFF8DC !important;
+}
+
+nav a:hover {
+    background-color: #8B4513 !important;
+    color: #FFE4B5 !important;
+}
+
+/* Main content area */
+main {
+    background-color: #F5DEB3 !important;
+    color: #2F1B14 !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #8B4513 !important;
+}
+
+/* Paragraphs */
+p {
+    color: #2F1B14 !important;
+}
+
+/* Links */
+a {
+    color: #A0522D !important;
+}
+
+a:hover {
+    color: #8B4513 !important;
+}
+
+/* Tables */
+table {
+    background-color: #F5DEB3 !important;
+}
+
+th {
+    background-color: #D2691E !important;
+    color: #FFF8DC !important;
+}
+
+td {
+    color: #2F1B14 !important;
+}
+
+/* Forms */
+input, textarea, select {
+    background-color: #F5DEB3 !important;
+    color: #2F1B14 !important;
+    border: 2px solid #D2691E !important;
+}
+
+button {
+    background-color: #D2691E !important;
+    color: #FFF8DC !important;
+}
+
+button:hover {
+    background-color: #8B4513 !important;
+}
+
+/* Images - no borders for clean look */
+
+/* Footer styling */
+footer {
+    background-color: #8B4513 !important;
+    color: #FFF8DC !important;
+    text-align: center !important;
+    padding: 20px !important;
+    margin-top: 30px !important;
+}
+
+footer a {
+    color: #FFF8DC !important;
+}
+
+footer a:hover {
+    color: #FFE4B5 !important;
+}
+
+/* Dropdown menu styling */
+.dropdown-content {
+    background-color: #F5DEB3 !important;
+    color: #2F1B14 !important;
+}
+
+.dropdown-content a {
+    color: #2F1B14 !important;
+    background-color: #F5DEB3 !important;
+}
+
+.dropdown-content a:hover {
+    background-color: #DEB887 !important;
+    color: #8B4513 !important;
+}
+
+/* Video dropdown specific styling */
+.video-dropdown .dropdown-content {
+    background-color: #F5DEB3 !important;
+}
+
+.video-dropdown .dropdown-content a {
+    color: #2F1B14 !important;
+    font-weight: bold !important;
+}
+
+.video-dropdown .dropdown-content a:hover {
+    background-color: #D2691E !important;
+    color: #FFF8DC !important;
+}
+
+/* General dropdown button styling */
+.dropbtn {
+    background-color: #A0522D !important;
+    color: #FFF8DC !important;
+}
+
+.dropbtn:hover {
+    background-color: #8B4513 !important;
+}
+
+/* Special Thanksgiving message */
+.thanksgiving-message {
+    background-color: #FF8C00 !important;
+    color: #8B4513 !important;
+    padding: 20px !important;
+    text-align: center !important;
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    margin: 20px 0 !important;
+}
+
+/* Scroll to top button */
+.scroll-to-top-button {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    background-color: #D2691E !important;
+    color: #FFF8DC !important;
+    border: none !important;
+    border-radius: 50% !important;
+    padding: 10px !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s, color 0.3s !important;
+    box-shadow: 0 0 10px rgba(139, 69, 19, 0.5) !important;
+    z-index: 9999 !important;
+}
+
+.scroll-to-top-button:hover {
+    background-color: #8B4513 !important;
+    color: #FFE4B5 !important;
+}
+
+/* Share this page button - darker orange outline on hover */
+.share-button, .share-this-page, [class*="share"] {
+    transition: border-color 0.3s ease !important;
+}
+
+.share-button:hover, .share-this-page:hover, [class*="share"]:hover {
+    border-color: #B8860B !important;
+}
+
+/* Thanksgiving Clock Styling */
+#clock-container {
+    background-color: #8B4513 !important;
+    border: 3px solid #D2691E !important;
+    color: #FFF8DC !important;
+    box-shadow: 0 0 15px rgba(139, 69, 19, 0.5) !important;
+}
+
+#time {
+    color: #FFF8DC !important;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+#date {
+    color: #FFE4B5 !important;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* How long I've been alive section - fall theme colors */
+.live-title {
+    color: #8B4513 !important;
+}
+
+.countup {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 20px !important;
+    border-radius: 0 !important;
+    margin: 20px auto !important;
+}
+
+.countup .timeel {
+    background: #8B4513 !important;
+    color: #FFF8DC !important;
+    font-weight: bold !important;
+}
+
+/* Override the specific timeRef elements (gray -> blue in original) */
+.countup span[class*="timeRef"] {
+    background: #D2691E !important;
+    color: #FFF8DC !important;
+    border-radius: 0 10px 10px 0 !important;
+}
+
+/* Keep original sizes, just change colors */
+.countup .days, .countup .hours, .countup .minutes, .countup .seconds {
+    color: #FFF8DC !important;
+}
+
+.countup .timeRefDays, .countup .timeRefHours, .countup .timeRefMinutes, .countup .timeRefSeconds {
+    color: #FFF8DC !important;
+}
+
+#age-display, .age-counter, #ageDisplay {
+    color: #8B4513 !important;
+    background-color: #F5DEB3 !important;
+    border: 2px solid #D2691E !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+}
+
+.age-label, .age-value {
+    color: #2F1B14 !important;
+}
+
+/* Share this page button - make it visible */
+.share-button, .share-this-page, [class*="share"], button[class*="share"] {
+    background-color: #D2691E !important;
+    color: #FFF8DC !important;
+    border: 2px solid #8B4513 !important;
+    padding: 8px 16px !important;
+    border-radius: 6px !important;
+    transition: all 0.3s ease !important;
+}
+
+.share-button:hover, .share-this-page:hover, [class*="share"]:hover, button[class*="share"]:hover {
+    background-color: #8B4513 !important;
+    border-color: #B8860B !important;
+    color: #FFE4B5 !important;
+}
+
+/* Thanksgiving Countdown Timer Styling */
+#thanksgiving-count-down {
+    text-align: center;
+    font-size: 80px;
+    margin-top: 0px;
+    font-family: 'Georgia', 'serif';
+    color: #D2691E;
+    background-color: #8B4513;
+}
+
+.count-down-title {
+    color: #8B4513;
+    font-family: 'Georgia', 'serif';
+    font-size: 80px;
+    padding-left: 10%;
+    padding-right: 10%;
+}

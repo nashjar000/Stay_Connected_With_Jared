@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div style="margin-bottom: 10px;">
                 <button onclick="window.themeManager?.setManualTheme('normal')" style="margin: 2px; padding: 4px 8px;">Normal</button>
                 <button onclick="window.themeManager?.setManualTheme('halloween')" style="margin: 2px; padding: 4px 8px;">Halloween</button>
+                <button onclick="window.themeManager?.setManualTheme('thanksgiving')" style="margin: 2px; padding: 4px 8px;">Thanksgiving</button>
                 <button onclick="window.themeManager?.setManualTheme('christmas')" style="margin: 2px; padding: 4px 8px;">Christmas</button>
             </div>
             <div style="margin-bottom: 10px;">

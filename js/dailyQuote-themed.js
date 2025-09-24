@@ -48,6 +48,31 @@ document.addEventListener("DOMContentLoaded", function () {
             {quote:"And since I am dead, I can take off my head to recite Shakespearean quotations.", author:"Jack Skellington"},
         ],
         
+        thanksgiving: [
+            // Garfield's Thanksgiving
+            {quote: "I hate Mondays, but I love Thanksgiving dinner!", author: "Garfield"},
+            {quote: "Thanksgiving is the one day of the year when it's socially acceptable to eat until you can't move.", author: "Garfield"},
+            {quote: "I'm thankful for lasagna, and more lasagna.", author: "Garfield"},
+            {quote: "The only thing better than one turkey dinner is two turkey dinners.", author: "Garfield"},
+            {quote: "Diet? What diet? It's Thanksgiving!", author: "Garfield"},
+            
+            // A Charlie Brown Thanksgiving
+            {quote: "What if, today, we were grateful for everything?", author: "Charlie Brown"},
+            {quote: "Sometimes I lie awake at night and ask 'Why me?' Then a voice answers 'Nothing personal, your name just happened to come up.'", author: "Charlie Brown"},
+            {quote: "In the book of life, the answers aren't in the back.", author: "Charlie Brown"},
+            {quote: "I think there must be something wrong with me, Linus. Christmas is coming, but I'm not happy.", author: "Charlie Brown"},
+            {quote: "Don't worry about the world coming to an end today. It's already tomorrow in Australia.", author: "Charlie Brown"},
+            
+            // Snoopy's Thanksgiving wisdom
+            {quote: "Sometimes I lie awake at night, and I ask, 'Where have I gone wrong?' Then a voice says to me, 'This is going to take more than one night.'", author: "Snoopy"},
+            {quote: "Yesterday I was a dog. Today I'm a dog. Tomorrow I'll probably still be a dog. Sigh! There's so little hope for advancement.", author: "Snoopy"},
+            
+            // General Thanksgiving & Gratitude 
+            {quote: "Gratitude is not only the greatest of virtues, but the parent of all others.", author: "Cicero"},
+            {quote: "Be thankful for what you have; you'll end up having more.", author: "Oprah Winfrey"},
+            {quote: "Give thanks not just on Thanksgiving Day, but every day of your life.", author: "Catherine Pulsifer"},
+        ],
+        
         christmas: [
             // Elf
             {quote:"The best way to spread Christmas cheer is singing loud for all to hear", author:"Buddy The Elf"},

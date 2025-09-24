@@ -18,6 +18,44 @@ document.addEventListener("DOMContentLoaded", function () {
             position: 'beforeend',
             script: './js/halloween-count.js'
         },
+        'thanksgiving-message': {
+            html: `
+                <h1 class="Thanksgiving" style="text-align: center; color: #8B4513;">
+                    <span style="color: #8B4513;">H</span>
+                    <span style="color: #D2691E;">A</span>
+                    <span style="color: #8B4513;">P</span>
+                    <span style="color: #D2691E;">P</span>
+                    <span style="color: #8B4513;">Y</span>
+                    &nbsp;
+                    <span style="color: #D2691E;">T</span>
+                    <span style="color: #8B4513;">H</span>
+                    <span style="color: #D2691E;">A</span>
+                    <span style="color: #8B4513;">N</span>
+                    <span style="color: #D2691E;">K</span>
+                    <span style="color: #8B4513;">S</span>
+                    <span style="color: #D2691E;">G</span>
+                    <span style="color: #8B4513;">I</span>
+                    <span style="color: #D2691E;">V</span>
+                    <span style="color: #8B4513;">I</span>
+                    <span style="color: #D2691E;">N</span>
+                    <span style="color: #8B4513;">G</span>
+                    <span style="color: #D2691E;">!</span>
+                    <br>
+                    <span style="font-size: 0.7em; color: #2F1B14;">🦃 🍂 🌽 Grateful for family, friends, and blessings! 🥧 🍁 🦃</span>
+                </h1>
+            `,
+            parent: 'hero-msg',
+            position: 'beforeend'
+        },
+        'thanksgiving-countdown': {
+            html: `
+                <h1 class="count-down-title">Days until <span style="color: #8B4513; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Thanksgiving 🦃</span>:</h1>
+                <p id="thanksgiving-count-down"></p>
+            `,
+            parent: 'hero-msg',
+            position: 'beforeend',
+            script: './js/thanksgiving-count.js'
+        },
         'christmas-message': {
             html: `
                 <h1 class="Christmas" style="text-align: center;">
@@ -50,6 +88,38 @@ document.addEventListener("DOMContentLoaded", function () {
             parent: 'hero-msg',
             position: 'beforeend',
             script: './js/christmas-count.js'
+        },
+        'christmas-background': {
+            html: `
+                <img class="background snow-background" src="images/christmas-background-with-falling-snow_275806-1176.webp" alt="snow-background">
+            `,
+            parent: 'content',
+            position: 'beforeend'
+        },
+        'new-year-message': {
+            html: `
+                <h1 class="Christmas" style="text-align: center;">
+                    <span style="color: gold;">H</span>
+                    <span style="color: silver;">A</span>
+                    <span style="color: gold;">P</span>
+                    <span style="color: silver;">P</span>
+                    <span style="color: gold;">Y</span>
+                    &nbsp;
+                    <span style="color: silver;">N</span>
+                    <span style="color: gold;">E</span>
+                    <span style="color: silver;">W</span>
+                    &nbsp;
+                    <span style="color: gold;">Y</span>
+                    <span style="color: silver;">E</span>
+                    <span style="color: gold;">A</span>
+                    <span style="color: silver;">R</span>
+                    <span style="color: gold;">!</span>
+                    <br>
+                    <span style="font-size: 0.8em; color: #444;">🎊 ✨ Here's to new beginnings! ✨ 🎊</span>
+                </h1>
+            `,
+            parent: 'hero-msg',
+            position: 'beforeend'
         }
     };
     
