@@ -1,13 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     const header = document.getElementById("header");
 
-    // Create header element
-    const headerElement = document.createElement("header");
+    // Wait for theme manager to initialize
+    const initializeHeader = () => {
+        const themeConfig = window.currentThemeConfig || {
+            css: './styles/style.css',
+            logo: './images/mylogo.png'
+        };
+
+        // Create header element
+        const headerElement = document.createElement("header");
 
     // Add stylesheets
     const style1 = document.createElement("link");
     style1.rel = "stylesheet";
-    style1.href = "./styles/Halloween-theme.css";
+    style1.href = themeConfig.css;
     const style2 = document.createElement("link");
     style2.rel = "stylesheet";
     style2.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css";
@@ -30,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     logoLink.href = "index.html";
     const logoImg = document.createElement("img");
     logoImg.className = "logo";
-    logoImg.src = "./images/mylogo-halloween.png";
+    logoImg.src = themeConfig.logo;
     logoImg.alt = "Stay Connected With Jared Logo";
     logoLink.appendChild(logoImg);
 
@@ -219,4 +226,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Call the flashScreen function
     // flashScreen();
+    };
+
+    // Initialize header immediately or wait for theme manager
+    if (window.currentThemeConfig) {
+        initializeHeader();
+    } else {
+        window.addEventListener('themeChanged', initializeHeader, { once: true });
+        // Fallback timeout in case theme manager doesn't load
+        setTimeout(initializeHeader, 100);
+    }
 });
