@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     height: 150px; /* Adjust height as needed */
-    width: 300px; /* Adjust width as needed */
+    width: 450px; /* Adjust width as needed */
     border-radius: 50%; /* Adjust radius as needed */
     background-color: #594AE3;
     box-shadow: #000000 5px 5px 10px;
@@ -20,13 +20,13 @@
 }
 
 #time {
-    font-size: 2.5rem; /* Adjust font size as needed */
+    font-size: 5rem; /* Adjust font size as needed */
     color: #D4AC0D;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.608);
 }
 
 #date {
-    font-size: 1rem; /* Adjust font size as needed */
+    font-size: 2rem; /* Adjust font size as needed */
     color: #D4AC0D;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.608);
     margin-top: 10px; /* Adjust spacing as needed */

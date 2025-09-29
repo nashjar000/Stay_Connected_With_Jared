@@ -595,22 +595,19 @@ p {
 }
 
 .mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    max-height: calc(100% - 50px);
-    /* Adjust the value as needed */
-    background-color: rgba(0, 0, 0, 0.9);
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    /* Align content to the top */
-    z-index: 9999;
-    overflow-y: auto;
-    padding-top: 50px;
-    /* Add padding for the black overlay */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.95) !important;
+    display: none !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 9999 !important;
+    overflow-y: auto !important;
+    padding: 20px !important; /* Better mobile fit */
 }
 
 .mobile-menu.active {
@@ -618,31 +615,54 @@ p {
 }
 
 .mobile-menu a {
-    color: white;
-    text-decoration: none;
-    padding: 15px 0;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 20px 0 !important;
+    font-size: 24px !important;
+    text-align: center !important;
+    width: 100% !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: color 0.3s ease !important;
 }
 
-/* Style the close button (X) */
+.mobile-menu a:hover {
+    color: #D4AC0D !important;
+}
+
+/* Style the close button (X) - more visible */
 .close-button {
-    position: center;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    color: #2196F3;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: #ff4444;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 5px 8px;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 1000;
 }
 
 .close-button:hover {
-    color: #D4AC0D;
-    /* Change color on hover */
+    color: #ffffff;
+    background-color: rgba(255, 68, 68, 0.8);
+    transform: scale(1.1);
 }
 
 /* Hide the original navigation on mobile devices */
 @media (max-width: 600px) {
     nav {
-        display: none;
+        display: none !important;
+    }
+
+    /* Enhanced mobile menu icon positioning */
+    .menu-icon {
+        display: flex !important;
+        margin: 0 auto !important;
+        align-self: center !important;
+        position: relative !important;
+        left: 0 !important;
     }
 
     #videoButton {
@@ -652,6 +672,71 @@ p {
     .dropdown-content {
         background-color: rgba(0, 0, 0, 0.9);
         margin-left: 50px;
+    }
+
+    /* Mobile content improvements */
+    #content {
+        max-width: 100% !important;
+        padding: 0 15px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Header improvements for mobile */
+    header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 15px !important;
+        text-align: center !important;
+    }
+
+    .logo {
+        width: 100px !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* Footer mobile improvements */
+    footer {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 20px 15px !important;
+        gap: 15px !important;
+    }
+
+    footer h3 {
+        margin: 10px 0 !important;
+    }
+
+    /* Text improvements for mobile */
+    h1, h2, h3, h4, h5, h6 {
+        padding: 10px 15px !important;
+        text-align: center !important;
+        line-height: 1.2 !important;
+    }
+
+    p {
+        padding: 0 15px !important;
+        line-height: 1.4 !important;
+        font-size: 18px !important;
+    }
+
+    /* Quote container mobile optimization */
+    #quote-container {
+        margin: 20px 15px !important;
+        padding: 20px !important;
+        border-radius: 10px !important;
+    }
+
+    /* Mobile show message improvements */
+    .mobileShow {
+        display: block !important;
+        text-align: center !important;
+        padding: 20px 15px !important;
+        font-size: 22px !important;
+        line-height: 1.3 !important;
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        border-radius: 8px !important;
+        margin: 15px !important;
     }
 }
 

@@ -1,4 +1,56 @@
-/* Halloween Theme Overrides */
+/* Halloween theme award overlay */
+.award-overlay {
+    --overlay-bg: rgba(0, 0, 0, 0.9) !important; /* Black background like hero */
+    --overlay-text: #ff4444 !important; /* Red text */
+}
+
+/* Mobile award overlay - ensure visibility and Halloween styling */
+@media (max-width: 600px) {
+    .award-overlay {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: rgba(0, 0, 0, 0.9) !important;
+        color: #ff4444 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        opacity: 0 !important;
+        transition: opacity 0.3s !important;
+        font-weight: bold !important;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        line-height: 1.4 !important;
+        z-index: 100 !important;
+        border-radius: 8px !important;
+    }
+    
+    .award-overlay.show {
+        opacity: 1 !important;
+    }
+    
+    /* Make sure image container is properly positioned */
+    .image-container {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+    }
+    
+    #award {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+    }
+}
+
+/* Halloween theme award overlay */
 body {
     background-color: black !important;
     color: white !important;
@@ -63,38 +115,59 @@ html {
 
     .mobile-nav {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.9);
         padding: 10px 20px;
     }
 
     .menu-icon {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         justify-content: space-between;
         cursor: pointer;
+        width: 35px;
+        height: 25px;
+        margin: 0 auto !important;
+        z-index: 10000 !important;
     }
 
     .bar {
-        width: 30px;
-        height: 3px;
+        width: 100%;
+        height: 4px;
         background-color: white;
+        transition: 0.3s;
+        border-radius: 2px;
     }
 
     .mobile-menu {
-        display: none;
-        flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.8);
-        width: 100%;
-        padding: 10px;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: rgba(0, 0, 0, 0.95) !important;
+        display: none !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 9999 !important;
     }
 
     .mobile-menu a {
-        color: white;
-        text-decoration: none;
-        padding: 10px 0;
+        color: #ff4444 !important; /* Red for Halloween mobile menu */
+        text-decoration: none !important;
+        padding: 20px 0 !important;
+        font-size: 24px !important;
+        text-align: center !important;
+        width: 100% !important;
+        border-bottom: 1px solid rgba(255, 68, 68, 0.2) !important;
+        transition: color 0.3s ease !important;
+    }
+
+    .mobile-menu a:hover {
+        color: #ffffff !important;
     }
 
     /* Show mobile menu when menu icon is clicked */
@@ -141,16 +214,23 @@ html {
         align-items: center;
         justify-content: center;
         z-index: 9999; /* Make sure the menu is on top */
+        overflow-y: auto; /* Allow scrolling if needed */
+        padding: 20px; /* Add padding for better mobile fit */
     }
 
     .mobile-menu.active {
-        display: flex;
+        display: flex !important;
     }
 
     .mobile-menu a {
-        color: rgb(255, 0, 0);
-        text-decoration: none;
-        padding: 15px 0;
+        color: #ff4444 !important; /* Red for Halloween mobile menu */
+        text-decoration: none !important;
+        padding: 20px 0 !important;
+        font-size: 24px !important;
+        text-align: center !important;
+        width: 100% !important;
+        border-bottom: 1px solid rgba(255, 68, 68, 0.2) !important;
+        transition: color 0.3s ease !important;
     }
 
     /* Adjust the menu icon to close the overlay */
@@ -1090,6 +1170,23 @@ h4 {
     color: yellow !important;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.8) !important;
     font-family: 'ravenscroft', 'CF Halloween', 'Montserrat', monospace !important;
+}
+
+/* Scroll to top button */
+.scroll-to-top-button {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    background-color: darkorange !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    padding: 10px !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s, color 0.3s !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+    z-index: 9999 !important;
 }
 
 /* Scroll to top button */

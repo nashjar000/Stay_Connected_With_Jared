@@ -1,55 +1,69 @@
-// Create a hamburger icon for the mobile menu
-const menuIcon = document.createElement('div');
-menuIcon.classList.add('menu-icon');
-for (let i = 0; i < 3; i++) {
-  const bar = document.createElement('div');
-  bar.classList.add('bar');
-  menuIcon.appendChild(bar);
-}
-
-// Get the header and mobile menu elements
-const header = document.querySelector('header');
-const mobileMenu = document.createElement('div');
-mobileMenu.classList.add('mobile-menu');
-
-// Clone the navigation links from the existing navigation
-const navLinks = document.querySelector('nav').cloneNode(true);
-navLinks.classList.add('mobile-nav');
-
-// Append the elements to the header
-mobileMenu.appendChild(menuIcon); // Place the menu icon first
-mobileMenu.appendChild(navLinks);
-header.appendChild(mobileMenu);
-
-// Attach click event listener to the menu icon
-menuIcon.addEventListener('click', () => {
-  menuIcon.classList.toggle('active');
-  mobileMenu.classList.toggle('active');
-});
-
-// Get the video dropdown button and dropdown content
-const videoButton = document.getElementById("videoButton");
-const dropdownContent = document.querySelector('.dropdown-content');
-
-// Attach click event listener to the video dropdown button
-videoButton.addEventListener("click", () => {
-  dropdownContent.classList.toggle('active');
-});
-
+// Mobile menu functionality
 document.addEventListener('DOMContentLoaded', function() {
-  const menuIcon = document.getElementById("menuIcon");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const closeButton = document.getElementById("closeButton"); // Get the close button element
+    // Wait for header to be fully initialized
+    setTimeout(() => {
+        const menuIcon = document.getElementById('menuIcon');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeButton = document.getElementById('closeButton');
 
-  menuIcon.addEventListener("click", () => {
-    menuIcon.classList.toggle("active");
-    mobileMenu.classList.toggle("active");
-    dropdownContent.classList.remove('active'); // Close the dropdown content when the menu icon is clicked
-  });
+        if (menuIcon && mobileMenu) {
+            // Remove any existing event listeners to avoid duplicates
+            menuIcon.replaceWith(menuIcon.cloneNode(true));
+            const newMenuIcon = document.getElementById('menuIcon');
+            
+            // Add click event listener to menu icon
+            newMenuIcon.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Menu icon clicked'); // Debug log
+                
+                newMenuIcon.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                
+                // Debug log
+                console.log('Mobile menu active:', mobileMenu.classList.contains('active'));
+            });
+        }
 
-  closeButton.addEventListener("click", () => {
-    menuIcon.classList.remove("active"); // Close the menu by removing the "active" class
-    mobileMenu.classList.remove("active");
-    dropdownContent.classList.remove('active'); // Close the dropdown content when the close button is clicked
-  });
+        if (closeButton && mobileMenu) {
+            closeButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Close button clicked'); // Debug log
+                
+                const menuIcon = document.getElementById('menuIcon');
+                if (menuIcon) {
+                    menuIcon.classList.remove('active');
+                }
+                mobileMenu.classList.remove('active');
+            });
+        }
+
+        // Close mobile menu when clicking on menu links
+        const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+        if (mobileMenuLinks) {
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const menuIcon = document.getElementById('menuIcon');
+                    if (menuIcon) {
+                        menuIcon.classList.remove('active');
+                    }
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                if (!mobileMenu.contains(e.target) && !newMenuIcon?.contains(e.target)) {
+                    const menuIcon = document.getElementById('menuIcon');
+                    if (menuIcon) {
+                        menuIcon.classList.remove('active');
+                    }
+                    mobileMenu.classList.remove('active');
+                }
+            }
+        });
+    }, 200); // Wait for header initialization
 });
