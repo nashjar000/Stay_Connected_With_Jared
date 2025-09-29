@@ -115,7 +115,7 @@ html {
 
     .mobile-nav {
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start;
         align-items: center;
         width: 100%;
         background-color: rgba(0, 0, 0, 0.9);
@@ -130,6 +130,9 @@ html {
         width: 35px;
         height: 25px;
         margin: 0 auto !important;
+        align-self: center !important;
+        position: relative !important;
+        left: 0 !important;
         z-index: 10000 !important;
     }
 
@@ -227,10 +230,49 @@ html {
         text-decoration: none !important;
         padding: 20px 0 !important;
         font-size: 24px !important;
-        text-align: center !important;
+        text-align: left !important;
         width: 100% !important;
         border-bottom: 1px solid rgba(255, 68, 68, 0.2) !important;
         transition: color 0.3s ease !important;
+    }
+
+    /* Video button styling for mobile */
+    .mobile-menu #videoButton {
+        color: #ff4444 !important;
+        background: transparent !important;
+        border: none !important;
+        text-align: left !important;
+        font-size: 24px !important;
+        padding: 20px 0 !important;
+        width: 100% !important;
+        cursor: pointer !important;
+        display: block !important;
+        margin: 0 !important;
+    }
+
+    .mobile-menu .dropdown {
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .mobile-menu .dropdown-content {
+        position: static !important;
+        display: none !important; /* Initially hidden */
+        background: transparent !important;
+        box-shadow: none !important;
+        margin-left: 20px !important;
+        width: 100% !important;
+    }
+
+    .mobile-menu .dropdown-content.show {
+        display: block !important;
+    }
+
+    .mobile-menu .dropdown-content a {
+        padding: 10px 0 !important;
+        font-size: 20px !important;
+        color: #ff4444 !important;
+        border-bottom: 1px solid rgba(255, 68, 68, 0.1) !important;
     }
 
     /* Adjust the menu icon to close the overlay */

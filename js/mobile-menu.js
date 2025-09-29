@@ -53,6 +53,32 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+        // Handle video dropdown in mobile menu
+        const videoButton = document.getElementById('videoButton');
+        const dropdownContent = mobileMenu?.querySelector('.dropdown-content');
+        
+        if (videoButton && dropdownContent) {
+            // Initially hide dropdown content
+            dropdownContent.classList.remove('show');
+            
+            videoButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Video button clicked in mobile'); // Debug log
+                
+                // Toggle dropdown visibility
+                if (dropdownContent.classList.contains('show')) {
+                    dropdownContent.classList.remove('show');
+                    videoButton.innerHTML = 'Videos <i class="fa fa-caret-down"></i>';
+                    console.log('Dropdown closed'); // Debug log
+                } else {
+                    dropdownContent.classList.add('show');
+                    videoButton.innerHTML = 'Videos <i class="fa fa-caret-up"></i>';
+                    console.log('Dropdown opened'); // Debug log
+                }
+            });
+        }
+
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {
             if (mobileMenu && mobileMenu.classList.contains('active')) {

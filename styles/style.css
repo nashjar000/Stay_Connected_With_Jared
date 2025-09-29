@@ -415,7 +415,7 @@ p {
 
     .mobile-nav {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         width: 100%;
         background-color: rgba(0, 0, 0, 0.8);
@@ -556,7 +556,7 @@ p {
 
 .mobile-nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
@@ -619,7 +619,7 @@ p {
     text-decoration: none !important;
     padding: 20px 0 !important;
     font-size: 24px !important;
-    text-align: center !important;
+    text-align: left !important;
     width: 100% !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     transition: color 0.3s ease !important;
