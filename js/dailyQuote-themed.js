@@ -50,22 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
         
         thanksgiving: [
             // Garfield's Thanksgiving
-            {quote: "I hate Mondays, but I love Thanksgiving dinner!", author: "Garfield"},
-            {quote: "Thanksgiving is the one day of the year when it's socially acceptable to eat until you can't move.", author: "Garfield"},
-            {quote: "I'm thankful for lasagna, and more lasagna.", author: "Garfield"},
-            {quote: "The only thing better than one turkey dinner is two turkey dinners.", author: "Garfield"},
-            {quote: "Diet? What diet? It's Thanksgiving!", author: "Garfield"},
+            {quote: "Now this is what Thanksgiving is all about! Thanksgiving is cookies! Thanksgiving is pie filling! Thanksgiving is cole slaw!", author: "Garfield"},
+            {quote: "Tomorrow's Thanksgiving. That's the day people celebrate having food by eating as much of it as possible.", author: "Garfield"},
+            {quote: "It's a tradition. And you know how I LOOOVE tradition!", author: "Garfield"},
+            {quote: "Oh, woe is me. I've been put on a diet, and I'm gonna die.", author: "Garfield"},
             
             // A Charlie Brown Thanksgiving
-            {quote: "What if, today, we were grateful for everything?", author: "Charlie Brown"},
-            {quote: "Sometimes I lie awake at night and ask 'Why me?' Then a voice answers 'Nothing personal, your name just happened to come up.'", author: "Charlie Brown"},
-            {quote: "In the book of life, the answers aren't in the back.", author: "Charlie Brown"},
-            {quote: "I think there must be something wrong with me, Linus. Christmas is coming, but I'm not happy.", author: "Charlie Brown"},
-            {quote: "Don't worry about the world coming to an end today. It's already tomorrow in Australia.", author: "Charlie Brown"},
-            
-            // Snoopy's Thanksgiving wisdom
-            {quote: "Sometimes I lie awake at night, and I ask, 'Where have I gone wrong?' Then a voice says to me, 'This is going to take more than one night.'", author: "Snoopy"},
-            {quote: "Yesterday I was a dog. Today I'm a dog. Tomorrow I'll probably still be a dog. Sigh! There's so little hope for advancement.", author: "Snoopy"},
+            {quote: "I can't cook a Thanksgiving dinner. All I can make is cold cereal and maybe toast", author: "Charlie Brown"},
             
             // General Thanksgiving & Gratitude 
             {quote: "Gratitude is not only the greatest of virtues, but the parent of all others.", author: "Cicero"},

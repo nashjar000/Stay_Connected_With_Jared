@@ -220,22 +220,36 @@ footer a:hover {
     border-color: #B8860B !important;
 }
 
-/* Thanksgiving Clock Styling */
+/* Thanksgiving Clock Styling - Optimized for circular fit */
 #clock-container {
     background-color: #8B4513 !important;
     border: 3px solid #D2691E !important;
     color: #FFF8DC !important;
     box-shadow: 0 0 15px rgba(139, 69, 19, 0.5) !important;
+    height: 150px !important;
+    width: 450px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
 }
 
 #time {
+    font-size: 4.2rem !important; /* Reduced from 5rem for better fit */
     color: #FFF8DC !important;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.5) !important;
+    line-height: 1 !important; /* Tighter line height */
+    margin: 0 !important;
 }
 
 #date {
+    font-size: 1.6rem !important; /* Reduced from 2rem for better fit */
     color: #FFE4B5 !important;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.5) !important;
+    margin-top: 5px !important; /* Reduced spacing */
+    line-height: 1 !important; /* Tighter line height */
 }
 
 /* How long I've been alive section - fall theme colors */
