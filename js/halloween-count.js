@@ -24,6 +24,6 @@
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("halloween-count-down").innerHTML = 
-    `<h1 class="spooky-msg" style="color: orange; text-align: center; font-family: 'Creepster', cursive;">🎃 Happy Halloween! 🎃</h1>`;
+    `<p class="spooky-msg" style="color: orange; text-align: center; font-family: 'Creepster', cursive;">Happy Halloween! 🎃</p>`;
   }
 }, 1000);
