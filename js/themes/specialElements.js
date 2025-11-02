@@ -69,14 +69,14 @@ document.addEventListener("DOMContentLoaded", function () {
             parent: 'hero-msg',
             position: 'beforeend'
         },
-        'halloween-countdown': {
+                'halloween-countdown': {
             html: `
-                <h1 class="count-down-title">Days until Halloween:</h1>
-                <p id="halloween-count-down"></p>
+                <h1 class="count-down-title" style="color: #ff4500; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Days until <span style="color: #ff8c00;">Halloween 🎃</span>:</h1>
+                <p id="halloween-count-down" style="color: #ff6347; font-size: 2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);"></p>
             `,
-            parent: 'hero-msg', 
+            parent: 'hero-msg',
             position: 'beforeend',
-            script: './js/halloween-count.js'
+            script: './js/counters/halloween-count.js'
         },
         'thanksgiving-message': {
             html: `
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
             `,
             parent: 'hero-msg',
             position: 'beforeend',
-            script: './js/thanksgiving-count.js'
+            script: './js/counters/thanksgiving-count.js'
         },
         'christmas-message': {
             html: `
@@ -142,12 +142,12 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         'christmas-countdown': {
             html: `
-                <h1 class="count-down-title">Days until <span style="color: darkgreen">Christmas</span>:</h1>
+                <h1 class="count-down-title Christmas" style="color: darkred;">Days until <span style="color: green;">Christmas 🎄</span>:</h1>
                 <p id="christmas-count-down"></p>
             `,
             parent: 'hero-msg',
             position: 'beforeend',
-            script: './js/christmas-count.js'
+            script: './js/counters/christmas-count.js'
         },
         'christmas-background': {
             html: `
