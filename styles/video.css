@@ -1,0 +1,112 @@
+/* Video Journal Page */
+#videos {
+    text-align: center;
+    border: 3px
+}
+
+.video-journal {
+    text-align: center;
+    border: 3px
+}
+
+#star_wars{
+    font-family:'Star Jedi Hollow', 'Monsterrat','sans-serif' ;
+    font-size: 50px;
+}
+
+#video-journal-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    max-width: 300px;
+    padding-top: 3%;
+}
+
+.video-journal-title {
+    color: #594AE3;
+    font-size: 100px;
+}
+
+.year-links {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    padding: 50px;
+    gap: 30px;
+}
+
+#year-link {
+    color: #D4AC0D; 
+    font-size: 25px;
+}
+
+#year-link:hover {
+    color: #594AE3; 
+}
+
+#top-video {
+    color: #D4AC0D; 
+}
+
+#top-video:hover {
+    color: #594AE3; 
+}
+
+.year {
+    color: #D4AC0D; 
+    font-size: 200px;
+    margin-bottom: 10px;
+}
+
+.vlog {
+    color: red;
+}
+
+.video-journal-intro {
+    color: #594AE3; 
+    padding-top: 10%;
+}
+
+.fat-cats {
+    color: #594AE3;
+    font-size: 50px;
+}
+
+.video-main-title{
+    color: #594AE3;
+}
+
+.video-section{
+    color: #D4AC0D;
+    font-size: 80px;
+    padding-top: 10%;
+}
+.video-title{
+    color: #594AE3; 
+    padding-top: 8%;
+    font-size: 50px;
+}
+
+.video-links{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    padding: 50px;
+    gap: 30px;
+}
+
+/* Mobile responsiveness for video image */
+@media (max-width: 768px) {
+    #video-journal-img {
+        width: 40%;
+        max-width: 200px;
+        padding-top: 5%;
+    }
+    
+    .video-links {
+        grid-template-columns: auto;
+        padding: 20px;
+        gap: 20px;
+    }
+}

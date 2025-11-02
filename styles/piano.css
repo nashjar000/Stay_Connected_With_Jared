@@ -1,0 +1,85 @@
+/* Piano Video Page */
+.piano-title {
+    color: #594AE3; 
+    font-size: 100px;
+}
+
+.spider-man{
+    font-family: 'Spiderman-Homecoming', 'Monsterrat','sans-serif';
+    color: yellow;
+    text-shadow: 2px 2px red;
+    font-size: 50px;
+}
+
+.peanuts {
+    color: #594AE3;
+    font-size: 50px;
+    font-family: 'peanuts', 'Montserrat', 'sans-serif';
+}
+
+.grim-grinning-ghosts {
+    font-size: 100px;
+    color: #594AE3;
+    font-family:'Ravenscroft', 'Monsterrat', 'sans-serif';
+}
+
+.hocus{
+    font-size: 60px;
+    color: #594AE3;
+    font-family: 'waltograph','Monsterrat', 'sans-serif';
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+.truman {
+    color: #594AE3;
+    font-size: 80px;
+    font-family: 'Trumania EEN', 'Montserrat', 'sans-serif';
+}
+
+.music {
+    color: #D4AC0D;
+    font-size: 200px;
+}
+
+#piano-main-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    padding-top: 5%;
+}
+
+.piano-videos {
+    text-align: center;
+    border: 3px
+}
+
+.batman1966 {
+    color: #594AE3;
+    font-size: 80px;
+    font-family: 'POW_', 'Montserrat', 'sans-serif';
+}
+
+.skyfall {
+    color: #594AE3;
+    font-size: 100px;
+    font-family: '007 Goldeneye', 'Montserrat', 'sans-serif';
+}
+
+.shadows-lie{
+    color: #594AE3;
+    font-size: 70px;
+    font-family: 'Ringbearer', 'Montserrat', 'sans-serif';
+}
+
+.gollum{
+    color: #594AE3;
+    font-size: 60px;
+    font-family: 'Ringbearer', 'Montserrat', 'sans-serif';
+}
+
+.batmandogcars {
+    color: #594AE3;
+    font-size: 50px;
+}

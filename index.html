@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Connected With Jared - Home</title>
+    <link rel="icon" type="image/x-icon" href="images/mylogo.png">
+    <script src="./js/themes/themeManager.js"></script>
+    <script src="./js/counters/countup.js"></script>
+    <script src="./js/darklightmode.js"></script>
+    <script defer src="./js/components/header.js"></script>
+    <script defer src="js/components/footer.js"></script>
+    <!-- <script src="./js/NYE.js"></script> -->
+    <!-- <script src="./js/christmas-count.js"></script> -->
+    <!-- <script src="./js/halloween-count.js"></script> -->
+    <script src="./js/themes/dailyQuote-themed.js"></script>
+    <script src="./js/themes/specialElements.js"></script>
+    <script src="./js/logoUpdater.js"></script>
+    <script src="./js/themeControlPanel.js"></script>
+    <link rel="stylesheet" href="./styles/live-timer.css">
+    <link rel="stylesheet" href="./styles/scroll-button.css">
+    <script defer src="./js/scroll-button.js"></script>
+    <script defer src="./js/clock.js"></script>
+    <link rel="stylesheet" href="./styles/clock.css">
+    <script defer src="./js/components/mobile-menu.js"></script>
+</head>
+<script defer src="./js/components/mobile-menu.js"></script>
+
+<body>
+    <div id="header"></div>
+    <div id="content">
+        <div id="hero">
+            <div id="hero-box" class="content">
+                <img id="hero-img" src="images/spider-man-mask-off.jpg" alt="main profile" class="image">
+                <div class="overlay">
+                    <script>
+                        const year = new Date().getFullYear();
+                        const heroOverlayText = document.createElement('div');
+                        heroOverlayText.classList.add('hero-overlay-text');
+                        heroOverlayText.textContent = `Jared Nash ${String.fromCharCode(169)}${year}`;
+                        document.querySelector('.overlay').appendChild(heroOverlayText);
+                    </script>
+                </div>
+            </div>
+
+
+            <section id="hero-msg">
+
+                <div id="quote-container">
+                    <p id="quote"></p>
+                    <p id="author"></p>
+                </div>
+
+                <a href="https://nashjar000.github.io/Snoopy-Game/" id="link" target="_blank">NEW GAME! CLICK HERE!</a>
+                <a href="https://github.com/nashjar000?tab=repositories" id="code-link" target="_blank">Check out my
+                    Code Projects</a>
+                
+                <a href="https://nashjar000.github.io/Portfolio-for-tech-jobs/" id="link" target="_blank">Portfolio</a>
+
+                <div id="clock">
+                    <div id="clock-container">
+                        <div id="time"></div>
+                        <div id="date"></div>
+                    </div>
+                </div>
+
+                <div class="mobileShow">
+                    THIS SITE IS BETTER VIEWED ON A COMPUTER
+                </div>
+
+
+                <h1 class="home-title">Stay Connected With Jared</h1>
+
+                <h1>Best Video Editing Award</h1>
+                <div class="image-container" style="position: relative; display: inline-block;">
+                    <img src="images/IMG_5735.jpeg" alt="Best Video Editing Award" id="award">
+                    <div class="overlay award-overlay" style="position: absolute; top: 5%; left: 40%; width: 20%; height: 95%; background-color: var(--overlay-bg, #594ae3cb); color: var(--overlay-text, #D4AC0D); display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); padding: 10px; box-sizing: border-box; text-align: center; font-size: 14px; line-height: 1.2;">
+                        I won the best video editing award at the BYU-Idaho Spring Fest Film Festival 2024!
+                    </div>
+                </div>
+                <script>
+                    const imageContainer = document.querySelector('.image-container');
+                    const overlay = imageContainer.querySelector('.overlay');
+                    
+                    // Desktop hover events
+                    imageContainer.addEventListener('mouseover', function() {
+                        overlay.style.opacity = 1;
+                    });
+                    imageContainer.addEventListener('mouseout', function() {
+                        overlay.style.opacity = 0;
+                    });
+                    
+                    // Mobile touch events
+                    imageContainer.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        overlay.classList.add('show');
+                        overlay.style.opacity = '1';
+                    });
+                    
+                    // Auto-hide overlay on mobile after 4 seconds
+                    imageContainer.addEventListener('touchstart', function() {
+                        setTimeout(() => {
+                            overlay.classList.remove('show');
+                            overlay.style.opacity = '0';
+                        }, 4000);
+                    });
+                </script>
+
+                <!-- Thanksgiving msg -->
+                <!-- <h1 class="thanks">HAPPY THANKSGIVING!!!</h1> -->
+
+                <!-- <h1 style="color: darkgreen; font-size: 80px; padding: 10%;">Happy <span style="color: black; font-weight: bold;">Black</span> Friday!</h1> -->
+
+                <!-- Seasonal messages and countdowns will be added here automatically by theme manager -->
+
+        </div>
+
+        <!-- Christmas msg -->
+        <!-- <h1 class="Christmas" style="text-align: center;">
+                   <span style="color: red;">M</span>
+                   <span style="color: green;">E</span>
+                   <span style="color: red;">R</span>
+                   <span style="color: green;">R</span>
+                   <span style="color: red;">Y</span>
+                   &nbsp;
+                   <span style="color: green;">C</span>
+                   <span style="color: red;">H</span>
+                   <span style="color: green;">R</span>
+                   <span style="color: red;">I</span>
+                   <span style="color: green">S</span>
+                   <span style="color: red;">T</span>
+                   <span style="color: green;">M</span>
+                   <span style="color: red;">A</span>
+                   <span style="color: green;">S</span>
+                   <span style="color: red;">!</span>
+                </h1> -->
+        <!-- <h1 class="count-down-title">Days until <span style="color: darkgreen">Christmas</span><span style="color: white;">:</span></h1>   -->
+        
+        <!-- Christmas Countdown -->
+        <!-- <p id="christmas-count-down"></p> -->
+
+        <!-- <h1 class="NYE-title">New Year's Eve Countdown:</h1> -->
+        <!-- <p id="NYE"></p> -->
+
+        <h4>Curious to know what I've been up to? Check out my site! I have a lot of content for my friends and family
+            to get to know me better and stay up to date on what I've been doing. My site includes a FAQ about me as
+            well as a "Video Journal" archive. I also have links to my IG and FB pages at the bottom, but, I hardly post
+            on those--I keep my site updated a lot more, haha. Go take a look at
+            the site! :) </h4>
+
+        <h1 class="live-title">I have been alive for:</h1>
+
+        <div class="countup" id="countup1">
+            <span class="timeel days"></span>
+            <span class="timeel timeRefDays">days</span>
+            <span class="timeel hours"></span>
+            <span class="timeel timeRefHours">hours</span>
+            <span class="timeel minutes"></span>
+            <span class="timeel timeRefMinutes">minutes</span>
+            <span class="timeel seconds"></span>
+            <span class="timeel timeRefSeconds">seconds</span>
+        </div>
+
+        <button id="scrollToTopButton" class="scroll-to-top-button" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <img class="logo-img-big" src="images/mylogo-halloween.png" alt="logo">
+        <!-- <img class="background" src="images/christmas-background-with-falling-snow_275806-1176.webp" alt="snow-background"> -->
+        <!-- <img class="background-small" src="images/christmas_phone_wall_paper.webp" alt="snow-background"> -->
+
+        <!-- Music -->
+        <a hidden>
+            <audio controls autoplay loop>
+                <!-- <source src="Audio/Phantom Manor Suite (Extended Version).mp3" type=audio/mpeg> -->
+                <!-- <source src="Audio/Come Little Children (From 'Hocus Pocus') (Children of the Night).mp3" type=audio/mpeg> -->
+                <!-- <source src="Audio/『Grim Grinning Ghosts + Come Little Children』(Vocal Cover) _【Alice Flare】.mp3" type=audio/mpeg>  -->
+                <!-- <source src="Audio/Tower of Terror Soundtrack - Queque Music.mp3" type=audio/mpeg> -->
+                <!-- <source src="./Audio/Haunted Mansion Cinematic Suite  [“Grim Grinning Ghosts” EPIC Orchestral Cover].mp3" type=audio/mpeg> -->
+
+                <!-- <source src="Audio/It's Beginning To Look Like Christmas.mp3" type="audio/mpeg"> -->
+                <!-- <source src="Audio/Sleigh Ride.mp3" type="audio/mpeg"> -->
+                <!-- <source src="Audio/Spiderman (Holidays Special) Music Video (FANTASTIC) Spider-Man - No Way Home.mp3" type="audio/mpeg"> -->
+                <!-- <source src="Audio/The Grinch _ 'You_re a Mean One, Mr. Grinch' Lyric Video _ Illumination.mp3" type="audio/mpeg"> -->
+                <!-- <source src="Audio/Winter Wonderland.mp3" type="audio/mpeg"> -->
+                <!-- <source src="Audio/All I Want for Christmas is You.mp3" type="audio/mpeg"> -->
+                <!-- <source src="Audio/Spider-Man Theme x Carol of The Bells _ EPIC VERSION (feat. Bully Maguire Theme).mp3" type="audio/mpeg"> -->
+                <!-- <source src="Audio/BO The nightmare before Christmas - What´s this (Instrumental).mp3" type="audio/mpeg"> -->
+                <!-- <source src="Audio/The Chipmunks  - The Chipmunk Song (Christmas Don't Be Late).mp3" type="audio/mpeg"> -->
+                <!-- <source src="Audio/Main Title - Elf (Original Motion Picture Score).mp3" type="audio/mpeg"> -->
+                <!-- <source src="Audio/Christmas Bells - Andy Williams.mp3" type="audio/mpeg"> -->
+
+                <!-- <source src="Audio/Imagine Dragons   Believer Official Instrumental.mp3" type="audio/mpeg"> -->
+                Your browser does not support the audio element.
+            </audio>
+        </a>
+
+        </section>
+</body>
+
+</html>

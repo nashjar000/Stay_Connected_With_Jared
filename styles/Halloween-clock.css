@@ -1,0 +1,37 @@
+#clock {
+    margin-top: 20px; /* Adjust the value as needed */
+}
+
+#clock-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px; /* Adjust height as needed */
+    width: 300px; /* Adjust width as needed */
+    border-radius: 0px; /* Adjust radius as needed */
+    background-color: #3c3c3c;
+    box-shadow: #000000 5px 5px 10px;
+    color: #FFFFFF;
+    font-size: 2.5rem; /* Adjust font size as needed */
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.608);
+    margin: 0 auto;
+    font-family: 'Courier New', Courier, monospace;
+    border: 2px solid #FFFFFF;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+
+#time {
+    font-size: 2.5rem; /* Adjust font size as needed */
+    color: #FFFFFF;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.608);
+}
+
+#date {
+    font-size: 1rem; /* Adjust font size as needed */
+    color: #FFFFFF;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.608);
+    margin-top: 10px; /* Adjust spacing as needed */
+}
+

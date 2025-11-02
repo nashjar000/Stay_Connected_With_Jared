@@ -1,0 +1,30 @@
+/* How long I've been alive for */
+
+.countup span[class*="timeRef"] {
+    border-radius: 0 10px 10px 0;
+    margin-left: 0;
+    background: #594AE3;
+    color: #D4AC0D;
+}
+
+.live-title {
+    color: #D4AC0D;
+    text-align: center;
+    padding-top: 10%;
+}
+
+.countup {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.countup .timeel {
+    display: inline-block;
+    padding: 10px;
+    background: gray;
+    margin: 0;
+    color: white;
+    min-width: 2.6rem;
+    margin-left: 13px;
+    border-radius: 10px 0 0 10px;
+}

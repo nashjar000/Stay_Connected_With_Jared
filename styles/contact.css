@@ -1,0 +1,36 @@
+/* contact me */
+.contactinfo {
+    color: #D4AC0D;
+}
+
+.email {
+    color: #D4AC0D;
+}
+
+.email:hover {
+    color: #594AE3;
+}
+
+.text {
+    color: #D4AC0D;
+}
+
+.text:hover {
+    color: #594AE3;
+}
+
+.call {
+    color: #D4AC0D;
+}
+
+.call:hover {
+    color: #594AE3;
+}
+
+#contact-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    margin-top: 20px;
+}

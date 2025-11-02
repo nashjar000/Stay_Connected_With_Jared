@@ -1,0 +1,27 @@
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Development files
+dev/
+*.tmp
+*.temp
+
+# VSCode settings (optional - remove if you want to keep them)
+.vscode/settings.json
+
+# Node modules (if you ever add them)
+node_modules/
+
+# Log files
+*.log
+
+# Backup files
+*~
+*.bak
+*.backup
