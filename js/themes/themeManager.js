@@ -1,37 +1,64 @@
 // Automatic Seasonal Theme Manager
 class ThemeManager {
     constructor() {
+        // Detect if we're in a subdirectory
+        this.pathPrefix = window.location.pathname.includes('/pages/') ? '../' : './';
+        
         this.themes = {
             normal: {
-                css: './styles/style.css',
-                logo: './images/mylogo.png',
-                favicon: 'images/mylogo.png',
+                css: `${this.pathPrefix}styles/style.css`,
+                logo: `${this.pathPrefix}images/mylogo.png`,
+                favicon: `${this.pathPrefix}images/mylogo.png`,
                 quotes: 'normal',
                 audio: null,
                 specialElements: []
             },
+            valentine: {
+                css: `${this.pathPrefix}styles/Valentine-theme.css`,
+                logo: `${this.pathPrefix}images/mylogo-Red.png`,
+                favicon: `${this.pathPrefix}images/mylogo-Red.png`,
+                quotes: 'valentine',
+                audio: `${this.pathPrefix}Audio/All You Need Is Love - The Beatles.mp3`,
+                specialElements: ['valentine-countdown']
+            },
+            easter: {
+                css: `${this.pathPrefix}styles/Easter-theme.css`,
+                logo: `${this.pathPrefix}images/mylogo-Red.png`,
+                favicon: `${this.pathPrefix}images/mylogo-Red.png`,
+                quotes: 'easter',
+                audio: null,
+                specialElements: ['easter-countdown']
+            },
+            july4: {
+                css: `${this.pathPrefix}styles/July-Fourth-theme.css`,
+                logo: `${this.pathPrefix}images/mylogo.png`,
+                favicon: `${this.pathPrefix}images/mylogo.png`,
+                quotes: 'july4',
+                audio: null,
+                specialElements: ['july4-countdown']
+            },
             halloween: {
-                css: './styles/Halloween-theme.css',
-                logo: './images/mylogo-halloween.png',
-                favicon: 'images/mylogo-halloween.png',
+                css: `${this.pathPrefix}styles/Halloween-theme.css`,
+                logo: `${this.pathPrefix}images/mylogo-halloween.png`,
+                favicon: `${this.pathPrefix}images/mylogo-halloween.png`,
                 quotes: 'halloween',
-                audio: 'Audio/Come Little Children (From \'Hocus Pocus\') (Children of the Night).mp3',
+                audio: `${this.pathPrefix}Audio/Come Little Children (From 'Hocus Pocus') (Children of the Night).mp3`,
                 specialElements: ['halloween-countdown']
             },
             thanksgiving: {
-                css: './styles/Thanksgiving-theme.css',
-                logo: './images/mylogo-Red.png',
-                favicon: './images/mylogo-Red.png',
+                css: `${this.pathPrefix}styles/Thanksgiving-theme.css`,
+                logo: `${this.pathPrefix}images/mylogo-Red.png`,
+                favicon: `${this.pathPrefix}images/mylogo-Red.png`,
                 quotes: 'thanksgiving',
                 audio: null,
                 specialElements: ['thanksgiving-countdown']
             },
             christmas: {
-                css: './styles/Christmas-theme.css',
-                logo: './images/mylogo-red.png',
-                favicon: 'images/mylogo-green.png',
+                css: `${this.pathPrefix}styles/Christmas-theme.css`,
+                logo: `${this.pathPrefix}images/mylogo-red.png`,
+                favicon: `${this.pathPrefix}images/mylogo-green.png`,
                 quotes: 'christmas',
-                audio: 'Audio/All I Want for Christmas is You.mp3',
+                audio: `${this.pathPrefix}Audio/All I Want for Christmas is You.mp3`,
                 specialElements: ['christmas-countdown', 'christmas-background']
             }
         };
@@ -46,6 +73,46 @@ class ThemeManager {
         const day = now.getDate();
         const year = now.getFullYear();
 
+        // Valentine's Season: February 1 - February 20
+        if (month === 2 && day >= 1 && day <= 20) {
+            return 'valentine';
+        }
+
+        // Calculate Easter (varies each year)
+        const getEasterDate = (year) => {
+            const a = year % 19;
+            const b = Math.floor(year / 100);
+            const c = year % 100;
+            const d = Math.floor(b / 4);
+            const e = b % 4;
+            const f = Math.floor((b + 8) / 25);
+            const g = Math.floor((b - f + 1) / 3);
+            const h = (19 * a + b - d - g + 15) % 30;
+            const i = Math.floor(c / 4);
+            const k = c % 4;
+            const l = (32 + 2 * e + 2 * i - h - k) % 7;
+            const m = Math.floor((a + 11 * h + 22 * l) / 451);
+            const month = Math.floor((h + l - 7 * m + 114) / 31);
+            const day = ((h + l - 7 * m + 114) % 31) + 1;
+            return new Date(year, month - 1, day);
+        };
+
+        const easter = getEasterDate(year);
+        const easterStart = new Date(easter);
+        easterStart.setDate(easter.getDate() - 10);
+        const easterEnd = new Date(easter);
+        easterEnd.setDate(easter.getDate() + 7);
+
+        // Easter Season: 10 days before to 7 days after Easter
+        if (now >= easterStart && now <= easterEnd) {
+            return 'easter';
+        }
+
+        // July 4th Season: June 25 - July 10
+        if ((month === 6 && day >= 25) || (month === 7 && day <= 10)) {
+            return 'july4';
+        }
+
         // Halloween Season: September 15 - October 31
         if ((month === 9 && day >= 15) || month === 10) {
             return 'halloween';
@@ -53,13 +120,12 @@ class ThemeManager {
         
         // Calculate Thanksgiving (fourth Thursday of November)
         const getThanksgivingDate = (year) => {
-            const firstOfNovember = new Date(year, 10, 1); // Month 10 = November (0-based)
+            const firstOfNovember = new Date(year, 10, 1);
             const firstThursday = new Date(firstOfNovember);
-            const dayOfWeek = firstOfNovember.getDay(); // 0 = Sunday, 4 = Thursday
+            const dayOfWeek = firstOfNovember.getDay();
             const daysUntilThursday = (4 - dayOfWeek + 7) % 7;
             firstThursday.setDate(1 + daysUntilThursday);
             
-            // Fourth Thursday is 3 weeks after first Thursday
             const fourthThursday = new Date(firstThursday);
             fourthThursday.setDate(firstThursday.getDate() + 21);
             
@@ -79,7 +145,7 @@ class ThemeManager {
             return 'christmas';
         }
         
-        // Normal theme: January 8 - September 14
+        // Normal theme: All other times
         return 'normal';
     }
 
@@ -93,17 +159,21 @@ class ThemeManager {
         
         // Remove date-specific messages first
         const filteredElements = baseElements.filter(element => 
-            !['halloween-message', 'thanksgiving-message', 'christmas-message', 'new-year-message'].includes(element)
+            !['valentine-message', 'easter-message', 'july4-message', 'halloween-message', 'thanksgiving-message', 'christmas-message', 'new-year-message'].includes(element)
         );
         
-        // Add date-specific messages only on the actual holidays
-        if (month === 10 && day === 31) { // Halloween
+        // Add date-specific messages only on actual holidays
+        if (month === 2 && day === 14) {
+            filteredElements.push('valentine-message');
+        } else if (month === 7 && day === 4) {
+            filteredElements.push('july4-message');
+        } else if (month === 10 && day === 31) {
             filteredElements.push('halloween-message');
-        } else if (month === 11 && day === this.getThanksgivingDate(year)) { // Thanksgiving
+        } else if (month === 11 && day === this.getThanksgivingDate(year)) {
             filteredElements.push('thanksgiving-message');
-        } else if (month === 12 && day === 25) { // Christmas
+        } else if (month === 12 && day === 25) {
             filteredElements.push('christmas-message');
-        } else if (month === 1 && day === 1) { // New Year's Day
+        } else if (month === 1 && day === 1) {
             filteredElements.push('new-year-message');
         }
         
@@ -124,7 +194,6 @@ class ThemeManager {
     }
 
     getCurrentTheme() {
-        // Return manual override if exists, otherwise use seasonal theme
         return this.manualOverride || this.currentTheme;
     }
 
@@ -146,44 +215,35 @@ class ThemeManager {
         const theme = themeName || this.getCurrentTheme();
         const themeConfig = this.themes[theme];
         
-        // Apply CSS
         this.loadCSS(themeConfig.css);
-        
-        // Apply favicon
         this.setFavicon(themeConfig.favicon);
         
-        // Create dynamic theme config with date-specific elements
         const dynamicThemeConfig = {
             ...themeConfig,
             specialElements: this.getActiveSpecialElements()
         };
         
-        // Store current theme for other scripts
         window.currentTheme = theme;
         window.currentThemeConfig = dynamicThemeConfig;
         
-        // Dispatch theme change event
         window.dispatchEvent(new CustomEvent('themeChanged', { 
             detail: { theme, config: dynamicThemeConfig }
         }));
     }
 
     loadCSS(cssFile) {
-        // Remove existing theme CSS
         const existingThemeCSS = document.querySelectorAll('link[data-theme-css]');
         existingThemeCSS.forEach(link => link.remove());
         
-        // Add base style.css if not present
         if (!document.querySelector('link[href*="styles/style.css"]')) {
             const baseCSS = document.createElement('link');
             baseCSS.rel = 'stylesheet';
-            baseCSS.href = './styles/style.css';
+            baseCSS.href = `${this.pathPrefix}styles/style.css`;
             baseCSS.setAttribute('data-base-css', 'true');
             document.head.appendChild(baseCSS);
         }
         
-        // Add theme CSS
-        if (cssFile !== './styles/style.css') {
+        if (cssFile !== `${this.pathPrefix}styles/style.css`) {
             const themeCSS = document.createElement('link');
             themeCSS.rel = 'stylesheet';
             themeCSS.href = cssFile;
@@ -210,7 +270,6 @@ class ThemeManager {
         };
     }
 
-    // Debug method to test different dates
     testDate(testDate) {
         const originalDate = Date;
         global.Date = class extends Date {
@@ -228,13 +287,11 @@ class ThemeManager {
     }
 }
 
-// Initialize theme manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     window.themeManager = new ThemeManager();
     window.themeManager.applyTheme();
 });
 
-// Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = ThemeManager;
 }

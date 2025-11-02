@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
             logo: './images/mylogo.png'
         };
 
+        // Detect if we're in a subdirectory for proper path handling
+        const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
+
         // Create header element
         const headerElement = document.createElement("header");
 
@@ -20,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     style2.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css";
     const style3 = document.createElement("link");
     style3.rel = "stylesheet";
-    style3.href = "./styles/scroll-button.css";
+    style3.href = `${pathPrefix}styles/scroll-button.css`;
 
     // Add background image
     const backgroundImage = document.createElement("style");
@@ -34,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Create logo link and image
     const logoLink = document.createElement("a");
-    logoLink.href = "index.html";
+    logoLink.href = `${pathPrefix}index.html`;
     const logoImg = document.createElement("img");
     logoImg.className = "logo";
     logoImg.src = themeConfig.logo;
@@ -63,27 +66,27 @@ document.addEventListener("DOMContentLoaded", function () {
     mobileMenu.appendChild(closeButton);
 
     const menuItems = [{
-            href: "index.html",
+            href: `${pathPrefix}index.html`,
             text: "Home"
         },
         {
-            href: "about-me.html",
+            href: `${pathPrefix}about-me.html`,
             text: "About Me (FAQ)"
         },
         {
-            href: "contact.html",
+            href: `${pathPrefix}contact.html`,
             text: "Contact Me"
         },
         {
-            href: "favorite-music.html",
+            href: `${pathPrefix}favorite-music.html`,
             text: "Favorite Music"
         },
         {
-            href: "painting.html",
+            href: `${pathPrefix}painting.html`,
             text: "Paintings"
         },
         {
-            href: "recipies.html",
+            href: `${pathPrefix}recipies.html`,
             text: "Recipes"
         },
     ];
@@ -105,15 +108,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const dropdownContent = document.createElement("div");
     dropdownContent.className = "dropdown-content";
     const videoLinks = [{
-            href: "video-journals.html",
+            href: pathPrefix ? "video-journals.html" : "pages/video-journals.html",
             text: "Video Journals"
         },
         {
-            href: "piano.html",
+            href: `${pathPrefix}piano.html`,
             text: "Piano"
         },
         {
-            href: "videos.html",
+            href: `${pathPrefix}videos.html`,
             text: "Other"
         },
     ];

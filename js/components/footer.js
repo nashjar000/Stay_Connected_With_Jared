@@ -1,7 +1,10 @@
+// Detect if we're in a subdirectory for proper path handling
+const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
+
 const footer = document.createElement("footer");
 footer.innerHTML = `
   <p>&copy; ${new Date().getFullYear()} Stay Connected With Jared</p>
-  <h3><a href="site-plan.html">Site Plan</a></h3>
+  <h3><a href="${pathPrefix}pages/site-plan.html">Site Plan</a></h3>
   <div class="social">
     <button id="shareButton" class="share-button">Share This Page</button>
   </div>
@@ -50,7 +53,7 @@ const facebookLink = document.createElement("a");
 facebookLink.href = "https://www.facebook.com/jared.nash.108/";
 facebookLink.target = "_blank";
 const facebookImg = document.createElement("img");
-facebookImg.src = "images/facebook-icon.png";
+facebookImg.src = `${pathPrefix}images/facebook-icon.png`;
 facebookImg.alt = "fb icon";
 facebookImg.width = 64;
 facebookImg.height = 64;
@@ -61,7 +64,7 @@ const instagramLink = document.createElement("a");
 instagramLink.href = "https://www.instagram.com/jared_nash0509/";
 instagramLink.target = "_blank";
 const instagramImg = document.createElement("img");
-instagramImg.src = "images/instagram-icon.webp";
+instagramImg.src = `${pathPrefix}images/instagram-icon.webp`;
 instagramImg.alt = "instagram icon";
 instagramImg.width = 64;
 instagramImg.height = 64;

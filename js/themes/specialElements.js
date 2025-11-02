@@ -1,6 +1,66 @@
 // Theme-aware special elements manager
 document.addEventListener("DOMContentLoaded", function () {
     const specialElements = {
+        'valentine-message': {
+            html: `
+                <h1 class="valentine-message">
+                    💕 HAPPY VALENTINE'S DAY! 💕
+                    <br>
+                    <span style="font-size: 0.7em;">Celebrating love, friendship, and all the special people in our lives! 💖</span>
+                </h1>
+            `,
+            parent: 'hero-msg',
+            position: 'beforeend'
+        },
+        'valentine-countdown': {
+            html: `
+                <h1 class="count-down-title" style="color: #ff1744;">Days until Valentine's Day:</h1>
+                <p id="valentine-count-down" style="color: #ff69b4; font-size: 2rem; font-weight: bold;"></p>
+            `,
+            parent: 'hero-msg',
+            position: 'beforeend',
+            script: './js/counters/valentine-count.js'
+        },
+        'easter-message': {
+            html: `
+                <h1 class="easter-message" style="text-align: center; color: #ff69b4;">
+                    🐰 HAPPY EASTER! 🌸
+                    <br>
+                    <span style="font-size: 0.7em; color: #8b4789;">Celebrating renewal, hope, and new beginnings! 🌷 🥚 🐣</span>
+                </h1>
+            `,
+            parent: 'hero-msg',
+            position: 'beforeend'
+        },
+        'easter-countdown': {
+            html: `
+                <h1 class="count-down-title" style="color: #ff69b4;">Days until Easter:</h1>
+                <p id="easter-count-down" style="color: #8b4789; font-size: 2rem; font-weight: bold;"></p>
+            `,
+            parent: 'hero-msg',
+            position: 'beforeend',
+            script: './js/counters/easter-count.js'
+        },
+        'july4-message': {
+            html: `
+                <h1 class="july4-message" style="text-align: center; color: #dc143c;">
+                    🇺🇸 HAPPY INDEPENDENCE DAY! 🎆
+                    <br>
+                    <span style="font-size: 0.7em; color: #191970;">Celebrating freedom, liberty, and the land of the brave! 🗽 ⭐ 🎇</span>
+                </h1>
+            `,
+            parent: 'hero-msg',
+            position: 'beforeend'
+        },
+        'july4-countdown': {
+            html: `
+                <h1 class="count-down-title" style="color: #dc143c;">Days until Independence Day:</h1>
+                <p id="july-fourth-count-down" style="color: #191970; font-size: 2rem; font-weight: bold;"></p>
+            `,
+            parent: 'hero-msg',
+            position: 'beforeend',
+            script: './js/counters/july4-count.js'
+        },
         'halloween-message': {
             html: `
                 <h1 class="Halloween">HAPPY </h1>

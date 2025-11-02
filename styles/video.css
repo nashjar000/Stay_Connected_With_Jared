@@ -18,8 +18,9 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 20%;
-    padding-top: 5%;
+    width: 15%;
+    max-width: 300px;
+    padding-top: 3%;
 }
 
 .video-journal-title {
@@ -93,4 +94,19 @@
     text-align: center;
     padding: 50px;
     gap: 30px;
+}
+
+/* Mobile responsiveness for video image */
+@media (max-width: 768px) {
+    #video-journal-img {
+        width: 40%;
+        max-width: 200px;
+        padding-top: 5%;
+    }
+    
+    .video-links {
+        grid-template-columns: auto;
+        padding: 20px;
+        gap: 20px;
+    }
 }

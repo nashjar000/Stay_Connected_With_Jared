@@ -29,6 +29,48 @@ document.addEventListener("DOMContentLoaded", function () {
             {quote: "I am going on an adventure!", author: "Bilbo Baggins"},
         ],
         
+        valentine: [
+            // Love and Friendship Quotes
+            {quote: "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.", author: "Lao Tzu"},
+            {quote: "The best thing to hold onto in life is each other.", author: "Audrey Hepburn"},
+            {quote: "Love is not about how much you say 'I love you', but how much you prove that it's true.", author: "Anonymous"},
+            {quote: "A friend is someone who knows all about you and still loves you.", author: "Elbert Hubbard"},
+            {quote: "Love is friendship that has caught fire.", author: "Ann Landers"},
+            {quote: "Where there is love there is life.", author: "Mahatma Gandhi"},
+            {quote: "The greatest happiness of life is the conviction that we are loved.", author: "Victor Hugo"},
+            {quote: "Love recognizes no barriers.", author: "Maya Angelou"},
+            {quote: "To love and be loved is to feel the sun from both sides.", author: "David Viscott"},
+            {quote: "The best love is the kind that awakens the soul and makes us reach for more.", author: "Nicholas Sparks"},
+        ],
+
+        easter: [
+            // Hope and Renewal Quotes
+            {quote: "Spring is nature's way of saying, 'Let's party!'", author: "Robin Williams"},
+            {quote: "The earth laughs in flowers.", author: "Ralph Waldo Emerson"},
+            {quote: "No winter lasts forever; no spring skips its turn.", author: "Hal Borland"},
+            {quote: "In every walk in nature, one receives far more than they seek.", author: "John Muir"},
+            {quote: "Hope is the thing with feathers that perches in the soul.", author: "Emily Dickinson"},
+            {quote: "Every flower is a soul blossoming in nature.", author: "Gerard De Nerval"},
+            {quote: "Spring is when life's alive in everything.", author: "Christina Rossetti"},
+            {quote: "The resurrection gives my life meaning and direction and the opportunity to start over no matter what my circumstances.", author: "Robert Flatt"},
+            {quote: "Easter spells out beauty, the rare beauty of new life.", author: "S.D. Gordon"},
+            {quote: "April hath put a spirit of youth in everything.", author: "William Shakespeare"},
+        ],
+
+        july4: [
+            // Freedom and Liberty Quotes
+            {quote: "Freedom is never more than one generation away from extinction.", author: "Ronald Reagan"},
+            {quote: "Liberty is the breath of life to nations.", author: "George Bernard Shaw"},
+            {quote: "Freedom lies in being bold.", author: "Robert Frost"},
+            {quote: "The price of freedom is eternal vigilance.", author: "Thomas Jefferson"},
+            {quote: "In the truest sense, freedom cannot be bestowed; it must be achieved.", author: "Franklin D. Roosevelt"},
+            {quote: "America was not built on fear. America was built on courage, on imagination, and an unbeatable determination.", author: "Harry S. Truman"},
+            {quote: "Freedom is nothing but a chance to be better.", author: "Albert Camus"},
+            {quote: "Liberty, when it begins to take root, is a plant of rapid growth.", author: "George Washington"},
+            {quote: "The Constitution only gives people the right to pursue happiness. You have to catch it yourself.", author: "Benjamin Franklin"},
+            {quote: "We hold these truths to be self-evident: that all men are created equal.", author: "Declaration of Independence"},
+        ],
+        
         halloween: [
             // Charlie Brown:
             {quote: "On Halloween night, the Great Pumpkin rises from his pumpkin patch and flies through the air with his bag of toys to all the children.", author: "Linus"},

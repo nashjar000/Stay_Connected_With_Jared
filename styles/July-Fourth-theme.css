@@ -1,0 +1,214 @@
+/* Simple 4th of July Theme CSS */
+
+/* Quote container styling */
+#quote-container {
+    text-align: center;
+    background-color: #dc143c;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+#author, #quote {
+    color: white;
+}
+
+#content {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.mobileShow {
+    text-align: center;
+    padding: 10%;
+    color: #4169e1;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.608);
+    font-size: 40px;
+}
+
+/* Body styling */
+body {
+    background-color: #f0f8ff !important;
+    color: #191970 !important;
+}
+
+html {
+    background-color: #f0f8ff !important;
+}
+
+/* Header styling */
+header {
+    background-color: #dc143c !important;
+    color: white !important;
+}
+
+header a {
+    color: white !important;
+}
+
+header a:hover {
+    color: #f0f8ff !important;
+}
+
+/* Navigation styling */
+nav {
+    background-color: #191970 !important;
+}
+
+nav a {
+    color: white !important;
+}
+
+nav a:hover {
+    background-color: #dc143c !important;
+    color: #f0f8ff !important;
+}
+
+/* Main content area */
+main {
+    background-color: white !important;
+    color: #191970 !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #dc143c !important;
+}
+
+/* Paragraphs */
+p {
+    color: #191970 !important;
+}
+
+/* Links */
+a {
+    color: #dc143c !important;
+}
+
+a:hover {
+    color: #191970 !important;
+}
+
+/* Buttons */
+button {
+    background-color: #dc143c !important;
+    color: white !important;
+}
+
+button:hover {
+    background-color: #191970 !important;
+}
+
+/* Dropdown menu styling */
+.dropdown-content {
+    background-color: white !important;
+    color: #191970 !important;
+}
+
+.dropdown-content a {
+    color: #191970 !important;
+    background-color: white !important;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f8ff !important;
+    color: #dc143c !important;
+}
+
+/* General dropdown button styling */
+.dropbtn {
+    background-color: #191970 !important;
+    color: white !important;
+}
+
+.dropbtn:hover {
+    background-color: #dc143c !important;
+}
+
+/* Scroll to top button */
+.scroll-to-top-button {
+    background-color: #dc143c !important;
+    color: white !important;
+    box-shadow: 0 0 10px rgba(220, 20, 60, 0.5) !important;
+}
+
+.scroll-to-top-button:hover {
+    background-color: #191970 !important;
+    color: #f0f8ff !important;
+}
+
+/* 4th of July countdown styling */
+#july-fourth-count-down {
+    text-align: center;
+    font-size: 80px;
+    margin-top: 0px;
+    color: #dc143c;
+    background-color: white;
+}
+
+.count-down-title {
+    color: #dc143c;
+    font-size: 80px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+/* Video Journal Page Overrides */
+.video-journal-title {
+    color: #dc143c !important;
+}
+
+#year-link {
+    color: #dc143c !important;
+}
+
+#year-link:hover {
+    color: #191970 !important;
+}
+
+.year-links a {
+    color: #dc143c !important;
+}
+
+.year-links a:hover {
+    color: #191970 !important;
+}
+
+#top-video {
+    color: #dc143c !important;
+}
+
+#top-video:hover {
+    color: #191970 !important;
+}
+
+/* Clock/Timer styling */
+#clock-container {
+    background-color: #dc143c !important;
+    border: 3px solid #191970 !important;
+    color: white !important;
+    box-shadow: 0 0 15px rgba(220, 20, 60, 0.5) !important;
+    height: 150px !important;
+    width: 450px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+}
+
+#time {
+    font-size: 4.2rem !important;
+    color: white !important;
+    text-shadow: 2px 2px rgba(25, 25, 112, 0.8) !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+#date {
+    font-size: 1.6rem !important;
+    color: #f0f8ff !important;
+    text-shadow: 1px 1px rgba(25, 25, 112, 0.8) !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}

@@ -171,6 +171,38 @@ footer .social img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+/* Clock styling for visibility in themed circular container */
+#clock-container {
+    background-color: #228b22 !important;
+    border: 3px solid #dc143c !important;
+    color: white !important;
+    box-shadow: 0 0 15px rgba(34, 139, 34, 0.5) !important;
+    height: 150px !important;
+    width: 450px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+}
+
+#time {
+    font-size: 4.2rem !important;
+    color: white !important;
+    text-shadow: 2px 2px rgba(139, 0, 0, 0.8) !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+#date {
+    font-size: 1.6rem !important;
+    color: #ffdddd !important;
+    text-shadow: 1px 1px rgba(139, 0, 0, 0.8) !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
 
 /* main section */
 
