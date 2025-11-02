@@ -20,8 +20,8 @@ class ThemeManager {
             },
             thanksgiving: {
                 css: './styles/Thanksgiving-theme.css',
-                logo: './images/mylogo-red.png',
-                favicon: 'images/mylogo-red.png',
+                logo: './images/mylogo-Red.png',
+                favicon: './images/mylogo-Red.png',
                 quotes: 'thanksgiving',
                 audio: null,
                 specialElements: ['thanksgiving-countdown']
