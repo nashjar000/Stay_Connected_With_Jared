@@ -103,10 +103,22 @@ document.addEventListener("DOMContentLoaded", function () {
     dropdown.className = "dropdown";
     const dropbtn = document.createElement("button");
     dropbtn.className = "dropbtn";
-    dropbtn.id = "videoButton";
-    dropbtn.innerHTML = 'Videos <i class="fa fa-caret-down"></i>';
+    dropbtn.id = "mobileVideoButton";
+    dropbtn.innerHTML = 'Videos';
+    dropbtn.onclick = function() {
+        const content = this.nextElementSibling;
+        console.log('Mobile dropdown clicked', content); // Debug
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            console.log('Mobile dropdown hidden'); // Debug
+        } else {
+            content.style.display = "block";
+            console.log('Mobile dropdown shown'); // Debug
+        }
+    };
     const dropdownContent = document.createElement("div");
     dropdownContent.className = "dropdown-content";
+    dropdownContent.style.display = "none";
     const videoLinks = [{
             href: pathPrefix ? "video-journals.html" : "pages/video-journals.html",
             text: "Video Journals"
@@ -125,6 +137,30 @@ document.addEventListener("DOMContentLoaded", function () {
         const link = document.createElement("a");
         link.href = item.href;
         link.textContent = item.text;
+        console.log('Creating mobile video link:', item.href, item.text); // Debug
+        
+        // Add click handler to close mobile menu when dropdown link is clicked
+        link.addEventListener('click', function(e) {
+            console.log('Mobile dropdown link clicked:', this.href); // Debug
+            console.log('Current location:', window.location.href); // Debug
+            
+            // Make sure the link is valid before navigating
+            if (this.href && this.href !== '#') {
+                const menuIcon = document.getElementById('menuIcon');
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (menuIcon) {
+                    menuIcon.classList.remove('active');
+                }
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                }
+                // Let the browser handle navigation normally
+            } else {
+                console.log('Invalid link detected'); // Debug
+                e.preventDefault();
+            }
+        });
+        
         dropdownContent.appendChild(link);
     });
 
@@ -143,6 +179,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add dropdown menu to desktop navigation
     const desktopDropdown = dropdown.cloneNode(true);
+    const desktopVideoButton = desktopDropdown.querySelector('.dropbtn');
+    const desktopDropdownContent = desktopDropdown.querySelector('.dropdown-content');
+    if (desktopVideoButton) {
+        desktopVideoButton.id = "desktopVideoButton";
+        desktopVideoButton.innerHTML = 'Videos';
+        // Remove onclick for desktop - it will use CSS hover instead
+        desktopVideoButton.onclick = null;
+    }
+    if (desktopDropdownContent) {
+        desktopDropdownContent.style.display = "";  // Reset to CSS control
+    }
     nav.appendChild(desktopDropdown);
 
     // Append elements to header

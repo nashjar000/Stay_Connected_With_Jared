@@ -153,6 +153,15 @@ header {
     padding-right: 15px;
 }
 
+/* Ensure desktop navigation dropdowns work properly */
+nav .dropdown-content {
+    position: absolute !important;
+}
+
+nav .dropdown:hover .dropdown-content {
+    display: block !important;
+}
+
 nav {
     display: flex;
     justify-content: space-around;
@@ -669,9 +678,50 @@ p {
         color: white;
     }
 
-    .dropdown-content {
-        background-color: rgba(0, 0, 0, 0.9);
-        margin-left: 50px;
+    /* Mobile dropdown content - simplified */
+    .mobile-menu .dropdown-content {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        margin-left: 30px !important;
+        margin-top: 0 !important;
+        border-radius: 5px !important;
+        position: relative !important;
+        box-shadow: none !important;
+        min-width: 160px !important;
+        z-index: 1 !important;
+    }
+
+    /* Mobile menu specific dropdown styles */
+    .mobile-menu .dropdown {
+        width: 100% !important;
+    }
+
+    .mobile-menu .dropbtn {
+        background-color: transparent !important;
+        color: white !important;
+        border: none !important;
+        padding: 20px 0 !important;
+        font-size: 24px !important;
+        text-align: left !important;
+        width: 100% !important;
+        cursor: pointer !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .mobile-menu .dropbtn:hover {
+        color: #D4AC0D !important;
+    }
+
+    .mobile-menu .dropdown-content {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        margin-left: 30px !important;
+        margin-top: 0 !important;
+        border-radius: 5px !important;
+    }
+
+    .mobile-menu .dropdown-content a {
+        font-size: 20px !important;
+        padding: 15px 20px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
 
     /* Mobile content improvements */

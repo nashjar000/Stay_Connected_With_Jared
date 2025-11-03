@@ -43,7 +43,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
         if (mobileMenuLinks) {
             mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function(e) {
+                    // Don't prevent default for dropdown links - let them navigate normally
+                    if (this.closest('.dropdown-content')) {
+                        console.log('Dropdown link clicked:', this.href); // Debug
+                        // Just close the menu, don't prevent navigation
+                    }
                     const menuIcon = document.getElementById('menuIcon');
                     if (menuIcon) {
                         menuIcon.classList.remove('active');
@@ -53,31 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Handle video dropdown in mobile menu
-        const videoButton = document.getElementById('videoButton');
-        const dropdownContent = mobileMenu?.querySelector('.dropdown-content');
-        
-        if (videoButton && dropdownContent) {
-            // Initially hide dropdown content
-            dropdownContent.classList.remove('show');
-            
-            videoButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Video button clicked in mobile'); // Debug log
-                
-                // Toggle dropdown visibility
-                if (dropdownContent.classList.contains('show')) {
-                    dropdownContent.classList.remove('show');
-                    videoButton.innerHTML = 'Videos <i class="fa fa-caret-down"></i>';
-                    console.log('Dropdown closed'); // Debug log
-                } else {
-                    dropdownContent.classList.add('show');
-                    videoButton.innerHTML = 'Videos <i class="fa fa-caret-up"></i>';
-                    console.log('Dropdown opened'); // Debug log
-                }
-            });
-        }
+        // Handle video dropdown in mobile menu - now handled by inline onclick
+        console.log('Mobile dropdown handled by inline onclick function'); // Debug log
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {
