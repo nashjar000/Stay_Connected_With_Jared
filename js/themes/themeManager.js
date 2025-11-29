@@ -55,7 +55,8 @@ class ThemeManager {
             },
             christmas: {
                 css: `${this.pathPrefix}styles/Christmas-theme.css`,
-                logo: `${this.pathPrefix}images/mylogo-red.png`,
+                // Use exact filename casing to match images folder (important for case-sensitive hosts)
+                logo: `${this.pathPrefix}images/mylogo-Red.png`,
                 favicon: `${this.pathPrefix}images/mylogo-green.png`,
                 quotes: 'christmas',
                 audio: `${this.pathPrefix}Audio/All I Want for Christmas is You.mp3`,
