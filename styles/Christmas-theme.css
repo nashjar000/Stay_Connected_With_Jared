@@ -925,6 +925,53 @@ p {
     color: green;
 }
 
+/* Mobile dropdown styles */
+@media (max-width: 600px) {
+    .mobile-menu .dropdown {
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .mobile-menu .dropbtn {
+        background-color: transparent !important;
+        color: white !important;
+        border: none !important;
+        padding: 20px 0 !important;
+        font-size: 24px !important;
+        text-align: left !important;
+        width: 100% !important;
+        cursor: pointer !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .mobile-menu .dropbtn:hover {
+        color: darkred !important;
+    }
+
+    .mobile-menu .dropdown-content {
+        background-color: rgba(0, 100, 0, 0.5) !important;
+        margin-left: 30px !important;
+        margin-top: 0 !important;
+        border-radius: 5px !important;
+        position: relative !important;
+        box-shadow: none !important;
+        min-width: 160px !important;
+        z-index: 1 !important;
+    }
+
+    .mobile-menu .dropdown-content a {
+        font-size: 20px !important;
+        padding: 15px 20px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        color: white !important;
+    }
+
+    .mobile-menu .dropdown-content a:hover {
+        color: darkred !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+}
+
 /* Scroll to top button */
 .scroll-to-top-button {
     position: fixed !important;
