@@ -509,7 +509,7 @@ p {
     }
 
     .mobile-menu.active {
-        display: flex;
+        display: flex !important;
     }
 
     .mobile-menu a {
@@ -620,7 +620,7 @@ p {
 }
 
 .mobile-menu.active {
-    display: flex;
+    display: flex !important;
 }
 
 .mobile-menu a {
