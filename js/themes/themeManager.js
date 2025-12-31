@@ -61,6 +61,14 @@ class ThemeManager {
                 quotes: 'christmas',
                 audio: `${this.pathPrefix}Audio/All I Want for Christmas is You.mp3`,
                 specialElements: ['christmas-countdown', 'christmas-background']
+            },
+            nye: {
+                css: `${this.pathPrefix}styles/style.css`,
+                logo: `${this.pathPrefix}images/mylogo.png`,
+                favicon: `${this.pathPrefix}images/mylogo.png`,
+                quotes: 'normal',
+                audio: null,
+                specialElements: ['nye-countdown']
             }
         };
         
@@ -141,8 +149,13 @@ class ThemeManager {
             return 'thanksgiving';
         }
         
-        // Christmas Season: Day after Thanksgiving - January 7
-        if ((month === 11 && day >= dayAfterThanksgiving) || month === 12 || (month === 1 && day <= 7)) {
+        // New Year's Eve: December 31 only
+        if (month === 12 && day === 31) {
+            return 'nye';
+        }
+        
+        // Christmas Season: Day after Thanksgiving - December 30
+        if ((month === 11 && day >= dayAfterThanksgiving) || (month === 12 && day <= 30) || (month === 1 && day <= 7)) {
             return 'christmas';
         }
         

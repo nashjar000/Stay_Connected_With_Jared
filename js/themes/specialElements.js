@@ -180,6 +180,15 @@ document.addEventListener("DOMContentLoaded", function () {
             `,
             parent: 'hero-msg',
             position: 'beforeend'
+        },
+        'nye-countdown': {
+            html: `
+                <h1 class="NYE-title" style="color: gold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-size: 1.8em;">New Year's Eve Countdown:</h1>
+                <p id="NYE" style="color: gold; font-size: 2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);"></p>
+            `,
+            parent: 'hero-msg',
+            position: 'beforeend',
+            script: './js/NYE.js'
         }
     };
     
