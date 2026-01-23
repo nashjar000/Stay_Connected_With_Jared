@@ -1,5 +1,11 @@
-// Set the date we're counting down to
-var countDownDate = new Date("Dec 25, 2025 00:00:00").getTime();
+// Set the date we're counting down to (next Christmas from today)
+const nowDate = new Date();
+const currentYear = nowDate.getFullYear();
+const thisYearsChristmas = new Date(`Dec 25, ${currentYear} 00:00:00`);
+const targetChristmas = nowDate > thisYearsChristmas
+  ? new Date(`Dec 25, ${currentYear + 1} 00:00:00`)
+  : thisYearsChristmas;
+var countDownDate = targetChristmas.getTime();
                     
 // Update the count down every 1 second
 var x = setInterval(function() {

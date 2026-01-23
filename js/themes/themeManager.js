@@ -163,10 +163,12 @@ class ThemeManager {
             !['valentine-message', 'easter-message', 'july4-message', 'halloween-message', 'thanksgiving-message', 'christmas-message', 'new-year-message', 'christmas-countdown', 'nye-countdown'].includes(element)
         );
         
-        // For Christmas theme, show NYE countdown only on Dec 31, otherwise show Christmas countdown
+        // For Christmas theme, show NYE countdown only on Dec 31, skip the Christmas countdown during the New Year week, otherwise show Christmas countdown
         if (currentTheme === 'christmas') {
             if (month === 12 && day === 31) {
                 filteredElements.push('nye-countdown');
+            } else if (month === 1 && day <= 7) {
+                // Avoid showing an expired Christmas countdown during the first week of January
             } else {
                 filteredElements.push('christmas-countdown');
             }
@@ -183,7 +185,7 @@ class ThemeManager {
             filteredElements.push('thanksgiving-message');
         } else if (month === 12 && day === 25) {
             filteredElements.push('christmas-message');
-        } else if (month === 1 && day === 1) {
+        } else if (month === 1 && day <= 7) {
             filteredElements.push('new-year-message');
         }
         
