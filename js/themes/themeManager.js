@@ -74,8 +74,8 @@ class ThemeManager {
         const day = now.getDate();
         const year = now.getFullYear();
 
-        // Valentine's Season: February 1 - February 20
-        if (month === 2 && day >= 1 && day <= 20) {
+        // Valentine's Day: February 14 only
+        if (month === 2 && day === 14) {
             return 'valentine';
         }
 
