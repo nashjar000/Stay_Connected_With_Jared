@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Approval - Stay Connected With Jared</title>
+    <link rel="icon" type="image/x-icon" href="images/mylogo.png">
+    <script src="./js/themes/themeManager.js"></script>
+    <link rel="stylesheet" href="./styles/auth.css">
+    <link rel="stylesheet" href="./styles/user-status.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/supabaseClient.js"></script>
+    <script defer src="./js/components/header.js"></script>
+    <script defer src="./js/components/footer.js"></script>
+    <script defer src="./js/components/mobile-menu.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+    
+    <div class="auth-container">
+        <div class="auth-box pending-box">
+            <h1>⏳ Account Pending Approval</h1>
+            
+            <div class="pending-info">
+                <p><strong>Hi <span id="user-name">there</span>!</strong></p>
+                <p>Your account has been created successfully, but it's currently pending approval.</p>
+                
+                <div class="pending-details">
+                    <h3>What happens next?</h3>
+                    <ol>
+                        <li>Jared will review your account request</li>
+                        <li>Once approved, you'll receive an email notification</li>
+                        <li>After approval, you can log in and access the video journals</li>
+                    </ol>
+                </div>
+                
+                <div class="pending-note">
+                    <p><strong>Email:</strong> <span id="user-email">Loading...</span></p>
+                    <p>Please check back later or wait for the approval email.</p>
+                </div>
+                
+                <div class="pending-actions">
+                    <button onclick="checkApproval()" class="auth-button" id="check-button">Check Approval Status</button>
+                    <button onclick="signOut()" class="auth-button secondary">Sign Out</button>
+                </div>
+                
+                <div id="status-message" class="success-message" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer"></div>
+
+    <script>
+        let currentUser = null;
+
+        // Wait for all dependencies to load
+        function waitForDependencies() {
+            return new Promise((resolve) => {
+                if (window.auth && window.supabaseClient) {
+                    resolve();
+                } else {
+                    setTimeout(() => {
+                        waitForDependencies().then(resolve);
+                    }, 100);
+                }
+            });
+        }
+
+        async function loadUserInfo() {
+            await waitForDependencies();
+            await waitForDependencies();
+            currentUser = await auth.getCurrentUser();
+            
+            if (!currentUser) {
+                window.location.href = 'auth-login.html';
+                return;
+            }
+            
+            // Display user info
+            const displayName = currentUser.user_metadata?.display_name || 'User';
+            document.getElementById('user-name').textContent = displayName;
+            document.getElementById('user-email').textContent = currentUser.email;
+        }
+
+        async function checkApproval() {
+            const statusDiv = document.getElementById('status-message');
+            const checkButton = document.getElementById('check-button');
+            
+            checkButton.disabled = true;
+            checkButton.textContent = 'Checking...';
+            
+            if (!currentUser) {
+                currentUser = await auth.getCurrentUser();
+            }
+            
+            if (!currentUser) {
+                window.location.href = 'auth-login.html';
+                return;
+            }
+            
+            const isApproved = await auth.isUserApproved(currentUser.id);
+            
+            if (isApproved) {
+                statusDiv.textContent = '✅ Great news! Your account has been approved! Redirecting to video journals...';
+                statusDiv.style.display = 'block';
+                statusDiv.className = 'success-message';
+                
+                setTimeout(() => {
+                    window.location.href = './pages/video-journals.html';
+                }, 2000);
+            } else {
+                statusDiv.textContent = '⏳ Your account is still pending approval. We\'ll let you know when you\'re approved!';
+                statusDiv.style.display = 'block';
+                statusDiv.className = 'info-message';
+                
+                setTimeout(() => {
+                    statusDiv.style.display = 'none';
+                }, 3000);
+            }
+            
+            checkButton.disabled = false;
+            checkButton.textContent = 'Check Approval Status';
+        }
+
+        async function signOut() {
+            await auth.signOut();
+            window.location.href = 'index.html';
+        }
+
+        // Load user info when page loads
+        window.addEventListener('load', loadUserInfo);
+    </script>
+</body>
+
+</html>

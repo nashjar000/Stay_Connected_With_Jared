@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Test - Supabase Connection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .info { color: blue; }
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Supabase Connection Test</h1>
+    
+    <div class="test-section">
+        <h2>1. Check Supabase Library</h2>
+        <div id="library-check">Checking...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. Check Configuration</h2>
+        <div id="config-check">Checking...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. Check Database Connection</h2>
+        <button onclick="testConnection()">Test Database Connection</button>
+        <div id="connection-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>4. Check approved_users Table</h2>
+        <button onclick="testTable()">Test Table Access</button>
+        <div id="table-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>5. Check Current User</h2>
+        <button onclick="testCurrentUser()">Check If Logged In</button>
+        <div id="user-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Console Logs</h2>
+        <p class="info">Open browser console (F12) to see detailed logs</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/supabaseClient.js"></script>
+    
+    <script>
+        // Wait for dependencies to load
+        function waitForDependencies() {
+            return new Promise((resolve) => {
+                if (window.auth && window.supabaseClient) {
+                    resolve();
+                } else {
+                    setTimeout(() => {
+                        waitForDependencies().then(resolve);
+                    }, 100);
+                }
+            });
+        }
+        
+        // Test 1: Check if Supabase library loaded
+        setTimeout(() => {
+            const libCheck = document.getElementById('library-check');
+            if (window.supabase) {
+                libCheck.innerHTML = '<span class="success">✓ Supabase library loaded</span>';
+                console.log('Supabase version:', window.supabase);
+            } else {
+                libCheck.innerHTML = '<span class="error">✗ Supabase library NOT loaded</span>';
+            }
+        }, 500);
+        
+        // Test 2: Check configuration
+        setTimeout(() => {
+            const configCheck = document.getElementById('config-check');
+            if (window.supabaseClient) {
+                configCheck.innerHTML = '<span class="success">✓ Supabase client initialized</span>';
+                console.log('Supabase client:', window.supabaseClient);
+            } else {
+                configCheck.innerHTML = '<span class="error">✗ Supabase client NOT initialized</span>';
+            }
+        }, 500);
+        
+        // Test 3: Test database connection
+        async function testConnection() {
+            const result = document.getElementById('connection-result');
+            result.innerHTML = '<p class="info">Testing connection...</p>';
+            
+            try {
+                await waitForDependencies();
+                
+                const { data, error } = await window.supabaseClient
+                    .from('approved_users')
+                    .select('count')
+                    .limit(1);
+                
+                if (error) {
+                    result.innerHTML = `<p class="error">✗ Connection failed</p><pre>${JSON.stringify(error, null, 2)}</pre>`;
+                    console.error('Connection error:', error);
+                } else {
+                    result.innerHTML = '<p class="success">✓ Successfully connected to database!</p>';
+                    console.log('Connection successful:', data);
+                }
+            } catch (err) {
+                result.innerHTML = `<p class="error">✗ Error: ${err.message}</p>`;
+                console.error('Connection test error:', err);
+            }
+        }
+        
+        // Test 4: Test table access
+        async function testTable() {
+            const result = document.getElementById('table-result');
+            result.innerHTML = '<p class="info">Checking table...</p>';
+            
+            try {
+                await waitForDependencies();
+                
+                const { data, error } = await window.supabaseClient
+                    .from('approved_users')
+                    .select('*')
+                    .limit(5);
+                
+                if (error) {
+                    result.innerHTML = `<p class="error">✗ Table access failed</p><pre>${JSON.stringify(error, null, 2)}</pre>`;
+                    console.error('Table error:', error);
+                } else {
+                    result.innerHTML = `<p class="success">✓ Table exists! Found ${data.length} users</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                    console.log('Table data:', data);
+                }
+            } catch (err) {
+                result.innerHTML = `<p class="error">✗ Error: ${err.message}</p>`;
+                console.error('Table test error:', err);
+            }
+        }
+        
+        // Test 5: Check current user
+        async function testCurrentUser() {
+            const result = document.getElementById('user-result');
+            result.innerHTML = '<p class="info">Checking user...</p>';
+            
+            try {
+                await waitForDependencies();
+                
+                const user = await window.auth.getCurrentUser();
+                
+                if (user) {
+                    const isApproved = await window.auth.isUserApproved(user.id);
+                    result.innerHTML = `
+                        <p class="success">✓ User is logged in</p>
+                        <pre>${JSON.stringify(user, null, 2)}</pre>
+                        <p>Approved: ${isApproved ? '<span class="success">YES</span>' : '<span class="error">NO (pending)</span>'}</p>
+                    `;
+                    console.log('Current user:', user);
+                } else {
+                    result.innerHTML = '<p class="info">No user logged in</p>';
+                }
+            } catch (err) {
+                result.innerHTML = `<p class="error">✗ Error: ${err.message}</p>`;
+                console.error('User check error:', err);
+            }
+        }
+    </script>
+</body>
+</html>

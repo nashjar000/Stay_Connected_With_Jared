@@ -212,3 +212,109 @@ button:hover {
     line-height: 1 !important;
     margin: 0 !important;
 }
+
+/* Authentication Pages - Valentine's Theme */
+.auth-box, .pending-box, .admin-box {
+    background: rgba(233, 30, 99, 0.95) !important;
+    border: 2px solid white !important;
+}
+
+.auth-box h1, .pending-box h1, .admin-box h1 {
+    color: white !important;
+}
+
+.auth-description, .admin-description {
+    color: #f8bbd9 !important;
+}
+
+.form-group label {
+    color: white !important;
+}
+
+.form-group input {
+    border: 2px solid white !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #ad1457 !important;
+}
+
+.form-group input:focus {
+    border-color: #f8bbd9 !important;
+}
+
+.auth-button {
+    background-color: #ad1457 !important;
+    color: white !important;
+}
+
+.auth-button:hover {
+    background-color: #f8bbd9 !important;
+    color: #ad1457 !important;
+}
+
+.auth-button.secondary {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 2px solid white !important;
+    color: white !important;
+}
+
+.auth-button.secondary:hover {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.auth-switch {
+    color: white !important;
+}
+
+.auth-switch a {
+    color: #f8bbd9 !important;
+}
+
+.auth-switch a:hover {
+    color: white !important;
+}
+
+.auth-note {
+    background-color: rgba(248, 187, 217, 0.2) !important;
+    border-left: 4px solid white !important;
+}
+
+.auth-note p {
+    color: white !important;
+}
+
+.pending-details {
+    background-color: rgba(248, 187, 217, 0.2) !important;
+    border: 1px solid white !important;
+}
+
+.pending-details h3, .pending-details ol {
+    color: white !important;
+}
+
+.pending-note {
+    background-color: rgba(173, 20, 87, 0.3) !important;
+    border: 1px solid #f8bbd9 !important;
+    color: white !important;
+}
+
+.users-section h2 {
+    color: white !important;
+    border-bottom: 2px solid #f8bbd9 !important;
+}
+
+.user-card {
+    border: 2px solid #f8bbd9 !important;
+    background-color: rgba(173, 20, 87, 0.2) !important;
+}
+
+.user-card:hover {
+    box-shadow: 0 4px 8px rgba(248, 187, 217, 0.4) !important;
+}
+
+.user-info strong, .user-info p {
+    color: white !important;
+}
+
+.user-info small {
+    color: rgba(248, 187, 217, 0.8) !important;
+}

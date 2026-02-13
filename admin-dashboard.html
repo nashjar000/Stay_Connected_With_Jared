@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - User Approval</title>
+    <link rel="icon" type="image/x-icon" href="images/mylogo.png">
+    <script src="./js/themes/themeManager.js"></script>
+    <link rel="stylesheet" href="./styles/auth.css">
+    <link rel="stylesheet" href="./styles/user-status.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/supabaseClient.js"></script>
+    <script defer src="./js/components/header.js"></script>
+    <script defer src="./js/components/footer.js"></script>
+    <script defer src="./js/components/mobile-menu.js"></script>
+    <script defer src="./js/components/user-status.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+    
+    <div class="auth-container">
+        <div class="admin-box">
+            <h1>🔒 Admin Dashboard</h1>
+            <p class="admin-description">Manage user access to video journals</p>
+            
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <div id="success-message" class="success-message" style="display: none;"></div>
+            
+            <div class="admin-actions">
+                <button onclick="loadUsers()" class="auth-button">Refresh List</button>
+                <button onclick="signOut()" class="auth-button secondary">Sign Out</button>
+            </div>
+
+            <div class="users-section">
+                <h2>Online Now</h2>
+                <div id="online-users" class="user-list">
+                    <p class="loading">Loading online users...</p>
+                </div>
+            </div>
+            
+            <div class="users-section">
+                <h2>Pending Approvals</h2>
+                <div id="pending-users" class="user-list">
+                    <p class="loading">Loading pending users...</p>
+                </div>
+            </div>
+            
+            <div class="users-section">
+                <h2>Approved Users</h2>
+                <div id="approved-users" class="user-list">
+                    <p class="loading">Loading approved users...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer"></div>
+
+    <script>
+        // Wait for all dependencies to load
+        function waitForDependencies() {
+            return new Promise((resolve) => {
+                if (window.auth && window.supabaseClient) {
+                    resolve();
+                } else {
+                    setTimeout(() => {
+                        waitForDependencies().then(resolve);
+                    }, 100);
+                }
+            });
+        }
+
+        // Check if current user is admin (you'll need to set this up)
+        async function checkAdminAccess() {
+            await waitForDependencies();
+            const user = await auth.getCurrentUser();
+            
+            if (!user) {
+                window.location.href = 'auth-login.html?redirect=admin-dashboard.html';
+                return false;
+            }
+            
+            await waitForDependencies();
+            const isAdmin = await auth.isAdmin(user.id);
+
+            if (!isAdmin) {
+                alert('Access denied. Admin privileges required.');
+                window.location.href = 'index.html';
+                return false;
+            }
+            
+            return true;
+        }
+
+        async function loadUsers() {
+            const pendingDiv = document.getElementById('pending-users');
+            const approvedDiv = document.getElementById('approved-users');
+            
+            try {
+                // Fetch all users from approved_users table
+                const { data: users, error } = await supabaseClient
+                    .from('approved_users')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                
+                if (error) throw error;
+                
+                // Separate into pending and approved
+                const pending = users.filter(u => !u.approved);
+                const approved = users.filter(u => u.approved);
+                
+                // Display pending users
+                if (pending.length === 0) {
+                    pendingDiv.innerHTML = '<p class="no-users">No pending approvals</p>';
+                } else {
+                    pendingDiv.innerHTML = pending.map(user => createUserCard(user, false)).join('');
+                }
+                
+                // Display approved users
+                if (approved.length === 0) {
+                    approvedDiv.innerHTML = '<p class="no-users">No approved users yet</p>';
+                } else {
+                    approvedDiv.innerHTML = approved.map(user => createUserCard(user, true)).join('');
+                }
+                
+            } catch (error) {
+                console.error('Error loading users:', error);
+                showError('Failed to load users: ' + error.message);
+            }
+        }
+
+        async function loadOnlineUsers() {
+            const onlineDiv = document.getElementById('online-users');
+
+            try {
+                const threshold = new Date(Date.now() - 3 * 60 * 1000).toISOString();
+                const { data: users, error } = await supabaseClient
+                    .from('user_presence')
+                    .select('*')
+                    .gte('last_seen', threshold)
+                    .order('last_seen', { ascending: false });
+
+                if (error) throw error;
+
+                if (!users || users.length === 0) {
+                    onlineDiv.innerHTML = '<p class="no-users">No one is online right now</p>';
+                    return;
+                }
+
+                onlineDiv.innerHTML = users.map(user => createOnlineCard(user)).join('');
+            } catch (error) {
+                console.error('Error loading online users:', error);
+                showError('Failed to load online users: ' + error.message);
+            }
+        }
+
+        function createOnlineCard(user) {
+            const lastSeen = new Date(user.last_seen).toLocaleTimeString();
+            const displayName = user.display_name || 'No name provided';
+            return `
+                <div class="user-card online">
+                    <div class="user-info">
+                        <strong>${displayName}</strong>
+                        <p>${user.email || 'Email not available'}</p>
+                        <small>Last seen: ${lastSeen}</small>
+                    </div>
+                    <div class="user-actions">
+                        <span class="online-badge">Online</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createUserCard(user, isApproved) {
+            const date = new Date(user.created_at).toLocaleDateString();
+            return `
+                <div class="user-card ${isApproved ? 'approved' : 'pending'}">
+                    <div class="user-info">
+                        <strong>${user.display_name || 'No name provided'}</strong>
+                        <p>${user.email}</p>
+                        <small>Requested: ${date}</small>
+                    </div>
+                    <div class="user-actions">
+                        ${!isApproved ? `
+                            <button onclick="approveUser('${user.user_id}', '${user.email}')" class="approve-btn">✓ Approve</button>
+                            <button onclick="denyUser('${user.user_id}')" class="deny-btn">✗ Deny</button>
+                        ` : `
+                            <button onclick="revokeUser('${user.user_id}')" class="revoke-btn">Revoke Access</button>
+                        `}
+                    </div>
+                </div>
+            `;
+        }
+
+        async function approveUser(userId, email) {
+            if (!confirm(`Approve access for ${email}?`)) return;
+            
+            try {
+            await waitForDependencies();
+                const { error } = await supabaseClient
+                    .from('approved_users')
+                    .update({ approved: true, approved_at: new Date().toISOString() })
+                    .eq('user_id', userId);
+                
+                if (error) throw error;
+                
+                showSuccess(`User ${email} has been approved!`);
+                loadUsers();
+            } catch (error) {
+                console.error('Error approving user:', error);
+                showError('Failed to approve user: ' + error.message);
+            }
+        }
+
+        async function denyUser(userId) {
+            if (!confirm('Delete this user request? This action cannot be undone.')) return;
+            
+            await waitForDependencies();
+            try {
+                const { error } = await supabaseClient
+                    .from('approved_users')
+                    .delete()
+                    .eq('user_id', userId);
+                
+                if (error) throw error;
+                
+                showSuccess('User request has been denied and removed.');
+                loadUsers();
+            } catch (error) {
+                console.error('Error denying user:', error);
+                showError('Failed to deny user: ' + error.message);
+            }
+        }
+
+        async function revokeUser(userId) {
+            if (!confirm('Revoke access for this user? They will be moved back to pending.')) return;
+            
+            try {
+                const { error } = await supabaseClient
+                    .from('approved_users')
+                    .update({ approved: false, approved_at: null })
+                    .eq('user_id', userId);
+                
+                if (error) throw error;
+                
+                showSuccess('User access has been revoked.');
+                loadUsers();
+            } catch (error) {
+                console.error('Error revoking user:', error);
+                showError('Failed to revoke user: ' + error.message);
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => errorDiv.style.display = 'none', 5000);
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('success-message');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            setTimeout(() => successDiv.style.display = 'none', 3000);
+        }
+
+        async function signOut() {
+            await waitForDependencies();
+            await auth.signOut();
+            window.location.href = 'index.html';
+        }
+
+        // Initialize
+        window.addEventListener('load', async () => {
+            await waitForDependencies();
+            const isAdmin = await checkAdminAccess();
+            if (isAdmin) {
+                await loadUsers();
+                await loadOnlineUsers();
+                setInterval(loadOnlineUsers, 30000);
+            }
+        });
+    </script>
+</body>
+
+</html>

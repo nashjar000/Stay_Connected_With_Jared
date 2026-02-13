@@ -1252,3 +1252,109 @@ h4 {
     background-color: rgb(112, 7, 7) !important;
     color: #D4AC0D !important;
 }
+
+/* Authentication Pages - Halloween Theme */
+.auth-box, .pending-box, .admin-box {
+    background: rgba(0, 0, 0, 0.95) !important;
+    border: 2px solid #ff6600 !important;
+}
+
+.auth-box h1, .pending-box h1, .admin-box h1 {
+    color: #ff6600 !important;
+}
+
+.auth-description, .admin-description {
+    color: #ff9944 !important;
+}
+
+.form-group label {
+    color: #ff6600 !important;
+}
+
+.form-group input {
+    border: 2px solid #ff6600 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #000000 !important;
+}
+
+.form-group input:focus {
+    border-color: #9900ff !important;
+}
+
+.auth-button {
+    background-color: #ff6600 !important;
+    color: #000000 !important;
+}
+
+.auth-button:hover {
+    background-color: #9900ff !important;
+    color: #ff6600 !important;
+}
+
+.auth-button.secondary {
+    background-color: rgba(255, 102, 0, 0.2) !important;
+    border: 2px solid #ff6600 !important;
+    color: #ff6600 !important;
+}
+
+.auth-button.secondary:hover {
+    background-color: rgba(255, 102, 0, 0.4) !important;
+}
+
+.auth-switch {
+    color: #ff6600 !important;
+}
+
+.auth-switch a {
+    color: #9900ff !important;
+}
+
+.auth-switch a:hover {
+    color: #ff6600 !important;
+}
+
+.auth-note {
+    background-color: rgba(255, 102, 0, 0.1) !important;
+    border-left: 4px solid #ff6600 !important;
+}
+
+.auth-note p {
+    color: #ff6600 !important;
+}
+
+.pending-details {
+    background-color: rgba(255, 102, 0, 0.1) !important;
+    border: 1px solid #ff6600 !important;
+}
+
+.pending-details h3, .pending-details ol {
+    color: #ff6600 !important;
+}
+
+.pending-note {
+    background-color: rgba(153, 0, 255, 0.2) !important;
+    border: 1px solid #9900ff !important;
+    color: #ff6600 !important;
+}
+
+.users-section h2 {
+    color: #ff6600 !important;
+    border-bottom: 2px solid #9900ff !important;
+}
+
+.user-card {
+    border: 2px solid #9900ff !important;
+    background-color: rgba(153, 0, 255, 0.1) !important;
+}
+
+.user-card:hover {
+    box-shadow: 0 4px 8px rgba(255, 102, 0, 0.4) !important;
+}
+
+.user-info strong, .user-info p {
+    color: #ff6600 !important;
+}
+
+.user-info small {
+    color: rgba(255, 153, 68, 0.8) !important;
+}

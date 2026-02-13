@@ -93,8 +93,9 @@
 /* Header and Navagation */
 header {
     display: grid;
-    grid-template-columns: 150px auto;
+    grid-template-columns: 150px auto auto;
     background-color: rgba(13, 19, 30, 0.7);
+    align-items: start;
 }
 
 /* Add an active class to highlight the current page */
@@ -105,8 +106,8 @@ header {
 
 /* Dropdown container - needed to position the dropdown content */
 .dropdown {
-    float: left;
-    overflow: hidden;
+    position: relative;
+    display: inline-block;
 }
 
 /* Style the dropdown button to fit inside the topnav */
@@ -118,17 +119,30 @@ header {
     padding: 15px;
     background-color: inherit;
     font-family: inherit;
-    /* margin: 0; */
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* Hover effect for dropdown button */
+.dropdown .dropbtn:hover,
+.dropdown:hover .dropbtn {
+    background-color: #594AE3;
+    color: rgb(100, 4, 4);
+    text-decoration: underline;
 }
 
 /* Style the dropdown content (hidden by default) */
 .dropdown-content {
     display: none;
     position: absolute;
+    top: 25%;
+    left: 0;
     background-color: #242325;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 1000;
 }
 
 /* Style the links inside the dropdown */
@@ -165,6 +179,8 @@ nav .dropdown:hover .dropdown-content {
 nav {
     display: flex;
     justify-content: space-around;
+    align-items: stretch;
+    align-self: stretch;
 }
 
 nav a {
@@ -172,6 +188,10 @@ nav a {
     color: #D4AC0D;
     text-decoration: none;
     padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 1;
 }
 
 nav a:hover {

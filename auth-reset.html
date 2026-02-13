@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - Stay Connected With Jared</title>
+    <link rel="icon" type="image/x-icon" href="images/mylogo.png">
+    <script src="./js/themes/themeManager.js"></script>
+    <link rel="stylesheet" href="./styles/auth.css">
+    <link rel="stylesheet" href="./styles/user-status.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/supabaseClient.js"></script>
+    <script defer src="./js/components/header.js"></script>
+    <script defer src="./js/components/footer.js"></script>
+    <script defer src="./js/components/mobile-menu.js"></script>
+    <script defer src="./js/components/user-status.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1>Reset Your Password</h1>
+            <p class="auth-description">Enter a new password for your account.</p>
+
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <div id="success-message" class="success-message" style="display: none;"></div>
+
+            <form id="reset-form" class="auth-form">
+                <div class="form-group">
+                    <label for="new-password">New Password:</label>
+                    <input type="password" id="new-password" name="new-password" required autocomplete="new-password" minlength="8" placeholder="At least 8 characters">
+                    <ul class="password-requirements">
+                        <li data-rule="length">At least 8 characters</li>
+                        <li data-rule="upper">One uppercase letter</li>
+                        <li data-rule="lower">One lowercase letter</li>
+                        <li data-rule="number">One number</li>
+                        <li data-rule="special">One special character</li>
+                    </ul>
+                    <div class="password-strength" aria-live="polite">
+                        <div class="password-strength-bar">
+                            <div class="password-strength-fill" id="reset-strength-fill"></div>
+                        </div>
+                        <p class="password-strength-text" id="reset-strength-text">Strength: Not set</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-new-password">Confirm New Password:</label>
+                    <input type="password" id="confirm-new-password" name="confirm-new-password" required autocomplete="new-password" minlength="8" placeholder="Confirm your new password">
+                    <p id="reset-match-status" class="password-match" style="display: none;"></p>
+                </div>
+
+                <button type="submit" class="auth-button" id="reset-button">Update Password</button>
+            </form>
+
+            <div class="auth-switch">
+                <p>Remembered your password? <a href="auth-login.html">Log in here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        function waitForDependencies() {
+            return new Promise((resolve) => {
+                if (window.auth && window.supabaseClient) {
+                    resolve();
+                } else {
+                    setTimeout(() => {
+                        waitForDependencies().then(resolve);
+                    }, 100);
+                }
+            });
+        }
+
+        function validatePassword(value) {
+            if (value.length < 8) {
+                return 'Password must be at least 8 characters long.';
+            }
+            if (!/[A-Z]/.test(value)) {
+                return 'Password must include at least one uppercase letter.';
+            }
+            if (!/[a-z]/.test(value)) {
+                return 'Password must include at least one lowercase letter.';
+            }
+            if (!/[0-9]/.test(value)) {
+                return 'Password must include at least one number.';
+            }
+            if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value)) {
+                return 'Password must include at least one special character.';
+            }
+            return '';
+        }
+
+        function getPasswordRules(value) {
+            return {
+                length: value.length >= 8,
+                upper: /[A-Z]/.test(value),
+                lower: /[a-z]/.test(value),
+                number: /[0-9]/.test(value),
+                special: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value)
+            };
+        }
+
+        function updatePasswordStrength(value) {
+            const rules = getPasswordRules(value);
+            const metCount = Object.values(rules).filter(Boolean).length;
+            const strengthFill = document.getElementById('reset-strength-fill');
+            const strengthText = document.getElementById('reset-strength-text');
+            const requirements = document.querySelectorAll('.password-requirements li');
+
+            requirements.forEach((item) => {
+                const rule = item.getAttribute('data-rule');
+                if (rules[rule]) {
+                    item.classList.add('met');
+                } else {
+                    item.classList.remove('met');
+                }
+            });
+
+            const percent = Math.min((metCount / 5) * 100, 100);
+            strengthFill.style.width = `${percent}%`;
+
+            if (!value) {
+                strengthFill.style.backgroundColor = '#dc3545';
+                strengthText.textContent = 'Strength: Not set';
+                return;
+            }
+
+            if (metCount <= 2) {
+                strengthFill.style.backgroundColor = '#dc3545';
+                strengthText.textContent = 'Strength: Weak';
+            } else if (metCount === 3 || metCount === 4) {
+                strengthFill.style.backgroundColor = '#ffc107';
+                strengthText.textContent = 'Strength: Medium';
+            } else {
+                strengthFill.style.backgroundColor = '#28a745';
+                strengthText.textContent = 'Strength: Strong';
+            }
+        }
+
+        function updatePasswordMatchStatus() {
+            const password = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-new-password').value;
+            const status = document.getElementById('reset-match-status');
+
+            if (!password && !confirmPassword) {
+                status.style.display = 'none';
+                return;
+            }
+
+            status.style.display = 'block';
+            if (password && confirmPassword && password === confirmPassword) {
+                status.textContent = 'Passwords match.';
+                status.classList.remove('password-mismatch');
+                status.classList.add('password-match');
+            } else {
+                status.textContent = 'Passwords do not match.';
+                status.classList.remove('password-match');
+                status.classList.add('password-mismatch');
+            }
+        }
+
+        async function handleReset(e) {
+            e.preventDefault();
+            await waitForDependencies();
+
+            const newPassword = document.getElementById('new-password').value;
+            const confirmNewPassword = document.getElementById('confirm-new-password').value;
+            const errorDiv = document.getElementById('error-message');
+            const successDiv = document.getElementById('success-message');
+            const resetButton = document.getElementById('reset-button');
+
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+
+            const passwordError = validatePassword(newPassword);
+            if (passwordError) {
+                errorDiv.textContent = passwordError;
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            if (newPassword !== confirmNewPassword) {
+                errorDiv.textContent = 'Passwords do not match.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            resetButton.disabled = true;
+            resetButton.textContent = 'Updating...';
+
+            const result = await auth.updatePassword(newPassword);
+
+            if (!result.success) {
+                errorDiv.textContent = result.error || 'Failed to update password. Try the reset link again.';
+                errorDiv.style.display = 'block';
+                resetButton.disabled = false;
+                resetButton.textContent = 'Update Password';
+                return;
+            }
+
+            successDiv.textContent = 'Password updated! Please log in with your new password.';
+            successDiv.style.display = 'block';
+
+            setTimeout(() => {
+                window.location.href = 'auth-login.html';
+            }, 1500);
+        }
+
+        window.addEventListener('load', () => {
+            const passwordInput = document.getElementById('new-password');
+            const confirmPasswordInput = document.getElementById('confirm-new-password');
+            updatePasswordStrength(passwordInput.value);
+            updatePasswordMatchStatus();
+            passwordInput.addEventListener('input', (event) => {
+                updatePasswordStrength(event.target.value);
+                updatePasswordMatchStatus();
+            });
+            confirmPasswordInput.addEventListener('input', updatePasswordMatchStatus);
+            document.getElementById('reset-form').addEventListener('submit', handleReset);
+        });
+    </script>
+</body>
+
+</html>

@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="../styles/video.css">
     <link rel="stylesheet" href="../styles/scroll-button.css">
     <script defer src="../js/scroll-button.js"></script>
+    <!-- Supabase Authentication -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabaseClient.js"></script>
+    <!-- User Status Component -->
+    <link rel="stylesheet" href="../styles/user-status.css">
 </head>
 
 <body>
@@ -45,24 +51,115 @@
         </div>
         </section>
 
-        <section class="year-links">
-            <a href="./video-journal-2026.html" id="year-link" class="year-link-2026">2026</a>
-            <a href="./video-journal-2025.html" id="year-link" class="year-link-2025">2025</a>
-            <a href="./video-journal-2024.html" id="year-link" class="year-link-2024">2024</a>
-            <a href="./video-journal-2023.html" id="year-link" class="year-link-2023">2023</a>
-            <a href="./video-journal-2022.html" id="year-link" class="year-link-2022">2022</a>
-            <a href="./video-journal-2021.html" id="year-link" class="year-link-2021">2021</a>
-            <a href="./video-journal-2020-2021.html" id="year-link">2020-2021 (the mission)</a>
-            <a href="./video-journal-2019.html" id="year-link">2019</a>
-            <a href="./video-journal-2018.html" id="year-link">2018</a>
-            <a href="./video-journal-2017.html" id="year-link">2017</a>
+        <section class="year-links" id="year-links-section">
+            <!-- Year links will be shown/hidden based on auth status -->
+            <a href="./video-journal-2026.html" id="year-link" class="year-link-2026 protected-link">2026</a>
+            <a href="./video-journal-2025.html" id="year-link" class="year-link-2025 protected-link">2025</a>
+            <a href="./video-journal-2024.html" id="year-link" class="year-link-2024 protected-link">2024</a>
+            <a href="./video-journal-2023.html" id="year-link" class="year-link-2023 protected-link">2023</a>
+            <a href="./video-journal-2022.html" id="year-link" class="year-link-2022 protected-link">2022</a>
+            <a href="./video-journal-2021.html" id="year-link" class="year-link-2021 protected-link">2021</a>
+            <a href="./video-journal-2020-2021.html" id="year-link" class="protected-link">2020-2021 (the mission)</a>
+            <a href="./video-journal-2019.html" id="year-link" class="protected-link">2019</a>
+            <a href="./video-journal-2018.html" id="year-link" class="protected-link">2018</a>
+            <a href="./video-journal-2017.html" id="year-link" class="protected-link">2017</a>
         </section>
+
+        <!-- Auth message for unauthenticated users -->
+        <section class="auth-required-message" id="auth-message" style="display: none;">
+            <div class="auth-notice">
+                <h2>🔒 Video Journals Are Protected</h2>
+                <p>The video journal content is only available to approved users.</p>
+                <div class="auth-actions">
+                    <a href="../auth-login.html?redirect=./pages/video-journals.html" class="auth-action-button">Log In</a>
+                    <a href="../auth-signup.html" class="auth-action-button secondary">Sign Up</a>
+                </div>
+                <p class="auth-note-text">Already have an account? <a href="../auth-login.html?redirect=./pages/video-journals.html">Log in here</a></p>
+                <p class="auth-note-text">New users need to be approved by Jared before accessing the video journals.</p>
+            </div>
+        </section>
+
+        <!-- Pending approval message -->
+        <section class="pending-message" id="pending-message" style="display: none;">
+            <div class="auth-notice">
+                <h2>⏳ Account Pending Approval</h2>
+                <p>Your account has been created but is waiting for approval.</p>
+                <div class="auth-actions">
+                    <a href="../auth-pending.html" class="auth-action-button">Check Status</a>
+                    <button onclick="authCheckLogout()" class="auth-action-button secondary">Sign Out</button>
+                </div>
+            </div>
+        </section>
+
         <button id="scrollToTopButton" class="scroll-to-top-button"
                 onclick="scrollToTop()">
                 <i class="fas fa-arrow-up"></i>
         </button>
     </div>
     </div>
+
+    <script>
+        // Wait for all dependencies to load
+        function waitForDependencies() {
+            return new Promise((resolve) => {
+                if (window.auth && window.supabaseClient) {
+                    resolve();
+                } else {
+                    setTimeout(() => {
+                        waitForDependencies().then(resolve);
+                    }, 100);
+                }
+            });
+        }
+
+        // Check authentication status and show/hide year links
+        async function checkAuthStatus() {
+            await waitForDependencies();
+            const yearLinksSection = document.getElementById('year-links-section');
+            const authMessage = document.getElementById('auth-message');
+            const pendingMessage = document.getElementById('pending-message');
+            
+            try {
+                const user = await auth.getCurrentUser();
+                
+                if (!user) {
+                    // Not logged in - hide links, show auth message
+                    yearLinksSection.style.display = 'none';
+                    authMessage.style.display = 'block';
+                    return;
+                }
+                
+                // Check approval status (admin is always approved)
+                const isAdmin = await auth.isAdmin(user.id);
+                const isApproved = isAdmin || await auth.isUserApproved(user.id);
+                
+                if (isApproved) {
+                    // Approved - show links (use grid to maintain 3-column layout)
+                    yearLinksSection.style.display = 'grid';
+                    authMessage.style.display = 'none';
+                    pendingMessage.style.display = 'none';
+                } else {
+                    // Not approved - show pending message
+                    yearLinksSection.style.display = 'none';
+                    authMessage.style.display = 'none';
+                    pendingMessage.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error checking auth status:', error);
+                // On error, hide links and show auth message
+                yearLinksSection.style.display = 'none';
+                authMessage.style.display = 'block';
+            }
+        }
+        
+        async function authCheckLogout() {
+            await auth.signOut();
+            window.location.reload();
+        }
+        
+        // Run check when page loads
+        window.addEventListener('load', checkAuthStatus);
+    </script>
 </body>
 
 </html>

@@ -461,3 +461,109 @@ footer a:hover {
         font-size: 50px;
     }
 }
+
+/* Authentication Pages - Thanksgiving Theme */
+.auth-box, .pending-box, .admin-box {
+    background: rgba(139, 69, 19, 0.95) !important;
+    border: 2px solid #FFF8DC !important;
+}
+
+.auth-box h1, .pending-box h1, .admin-box h1 {
+    color: #FFF8DC !important;
+}
+
+.auth-description, .admin-description {
+    color: #FFE4B5 !important;
+}
+
+.form-group label {
+    color: #FFF8DC !important;
+}
+
+.form-group input {
+    border: 2px solid #D2691E !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #2F1B14 !important;
+}
+
+.form-group input:focus {
+    border-color: #FFF8DC !important;
+}
+
+.auth-button {
+    background-color: #D2691E !important;
+    color: #FFF8DC !important;
+}
+
+.auth-button:hover {
+    background-color: #FFE4B5 !important;
+    color: #8B4513 !important;
+}
+
+.auth-button.secondary {
+    background-color: rgba(255, 248, 220, 0.2) !important;
+    border: 2px solid #FFF8DC !important;
+    color: #FFF8DC !important;
+}
+
+.auth-button.secondary:hover {
+    background-color: rgba(255, 248, 220, 0.4) !important;
+}
+
+.auth-switch {
+    color: #FFF8DC !important;
+}
+
+.auth-switch a {
+    color: #FFE4B5 !important;
+}
+
+.auth-switch a:hover {
+    color: #FFF8DC !important;
+}
+
+.auth-note {
+    background-color: rgba(210, 105, 30, 0.2) !important;
+    border-left: 4px solid #FFF8DC !important;
+}
+
+.auth-note p {
+    color: #FFF8DC !important;
+}
+
+.pending-details {
+    background-color: rgba(210, 105, 30, 0.2) !important;
+    border: 1px solid #FFF8DC !important;
+}
+
+.pending-details h3, .pending-details ol {
+    color: #FFF8DC !important;
+}
+
+.pending-note {
+    background-color: rgba(210, 105, 30, 0.3) !important;
+    border: 1px solid #FFE4B5 !important;
+    color: #FFF8DC !important;
+}
+
+.users-section h2 {
+    color: #FFF8DC !important;
+    border-bottom: 2px solid #D2691E !important;
+}
+
+.user-card {
+    border: 2px solid #D2691E !important;
+    background-color: rgba(210, 105, 30, 0.2) !important;
+}
+
+.user-card:hover {
+    box-shadow: 0 4px 8px rgba(210, 105, 30, 0.4) !important;
+}
+
+.user-info strong, .user-info p {
+    color: #FFF8DC !important;
+}
+
+.user-info small {
+    color: rgba(255, 228, 181, 0.8) !important;
+}

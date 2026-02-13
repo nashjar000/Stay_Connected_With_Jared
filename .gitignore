@@ -11,6 +11,7 @@ Thumbs.db
 dev/
 *.tmp
 *.temp
+js/config.js
 
 # VSCode settings (optional - remove if you want to keep them)
 .vscode/settings.json

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Stay Connected With Jared</title>
+    <link rel="icon" type="image/x-icon" href="images/mylogo.png">
+    <script src="./js/themes/themeManager.js"></script>
+    <link rel="stylesheet" href="./styles/auth.css">
+    <link rel="stylesheet" href="./styles/user-status.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/supabaseClient.js"></script>
+    <script defer src="./js/components/header.js"></script>
+    <script defer src="./js/components/footer.js"></script>
+    <script defer src="./js/components/mobile-menu.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+    
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1>Sign Up for Access</h1>
+            <p class="auth-description">Create an account to request access to video journals.</p>
+            
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <div id="success-message" class="success-message" style="display: none;"></div>
+            
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label for="display-name">Name:</label>
+                    <input type="text" id="display-name" name="display-name" required autocomplete="name" placeholder="Your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required autocomplete="email" placeholder="your.email@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required autocomplete="new-password" minlength="8" placeholder="At least 8 characters">
+                    <ul class="password-requirements">
+                        <li data-rule="length">At least 8 characters</li>
+                        <li data-rule="upper">One uppercase letter</li>
+                        <li data-rule="lower">One lowercase letter</li>
+                        <li data-rule="number">One number</li>
+                        <li data-rule="special">One special character</li>
+                    </ul>
+                    <div class="password-strength" aria-live="polite">
+                        <div class="password-strength-bar">
+                            <div class="password-strength-fill" id="password-strength-fill"></div>
+                        </div>
+                        <p class="password-strength-text" id="password-strength-text">Strength: Not set</p>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password" minlength="8" placeholder="Confirm your password">
+                    <p id="password-match-status" class="password-match" style="display: none;"></p>
+                </div>
+                
+                <button type="submit" class="auth-button" id="signup-button">Sign Up</button>
+            </form>
+            
+            <div class="auth-switch">
+                <p>Already have an account? <a href="auth-login.html">Log in here</a></p>
+            </div>
+            
+            <div class="auth-note">
+                <p><strong>Important:</strong> Your account will be pending approval after signup. Jared will review and approve your account before you can access the video journals. You'll receive an email confirmation once approved.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer"></div>
+
+    <script>
+        // Wait for dependencies to load
+        function waitForDependencies() {
+            return new Promise((resolve) => {
+                if (window.auth && window.supabaseClient) {
+                    resolve();
+                } else {
+                    setTimeout(() => {
+                        waitForDependencies().then(resolve);
+                    }, 100);
+                }
+            });
+        }
+
+        // Handle signup form submission
+        async function handleSignup(e) {
+            e.preventDefault();
+            
+            await waitForDependencies();
+            
+            const displayName = document.getElementById('display-name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorDiv = document.getElementById('error-message');
+            const successDiv = document.getElementById('success-message');
+            const signupButton = document.getElementById('signup-button');
+            
+            // Clear previous messages
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+            
+            const validatePassword = (value) => {
+                if (value.length < 8) {
+                    return 'Password must be at least 8 characters long.';
+                }
+                if (!/[A-Z]/.test(value)) {
+                    return 'Password must include at least one uppercase letter.';
+                }
+                if (!/[a-z]/.test(value)) {
+                    return 'Password must include at least one lowercase letter.';
+                }
+                if (!/[0-9]/.test(value)) {
+                    return 'Password must include at least one number.';
+                }
+                if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value)) {
+                    return 'Password must include at least one special character.';
+                }
+                return '';
+            };
+
+            const passwordError = validatePassword(password);
+            if (passwordError) {
+                errorDiv.textContent = passwordError;
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorDiv.textContent = 'Passwords do not match.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            // Disable button during signup
+            signupButton.disabled = true;
+            signupButton.textContent = 'Creating account...';
+            
+            try {
+                console.log('Attempting signup for:', email);
+                const result = await auth.signUp(email, password, displayName);
+                
+                if (!result.success) {
+                    console.error('Signup failed:', result.error);
+                    errorDiv.textContent = result.error || 'Signup failed. Please try again.';
+                    errorDiv.style.display = 'block';
+                    signupButton.disabled = false;
+                    signupButton.textContent = 'Sign Up';
+                    return;
+                }
+                
+                // Show success message
+                successDiv.innerHTML = '<strong>Account created successfully!</strong><br>Please check your email to verify your account. Once verified, your account will be pending approval from Jared.<br><br>Redirecting to pending page...';
+                successDiv.style.display = 'block';
+                
+                // Redirect to pending page after 3 seconds
+                setTimeout(() => {
+                    window.location.href = 'auth-pending.html';
+                }, 3000);
+                
+            } catch (error) {
+                console.error('Signup error details:', error);
+                let errorMessage = 'An unexpected error occurred. ';
+                if (error.message) {
+                    errorMessage += error.message;
+                } else {
+                    errorMessage += 'Please check the browser console for details.';
+                }
+                errorDiv.textContent = errorMessage;
+                errorDiv.style.display = 'block';
+                signupButton.disabled = false;
+                signupButton.textContent = 'Sign Up';
+            }
+        }
+
+        function getPasswordRules(value) {
+            return {
+                length: value.length >= 8,
+                upper: /[A-Z]/.test(value),
+                lower: /[a-z]/.test(value),
+                number: /[0-9]/.test(value),
+                special: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value)
+            };
+        }
+
+        function updatePasswordStrength(value) {
+            const rules = getPasswordRules(value);
+            const metCount = Object.values(rules).filter(Boolean).length;
+            const strengthFill = document.getElementById('password-strength-fill');
+            const strengthText = document.getElementById('password-strength-text');
+            const requirements = document.querySelectorAll('.password-requirements li');
+
+            requirements.forEach((item) => {
+                const rule = item.getAttribute('data-rule');
+                if (rules[rule]) {
+                    item.classList.add('met');
+                } else {
+                    item.classList.remove('met');
+                }
+            });
+
+            const percent = Math.min((metCount / 5) * 100, 100);
+            strengthFill.style.width = `${percent}%`;
+
+            if (!value) {
+                strengthFill.style.backgroundColor = '#dc3545';
+                strengthText.textContent = 'Strength: Not set';
+                return;
+            }
+
+            if (metCount <= 2) {
+                strengthFill.style.backgroundColor = '#dc3545';
+                strengthText.textContent = 'Strength: Weak';
+            } else if (metCount === 3 || metCount === 4) {
+                strengthFill.style.backgroundColor = '#ffc107';
+                strengthText.textContent = 'Strength: Medium';
+            } else {
+                strengthFill.style.backgroundColor = '#28a745';
+                strengthText.textContent = 'Strength: Strong';
+            }
+        }
+
+        function updatePasswordMatchStatus() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const status = document.getElementById('password-match-status');
+
+            if (!password && !confirmPassword) {
+                status.style.display = 'none';
+                return;
+            }
+
+            status.style.display = 'block';
+            if (password && confirmPassword && password === confirmPassword) {
+                status.textContent = 'Passwords match.';
+                status.classList.remove('password-mismatch');
+                status.classList.add('password-match');
+            } else {
+                status.textContent = 'Passwords do not match.';
+                status.classList.remove('password-match');
+                status.classList.add('password-mismatch');
+            }
+        }
+
+        // Initialize form listener
+        window.addEventListener('load', async () => {
+            await waitForDependencies();
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            updatePasswordStrength(passwordInput.value);
+            updatePasswordMatchStatus();
+            passwordInput.addEventListener('input', (event) => {
+                updatePasswordStrength(event.target.value);
+                updatePasswordMatchStatus();
+            });
+            confirmPasswordInput.addEventListener('input', updatePasswordMatchStatus);
+            document.getElementById('signup-form').addEventListener('submit', handleSignup);
+        });
+    </script>
+</body>
+
+</html>

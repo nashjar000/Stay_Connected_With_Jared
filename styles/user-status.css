@@ -1,0 +1,175 @@
+/* User Status Component Styling */
+
+#user-status {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    min-height: auto;
+}
+
+.user-status-container {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.user-status-logged-in {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.user-status-logged-out {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-greeting {
+    font-weight: 600;
+    color: #D4AC0D;
+    font-size: 0.95rem;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-badge.approved {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.4);
+}
+
+.status-badge.pending {
+    background-color: rgba(212, 172, 13, 0.2);
+    color: #D4AC0D;
+    border: 1px solid rgba(212, 172, 13, 0.4);
+}
+
+.logout-button {
+    padding: 0.4rem 1rem;
+    background-color: rgba(220, 53, 69, 0.8);
+    color: white;
+    border: 1px solid rgba(220, 53, 69, 0.5);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.logout-button:hover {
+    background-color: rgba(200, 35, 51, 0.9);
+    border-color: #dc3545;
+}
+
+.delete-button {
+    padding: 0.4rem 1rem;
+    background-color: rgba(255, 193, 7, 0.85);
+    color: #1f1a00;
+    border: 1px solid rgba(255, 193, 7, 0.5);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.delete-button:hover {
+    background-color: rgba(255, 193, 7, 1);
+    border-color: #ffc107;
+}
+
+.login-link,
+.signup-link,
+.admin-link {
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.login-link {
+    background-color: rgba(89, 74, 227, 0.8);
+    color: white;
+    border: 1px solid rgba(89, 74, 227, 0.5);
+}
+
+.login-link:hover {
+    background-color: #594AE3;
+    border-color: #594AE3;
+}
+
+.signup-link {
+    background-color: rgba(212, 172, 13, 0.8);
+    color: white;
+    border: 1px solid rgba(212, 172, 13, 0.5);
+}
+
+.signup-link:hover {
+    background-color: #D4AC0D;
+    border-color: #D4AC0D;
+}
+
+.admin-link {
+    background-color: rgba(40, 167, 69, 0.8);
+    color: white;
+    border: 1px solid rgba(40, 167, 69, 0.5);
+}
+
+.admin-link:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #user-status {
+        padding: 0.5rem;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .user-status-logged-in,
+    .user-status-logged-out {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+    }
+    
+    .user-greeting {
+        font-size: 0.85rem;
+    }
+    
+    .logout-button,
+    .delete-button,
+    .login-link,
+    .signup-link,
+    .admin-link {
+        width: 100%;
+        text-align: center;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 600px) {
+    #user-status {
+        background-color: rgba(13, 19, 30, 0.9);
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
+}
