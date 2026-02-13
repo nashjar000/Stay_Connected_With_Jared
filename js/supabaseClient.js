@@ -170,13 +170,28 @@ const auth = {
 
     // Delete account via Edge Function
     async deleteAccount() {
-        const { data, error } = await supabaseInstance.functions.invoke('delete-account');
+        // Get the current session to extract the access token
+        const { data: { session }, error: sessionError } = await supabaseInstance.auth.getSession();
+        
+        if (sessionError || !session) {
+            console.error('Error getting session:', sessionError);
+            return { success: false, error: 'No active session found' };
+        }
+
+        console.log('Invoking delete-account Edge Function...');
+        const { data, error } = await supabaseInstance.functions.invoke('delete-account', {
+            headers: {
+                Authorization: `Bearer ${session.access_token}`
+            }
+        });
 
         if (error) {
             console.error('Error deleting account:', error);
-            return { success: false, error: error.message };
+            console.error('Error details:', JSON.stringify(error, null, 2));
+            return { success: false, error: error.message || 'Edge Function returned a non-2xx status code' };
         }
 
+        console.log('Delete account response:', data);
         return { success: true, data };
     },
 
