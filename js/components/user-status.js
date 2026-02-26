@@ -14,7 +14,11 @@ function waitForAuth() {
 }
 
 function getHomePath() {
-    return window.location.pathname.includes('/pages/') ? '../index.html' : './index.html';
+    const pathname = window.location.pathname;
+    const basePath = pathname.includes('/pages/')
+        ? pathname.split('/pages/')[0]
+        : pathname.substring(0, pathname.lastIndexOf('/'));
+    return `${basePath || ''}/index.html`;
 }
 
 async function initUserStatus() {

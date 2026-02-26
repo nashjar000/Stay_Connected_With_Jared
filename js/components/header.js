@@ -359,12 +359,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function getHomePath() {
+        const pathname = window.location.pathname;
+        const basePath = pathname.includes('/pages/')
+            ? pathname.split('/pages/')[0]
+            : pathname.substring(0, pathname.lastIndexOf('/'));
+        return `${basePath || ''}/index.html`;
+    }
+
     async function handleLogout() {
         const confirmed = confirm('Are you sure you want to log out?');
         if (confirmed) {
             stopPresenceHeartbeat();
             await window.auth.signOut();
-            window.location.href = `${pathPrefix}index.html`;
+            window.location.href = getHomePath();
         }
     }
 
@@ -384,7 +392,7 @@ document.addEventListener("DOMContentLoaded", function () {
         stopPresenceHeartbeat();
         await window.auth.signOut();
         alert('Your account has been deleted.');
-        window.location.href = `${pathPrefix}index.html`;
+        window.location.href = getHomePath();
     }
 
     function startPresenceHeartbeat(user) {
