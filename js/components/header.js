@@ -364,7 +364,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (confirmed) {
             stopPresenceHeartbeat();
             await window.auth.signOut();
-            window.location.href = '/index.html';
+            window.location.href = `${pathPrefix}index.html`;
         }
     }
 
@@ -384,7 +384,7 @@ document.addEventListener("DOMContentLoaded", function () {
         stopPresenceHeartbeat();
         await window.auth.signOut();
         alert('Your account has been deleted.');
-        window.location.href = '/index.html';
+        window.location.href = `${pathPrefix}index.html`;
     }
 
     function startPresenceHeartbeat(user) {

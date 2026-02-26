@@ -13,6 +13,10 @@ function waitForAuth() {
     });
 }
 
+function getHomePath() {
+    return window.location.pathname.includes('/pages/') ? '../index.html' : './index.html';
+}
+
 async function initUserStatus() {
     await waitForAuth();
     
@@ -82,7 +86,7 @@ async function handleLogout() {
     if (confirmed) {
         stopPresenceHeartbeat();
         await auth.signOut();
-        window.location.href = '/index.html';
+        window.location.href = getHomePath();
     }
 }
 
@@ -103,7 +107,7 @@ async function handleDeleteAccount() {
     stopPresenceHeartbeat();
     await auth.signOut();
     alert('Your account has been deleted.');
-    window.location.href = '/index.html';
+    window.location.href = getHomePath();
 }
 
 function startPresenceHeartbeat(user) {
