@@ -11,7 +11,6 @@ Thumbs.db
 dev/
 *.tmp
 *.temp
-js/config.js
 .env.secrets
 .env.secrets.*
 test-supabase.html
