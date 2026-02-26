@@ -203,6 +203,18 @@
     position: relative;
 }
 
+.public-access-banner {
+    margin: 20px auto 10px;
+    max-width: 980px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 172, 13, 0.6);
+    background: rgba(89, 74, 227, 0.15);
+    color: #D4AC0D;
+    font-weight: 600;
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     .auth-notice {
         padding: 25px;
@@ -218,5 +230,11 @@
     
     .auth-action-button {
         width: 100%;
+    }
+
+    .public-access-banner {
+        margin: 14px 12px 4px;
+        font-size: 0.95rem;
+        line-height: 1.4;
     }
 }

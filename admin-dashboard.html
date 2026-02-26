@@ -31,8 +31,29 @@
             <div id="success-message" class="success-message" style="display: none;"></div>
             
             <div class="admin-actions">
-                <button onclick="loadUsers()" class="auth-button">Refresh List</button>
-                <button onclick="signOut()" class="auth-button secondary">Sign Out</button>
+                <button onclick="refreshDashboard()" class="auth-button" id="refresh-list-button">Refresh List</button>
+                <a href="./recipe-access-admin.html" class="auth-button" id="recipe-access-manage-link">Recipe Access</a>
+                <button onclick="signOut()" class="auth-button secondary" id="admin-sign-out-button">Sign Out</button>
+            </div>
+
+            <div class="users-section">
+                <h2>Video Journal Access</h2>
+                <div class="user-card">
+                    <div class="user-info">
+                        <strong>Public Access Override</strong>
+                        <p>Turn on to let anyone view video journals without login approval.</p>
+                    </div>
+                    <div class="user-actions">
+                        <div class="access-toggle-control">
+                            <span class="access-toggle-label">Enabled</span>
+                            <label class="access-switch" for="public-access-toggle" aria-label="Public access toggle">
+                                <input type="checkbox" id="public-access-toggle">
+                                <span class="access-slider"></span>
+                            </label>
+                        </div>
+                        <button onclick="savePublicAccessSetting()" class="approve-btn access-save-btn">Save</button>
+                    </div>
+                </div>
             </div>
 
             <div class="users-section">
@@ -61,7 +82,6 @@
     <div id="footer"></div>
 
     <script>
-        // Wait for all dependencies to load
         function waitForDependencies() {
             return new Promise((resolve) => {
                 if (window.auth && window.supabaseClient) {
@@ -74,7 +94,6 @@
             });
         }
 
-        // Check if current user is admin (you'll need to set this up)
         async function checkAdminAccess() {
             await waitForDependencies();
             const user = await auth.getCurrentUser();
@@ -84,7 +103,6 @@
                 return false;
             }
             
-            await waitForDependencies();
             const isAdmin = await auth.isAdmin(user.id);
 
             if (!isAdmin) {
@@ -101,7 +119,6 @@
             const approvedDiv = document.getElementById('approved-users');
             
             try {
-                // Fetch all users from approved_users table
                 const { data: users, error } = await supabaseClient
                     .from('approved_users')
                     .select('*')
@@ -109,18 +126,15 @@
                 
                 if (error) throw error;
                 
-                // Separate into pending and approved
                 const pending = users.filter(u => !u.approved);
                 const approved = users.filter(u => u.approved);
                 
-                // Display pending users
                 if (pending.length === 0) {
                     pendingDiv.innerHTML = '<p class="no-users">No pending approvals</p>';
                 } else {
                     pendingDiv.innerHTML = pending.map(user => createUserCard(user, false)).join('');
                 }
                 
-                // Display approved users
                 if (approved.length === 0) {
                     approvedDiv.innerHTML = '<p class="no-users">No approved users yet</p>';
                 } else {
@@ -200,7 +214,6 @@
             if (!confirm(`Approve access for ${email}?`)) return;
             
             try {
-            await waitForDependencies();
                 const { error } = await supabaseClient
                     .from('approved_users')
                     .update({ approved: true, approved_at: new Date().toISOString() })
@@ -219,7 +232,6 @@
         async function denyUser(userId) {
             if (!confirm('Delete this user request? This action cannot be undone.')) return;
             
-            await waitForDependencies();
             try {
                 const { error } = await supabaseClient
                     .from('approved_users')
@@ -275,13 +287,95 @@
             window.location.href = 'index.html';
         }
 
-        // Initialize
+        async function loadPublicAccessSetting() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('app_settings')
+                    .select('setting_value')
+                    .eq('setting_key', 'video_journals_public_access')
+                    .maybeSingle();
+
+                if (error) throw error;
+
+                const enabled = !!(data && data.setting_value === true);
+                const toggle = document.getElementById('public-access-toggle');
+                if (toggle) {
+                    toggle.checked = enabled;
+                }
+            } catch (error) {
+                console.error('Error loading public access setting:', error);
+                if (String(error?.message || '').includes("Could not find the table 'public.app_settings'")) {
+                    showError('Access setting table is missing. Run supabase/video_journal_access_toggle.sql in Supabase SQL Editor.');
+                    return;
+                }
+
+                showError('Could not load video journal access setting.');
+            }
+        }
+
+        async function savePublicAccessSetting() {
+            const toggle = document.getElementById('public-access-toggle');
+            const enabled = !!(toggle && toggle.checked);
+
+            try {
+                const user = await auth.getCurrentUser();
+                const { error } = await supabaseClient
+                    .from('app_settings')
+                    .upsert({
+                        setting_key: 'video_journals_public_access',
+                        setting_value: enabled,
+                        updated_by: user?.id || null,
+                        updated_at: new Date().toISOString()
+                    }, { onConflict: 'setting_key' });
+
+                if (error) throw error;
+
+                showSuccess(`Video journals public access ${enabled ? 'enabled' : 'disabled'}.`);
+            } catch (error) {
+                console.error('Error saving public access setting:', error);
+                if (String(error?.message || '').includes("Could not find the table 'public.app_settings'")) {
+                    showError('Access setting table is missing. Run supabase/video_journal_access_toggle.sql in Supabase SQL Editor.');
+                    return;
+                }
+                showError('Failed to save access setting: ' + error.message);
+            }
+        }
+
+        async function refreshDashboard() {
+            await loadUsers();
+            await loadOnlineUsers();
+            await loadPublicAccessSetting();
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter') {
+                return;
+            }
+
+            if (!event.target) {
+                return;
+            }
+
+            const targetTag = event.target.tagName;
+            const targetId = event.target.id;
+            if (targetTag === 'BUTTON' || targetTag === 'A' || targetTag === 'INPUT' || targetTag === 'TEXTAREA' || targetId === 'admin-sign-out-button') {
+                return;
+            }
+
+            const refreshButton = document.getElementById('refresh-list-button');
+            if (!refreshButton || refreshButton.disabled) {
+                return;
+            }
+
+            event.preventDefault();
+            refreshDashboard();
+        });
+
         window.addEventListener('load', async () => {
             await waitForDependencies();
             const isAdmin = await checkAdminAccess();
             if (isAdmin) {
-                await loadUsers();
-                await loadOnlineUsers();
+                await refreshDashboard();
                 setInterval(loadOnlineUsers, 30000);
             }
         });

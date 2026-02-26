@@ -111,6 +111,34 @@ The site features an intelligent theme system that automatically switches based 
 2. **Themes**: Create new CSS file in `/styles/`
 3. **Scripts**: Organize in appropriate `/js/` subdirectory
 
+## 🔐 Pre-Push Security Checklist
+
+Before pushing to GitHub, quickly verify:
+
+Quick command:
+
+`./scripts/prepush-check.sh`
+
+1. **No private secrets in repo**
+  - Keep `js/config.js` out of Git (`.gitignore` already excludes it)
+  - Never commit Supabase `service_role` key or personal access tokens
+
+2. **Supabase policies are hardened**
+  - Run `supabase/harden_rls_policies.sql` in Supabase SQL Editor
+  - Confirm only admins can approve/deny users
+
+3. **Auth configuration is correct**
+  - In Supabase Auth → URL Configuration, set your production Site URL and Redirect URLs
+  - Remove old localhost/test URLs you no longer use
+
+4. **Admin account is set**
+  - Ensure your user exists in `public.admins`
+  - Test `admin-dashboard.html` access with a non-admin account (should be denied)
+
+5. **Optional hardening**
+  - Remove or restrict `test-supabase.html` before production
+  - Enable branch protection and 2FA on GitHub
+
 ## 📧 Contact
 
 Visit the contact page for social media links and ways to stay connected!

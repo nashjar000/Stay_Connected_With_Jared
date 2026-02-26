@@ -12,6 +12,9 @@ dev/
 *.tmp
 *.temp
 js/config.js
+.env.secrets
+.env.secrets.*
+test-supabase.html
 
 # VSCode settings (optional - remove if you want to keep them)
 .vscode/settings.json

@@ -64,26 +64,6 @@ CREATE POLICY "Anyone can insert their approval request"
     FOR INSERT
     WITH CHECK (auth.uid() = user_id);
 
--- Policy: Only authenticated users can view all (for admin dashboard)
--- Note: You should restrict this to only your admin email in production
-CREATE POLICY "Authenticated users can view all approvals"
-    ON approved_users
-    FOR SELECT
-    USING (auth.role() = 'authenticated');
-
--- Policy: Only authenticated users can update (for admin approval)
--- Note: You should restrict this to only your admin email in production
-CREATE POLICY "Authenticated users can update approvals"
-    ON approved_users
-    FOR UPDATE
-    USING (auth.role() = 'authenticated');
-
--- Policy: Allow authenticated users to delete (for admin deny)
-CREATE POLICY "Authenticated users can delete approval requests"
-    ON approved_users
-    FOR DELETE
-    USING (auth.role() = 'authenticated');
-
 -- Create function to automatically create approval entry when user signs up
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
@@ -143,6 +123,42 @@ create policy "Service role can manage admins"
 on public.admins for all
 using (auth.role() = 'service_role')
 with check (auth.role() = 'service_role');
+
+create or replace function public.is_admin_user(uid uuid)
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+    select exists (
+        select 1
+        from public.admins
+        where admins.user_id = uid
+    );
+$$;
+
+drop policy if exists "Admins can view all approvals" on public.approved_users;
+create policy "Admins can view all approvals"
+on public.approved_users
+for select
+to authenticated
+using (public.is_admin_user(auth.uid()));
+
+drop policy if exists "Admins can update approvals" on public.approved_users;
+create policy "Admins can update approvals"
+on public.approved_users
+for update
+to authenticated
+using (public.is_admin_user(auth.uid()))
+with check (public.is_admin_user(auth.uid()));
+
+drop policy if exists "Admins can delete approval requests" on public.approved_users;
+create policy "Admins can delete approval requests"
+on public.approved_users
+for delete
+to authenticated
+using (public.is_admin_user(auth.uid()));
 ```
 
 ## Step 7: Add Your Admin User
@@ -187,14 +203,10 @@ on public.user_presence for update
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
 
+drop policy if exists "Admins can view presence" on public.user_presence;
 create policy "Admins can view presence"
 on public.user_presence for select
-using (
-    exists (
-        select 1 from public.admins
-        where admins.user_id = auth.uid()
-    )
-);
+using (public.is_admin_user(auth.uid()));
 ```
 
 ## Step 9: Test Your Setup

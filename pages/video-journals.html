@@ -65,6 +65,10 @@
             <a href="./video-journal-2017.html" id="year-link" class="protected-link">2017</a>
         </section>
 
+        <section id="public-access-banner" class="public-access-banner" style="display: none;">
+            🔓 Public mode is ON — login is currently not required for video journals.
+        </section>
+
         <!-- Auth message for unauthenticated users -->
         <section class="auth-required-message" id="auth-message" style="display: none;">
             <div class="auth-notice">
@@ -112,12 +116,51 @@
             });
         }
 
+        async function isVideoJournalPublicAccessEnabled() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('app_settings')
+                    .select('setting_value')
+                    .eq('setting_key', 'video_journals_public_access')
+                    .maybeSingle();
+
+                if (error) throw error;
+
+                return !!(data && data.setting_value === true);
+            } catch (error) {
+                console.warn('Public access setting unavailable; defaulting to protected mode.', error);
+                return false;
+            }
+        }
+
         // Check authentication status and show/hide year links
         async function checkAuthStatus() {
             await waitForDependencies();
             const yearLinksSection = document.getElementById('year-links-section');
             const authMessage = document.getElementById('auth-message');
             const pendingMessage = document.getElementById('pending-message');
+            const publicAccessBanner = document.getElementById('public-access-banner');
+
+            const publicAccessEnabled = await isVideoJournalPublicAccessEnabled();
+            if (publicAccessEnabled) {
+                let showAdminBanner = false;
+                try {
+                    const user = await auth.getCurrentUser();
+                    if (user) {
+                        showAdminBanner = await auth.isAdmin(user.id);
+                    }
+                } catch (error) {
+                    showAdminBanner = false;
+                }
+
+                yearLinksSection.style.display = 'grid';
+                authMessage.style.display = 'none';
+                pendingMessage.style.display = 'none';
+                publicAccessBanner.style.display = showAdminBanner ? 'block' : 'none';
+                return;
+            }
+
+            publicAccessBanner.style.display = 'none';
             
             try {
                 const user = await auth.getCurrentUser();
@@ -149,6 +192,8 @@
                 // On error, hide links and show auth message
                 yearLinksSection.style.display = 'none';
                 authMessage.style.display = 'block';
+                pendingMessage.style.display = 'none';
+                publicAccessBanner.style.display = 'none';
             }
         }
         

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Access Admin - Stay Connected With Jared</title>
+    <link rel="icon" type="image/x-icon" href="images/mylogo.png">
+    <script src="./js/themes/themeManager.js"></script>
+    <link rel="stylesheet" href="./styles/auth.css">
+    <link rel="stylesheet" href="./styles/user-status.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/supabaseClient.js"></script>
+    <script defer src="./js/components/header.js"></script>
+    <script defer src="./js/components/footer.js"></script>
+    <script defer src="./js/components/mobile-menu.js"></script>
+    <script defer src="./js/components/user-status.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="auth-container">
+        <div class="admin-box">
+            <h1>🍪 Recipe Access Admin</h1>
+            <p class="admin-description">Approve family members for the Celestial Cookie recipe</p>
+
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <div id="success-message" class="success-message" style="display: none;"></div>
+
+            <div class="admin-actions">
+                <a href="./admin-dashboard.html" class="auth-button">Back to Admin Dashboard</a>
+                <button onclick="refreshRecipeAccess()" class="auth-button" id="refresh-recipe-access">Refresh List</button>
+                <button onclick="signOut()" class="auth-button secondary">Sign Out</button>
+            </div>
+
+            <div class="users-section">
+                <h2>Approved Site Users</h2>
+                <div id="recipe-access-users" class="user-list">
+                    <p class="loading">Loading users...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        function waitForDependencies() {
+            return new Promise((resolve) => {
+                if (window.auth && window.supabaseClient) {
+                    resolve();
+                } else {
+                    setTimeout(() => waitForDependencies().then(resolve), 100);
+                }
+            });
+        }
+
+        async function checkAdminAccess() {
+            await waitForDependencies();
+            const user = await auth.getCurrentUser();
+
+            if (!user) {
+                window.location.href = 'auth-login.html?redirect=recipe-access-admin.html';
+                return false;
+            }
+
+            const isAdmin = await auth.isAdmin(user.id);
+            if (!isAdmin) {
+                alert('Access denied. Admin privileges required.');
+                window.location.href = 'index.html';
+                return false;
+            }
+
+            return true;
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => errorDiv.style.display = 'none', 5000);
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('success-message');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            setTimeout(() => successDiv.style.display = 'none', 3000);
+        }
+
+        async function refreshRecipeAccess() {
+            const usersDiv = document.getElementById('recipe-access-users');
+
+            try {
+                const { data: approvedUsers, error: approvedError } = await supabaseClient
+                    .from('approved_users')
+                    .select('user_id, email, display_name, approved, created_at')
+                    .eq('approved', true)
+                    .order('created_at', { ascending: false });
+
+                if (approvedError) throw approvedError;
+
+                const { data: recipeUsers, error: recipeError } = await supabaseClient
+                    .from('recipe_access_users')
+                    .select('user_id, approved, updated_at');
+
+                if (recipeError) {
+                    if (String(recipeError.message || '').includes("Could not find the table 'public.recipe_access_users'")) {
+                        usersDiv.innerHTML = '<p class="no-users">Recipe access table missing. Run supabase/recipe_access_setup.sql in Supabase SQL Editor.</p>';
+                        return;
+                    }
+                    throw recipeError;
+                }
+
+                const recipeMap = new Map((recipeUsers || []).map((entry) => [entry.user_id, entry]));
+
+                if (!approvedUsers || approvedUsers.length === 0) {
+                    usersDiv.innerHTML = '<p class="no-users">No approved site users yet</p>';
+                    return;
+                }
+
+                usersDiv.innerHTML = approvedUsers.map((user) => {
+                    const recipeAccess = recipeMap.get(user.user_id);
+                    const hasAccess = !!(recipeAccess && recipeAccess.approved === true);
+                    const actionLabel = hasAccess ? 'Revoke Recipe Access' : 'Grant Recipe Access';
+                    const actionClass = hasAccess ? 'deny-btn' : 'approve-btn';
+
+                    return `
+                        <div class="user-card ${hasAccess ? 'approved' : 'pending'}">
+                            <div class="user-info">
+                                <strong>${user.display_name || 'No name provided'}</strong>
+                                <p>${user.email}</p>
+                                <small>Recipe access: ${hasAccess ? 'Enabled' : 'Disabled'}</small>
+                            </div>
+                            <div class="user-actions">
+                                <button onclick="setRecipeAccess('${user.user_id}', '${user.email.replace(/'/g, "\\'")}', '${(user.display_name || '').replace(/'/g, "\\'")}', ${hasAccess ? 'false' : 'true'})" class="${actionClass}">${actionLabel}</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading recipe access users:', error);
+                showError('Failed to load recipe access users: ' + error.message);
+            }
+        }
+
+        async function setRecipeAccess(userId, email, displayName, allowAccess) {
+            try {
+                const adminUser = await auth.getCurrentUser();
+
+                const { error } = await supabaseClient
+                    .from('recipe_access_users')
+                    .upsert({
+                        user_id: userId,
+                        email: email,
+                        display_name: displayName || null,
+                        approved: allowAccess,
+                        updated_by: adminUser?.id || null,
+                        updated_at: new Date().toISOString()
+                    }, { onConflict: 'user_id' });
+
+                if (error) throw error;
+
+                showSuccess(`Recipe access ${allowAccess ? 'granted' : 'revoked'} for ${email}.`);
+                await refreshRecipeAccess();
+            } catch (error) {
+                console.error('Error updating recipe access:', error);
+                showError('Failed to update recipe access: ' + error.message);
+            }
+        }
+
+        async function signOut() {
+            await auth.signOut();
+            window.location.href = 'index.html';
+        }
+
+        window.addEventListener('load', async () => {
+            const isAdmin = await checkAdminAccess();
+            if (isAdmin) {
+                await refreshRecipeAccess();
+            }
+        });
+    </script>
+</body>
+
+</html>

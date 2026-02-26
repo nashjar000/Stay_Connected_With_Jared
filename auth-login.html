@@ -93,6 +93,9 @@
                     return;
                 }
                 
+                // Check if user is admin first
+                const isAdmin = await auth.isAdmin(result.data.user.id);
+
                 // Check if user is approved
                 const isApproved = await auth.isUserApproved(result.data.user.id);
                 
@@ -100,7 +103,13 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const redirect = urlParams.get('redirect') || './pages/video-journals.html';
                 
-                if (isApproved) {
+                if (isAdmin) {
+                    successDiv.textContent = 'Admin login successful! Redirecting to dashboard...';
+                    successDiv.style.display = 'block';
+                    setTimeout(() => {
+                        window.location.href = 'admin-dashboard.html';
+                    }, 1000);
+                } else if (isApproved) {
                     successDiv.textContent = 'Login successful! Redirecting...';
                     successDiv.style.display = 'block';
                     setTimeout(() => {

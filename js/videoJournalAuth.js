@@ -14,9 +14,32 @@ function waitForDependencies() {
     });
 }
 
+async function isVideoJournalPublicAccessEnabled() {
+    try {
+        const { data, error } = await supabaseClient
+            .from('app_settings')
+            .select('setting_value')
+            .eq('setting_key', 'video_journals_public_access')
+            .maybeSingle();
+
+        if (error) throw error;
+
+        return !!(data && data.setting_value === true);
+    } catch (error) {
+        console.warn('Public access setting unavailable; defaulting to protected mode.', error);
+        return false;
+    }
+}
+
 async function checkVideoJournalAccess() {
     // Wait for auth to be ready
     await waitForDependencies();
+
+    const publicAccessEnabled = await isVideoJournalPublicAccessEnabled();
+    if (publicAccessEnabled) {
+        document.body.style.display = 'block';
+        return;
+    }
     
     const user = await auth.getCurrentUser();
 
@@ -27,8 +50,9 @@ async function checkVideoJournalAccess() {
         return;
     }
 
-    // Check if user is approved
-    const isApproved = await auth.isUserApproved(user.id);
+    // Check if user is approved (admins always allowed)
+    const isAdmin = await auth.isAdmin(user.id);
+    const isApproved = isAdmin || await auth.isUserApproved(user.id);
 
     if (!isApproved) {
         // Not approved - redirect to pending page immediately

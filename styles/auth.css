@@ -235,6 +235,17 @@
     text-align: center;
 }
 
+#pending-loading {
+    text-align: center;
+    margin: 1rem 0 1.5rem;
+    padding: 0.75rem 1rem;
+    background-color: rgba(212, 172, 13, 0.1);
+    border: 1px solid #D4AC0D;
+    border-radius: 5px;
+    color: #D4AC0D;
+    font-weight: 600;
+}
+
 .pending-info h1 {
     color: #D4AC0D;
 }
@@ -413,6 +424,88 @@
 
 .approve-btn:hover {
     background-color: #218838;
+}
+
+.access-save-btn {
+    background: linear-gradient(135deg, #594AE3, #7B68FB);
+    color: #fff;
+    border: 1px solid rgba(212, 172, 13, 0.55);
+    box-shadow: 0 0 0 rgba(123, 104, 251, 0);
+    transition: transform 0.15s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.access-save-btn:hover {
+    background: linear-gradient(135deg, #6a5af0, #8b7bff);
+    box-shadow: 0 6px 14px rgba(89, 74, 227, 0.45);
+    filter: saturate(1.08);
+}
+
+.access-toggle-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid rgba(212, 172, 13, 0.45);
+    border-radius: 999px;
+    background: rgba(89, 74, 227, 0.18);
+}
+
+.access-toggle-label {
+    color: #D4AC0D;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.access-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+}
+
+.access-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.access-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.28);
+    border: 1px solid rgba(212, 172, 13, 0.45);
+    transition: 0.25s ease;
+    border-radius: 999px;
+}
+
+.access-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 2px;
+    background-color: #fff;
+    transition: 0.25s ease;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.access-switch input:checked + .access-slider {
+    background: linear-gradient(135deg, #594AE3, #7B68FB);
+    border-color: rgba(123, 104, 251, 0.9);
+}
+
+.access-switch input:checked + .access-slider:before {
+    transform: translateX(21px);
+}
+
+.access-switch input:focus-visible + .access-slider {
+    box-shadow: 0 0 0 3px rgba(123, 104, 251, 0.35);
 }
 
 .deny-btn {

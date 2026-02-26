@@ -41,18 +41,38 @@
                     <a href="#syrup" id="recipie-link">Homemade Syrup</a>
                     <a href="#butterbeer" id="recipie-link">Butterbeer (warm)</a>
                     <a href="#reeses" id="recipie-link">Reese's Peanut-butter Cup</a>
+                    <a href="#celestial-cookie" id="recipie-link">Celestial Cookie (Family)</a>
                 </section>
 
-                <section class="button">
-                    <button class="celestial-cookie-button" onclick="celestial()"><span
-                            style="color: rgb(255, 0, 0); text-decoration: underline; font-weight: bold;">TOP
-                            SECRET</span> Celestial Cookie
-                        Recipie</button>
-                    <script>
-                        function celestial() {
-                            alert("Sorry, this is a top-secret FAMILY recipe. ;)")
-                        }
-                    </script>
+                <section class="celestial-cookie-section" id="celestial-cookie">
+                    <h2 class="cinnamon-roll">Celestial Cookie (Family Recipe)</h2>
+                    <a href="#recipie-links" id="top-rec">Back to top</a>
+
+                    <div id="celestial-cookie-locked" class="celestial-cookie-locked">
+                        <p>This recipe is family-only.</p>
+                        <p>Please log in with an approved account to view it.</p>
+                        <div class="auth-actions">
+                            <a href="./auth-login.html?redirect=./recipies.html" class="auth-action-button">Log In</a>
+                            <a href="./auth-signup.html" class="auth-action-button secondary">Sign Up</a>
+                        </div>
+                    </div>
+
+                    <div id="celestial-cookie-protected" style="display: none;">
+                        <h3 class="ingred-title">Ingredients</h3>
+                        <p class="ingredients">2 1/4 cups flour</p>
+                        <p class="ingredients">1 cup softened butter</p>
+                        <p class="ingredients">3/4 cup brown sugar</p>
+                        <p class="ingredients">1/2 cup sugar</p>
+                        <p class="ingredients">1 egg + 1 yolk</p>
+                        <p class="ingredients">1 tsp vanilla</p>
+                        <p class="ingredients">1 tsp baking soda</p>
+                        <p class="ingredients">1/2 tsp salt</p>
+                        <p class="ingredients">1 cup white chocolate chips</p>
+                        <p class="ingredients">1/2 cup toffee bits</p>
+
+                        <h3 class="directions-title">Directions</h3>
+                        <p class="directions">This is a placeholder “family-only” version for now. Cream butter + sugars, mix in egg and vanilla, then fold in dry ingredients. Stir in chips and toffee bits, chill dough 20 minutes, scoop, and bake at 350°F for 10-12 minutes until edges are lightly golden. Let cool and enjoy warm.</p>
+                    </div>
                 </section>
 
                 <h2 class="cinnamon-roll" id="cinnamon-roll">Microwaveable Cinnamon Roll (makes one)</h2>
@@ -158,5 +178,75 @@
     </main>
     </div>
 </body>
+
+<script>
+    async function checkCelestialCookieAccess() {
+        const lockedSection = document.getElementById('celestial-cookie-locked');
+        const protectedSection = document.getElementById('celestial-cookie-protected');
+
+        if (!lockedSection || !protectedSection) {
+            return;
+        }
+
+        try {
+            if (!window.auth || !window.supabaseClient) {
+                await new Promise((resolve) => {
+                    const waitForAuth = () => {
+                        if (window.auth && window.supabaseClient) {
+                            resolve();
+                        } else {
+                            setTimeout(waitForAuth, 100);
+                        }
+                    };
+                    waitForAuth();
+                });
+            }
+
+            const user = await auth.getCurrentUser();
+            if (!user) {
+                lockedSection.style.display = 'block';
+                protectedSection.style.display = 'none';
+                return;
+            }
+
+            const isAdmin = await auth.isAdmin(user.id);
+            let hasRecipeAccess = false;
+
+            if (!isAdmin) {
+                const { data, error } = await supabaseClient
+                    .from('recipe_access_users')
+                    .select('approved')
+                    .eq('user_id', user.id)
+                    .maybeSingle();
+
+                if (error) {
+                    if (String(error?.message || '').includes("Could not find the table 'public.recipe_access_users'")) {
+                        console.warn('recipe_access_users table missing; run supabase/recipe_access_setup.sql');
+                    } else {
+                        throw error;
+                    }
+                }
+
+                hasRecipeAccess = !!(data && data.approved === true);
+            }
+
+            const isApproved = isAdmin || hasRecipeAccess;
+
+            if (isApproved) {
+                lockedSection.style.display = 'none';
+                protectedSection.style.display = 'block';
+            } else {
+                lockedSection.style.display = 'block';
+                protectedSection.style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Error checking celestial cookie access:', error);
+            lockedSection.style.display = 'block';
+            protectedSection.style.display = 'none';
+        }
+    }
+
+    window.addEventListener('load', checkCelestialCookieAccess);
+</script>
 
 </html>

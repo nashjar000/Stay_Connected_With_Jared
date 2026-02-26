@@ -77,3 +77,39 @@
     padding-left: 10%;
     padding-top: 5%;
 }
+
+.celestial-cookie-section {
+    margin-top: 3rem;
+}
+
+.celestial-cookie-locked {
+    border: 2px solid #D4AC0D;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    background: rgba(89, 74, 227, 0.12);
+    color: #D4AC0D;
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.auth-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.auth-action-button {
+    padding: 10px 22px;
+    background-color: #594AE3;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.auth-action-button.secondary {
+    background-color: #D4AC0D;
+    color: #1f1f1f;
+}

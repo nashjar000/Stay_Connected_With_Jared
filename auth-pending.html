@@ -24,8 +24,9 @@
     <div class="auth-container">
         <div class="auth-box pending-box">
             <h1>⏳ Account Pending Approval</h1>
+            <p id="pending-loading">Checking account status...</p>
             
-            <div class="pending-info">
+            <div class="pending-info" id="pending-info" style="display: none;">
                 <p><strong>Hi <span id="user-name">there</span>!</strong></p>
                 <p>Your account has been created successfully, but it's currently pending approval.</p>
                 
@@ -45,7 +46,7 @@
                 
                 <div class="pending-actions">
                     <button onclick="checkApproval()" class="auth-button" id="check-button">Check Approval Status</button>
-                    <button onclick="signOut()" class="auth-button secondary">Sign Out</button>
+                    <button onclick="signOut()" class="auth-button secondary" id="sign-out-button">Sign Out</button>
                 </div>
                 
                 <div id="status-message" class="success-message" style="display: none;"></div>
@@ -80,11 +81,19 @@
                 window.location.href = 'auth-login.html';
                 return;
             }
+
+            const isAdmin = await auth.isAdmin(currentUser.id);
+            if (isAdmin) {
+                window.location.href = 'admin-dashboard.html';
+                return;
+            }
             
             // Display user info
             const displayName = currentUser.user_metadata?.display_name || 'User';
             document.getElementById('user-name').textContent = displayName;
             document.getElementById('user-email').textContent = currentUser.email;
+            document.getElementById('pending-loading').style.display = 'none';
+            document.getElementById('pending-info').style.display = 'block';
         }
 
         async function checkApproval() {
@@ -100,6 +109,12 @@
             
             if (!currentUser) {
                 window.location.href = 'auth-login.html';
+                return;
+            }
+
+            const isAdmin = await auth.isAdmin(currentUser.id);
+            if (isAdmin) {
+                window.location.href = 'admin-dashboard.html';
                 return;
             }
             
@@ -131,6 +146,24 @@
             await auth.signOut();
             window.location.href = 'index.html';
         }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter') {
+                return;
+            }
+
+            if (event.target && (event.target.id === 'check-button' || event.target.id === 'sign-out-button')) {
+                return;
+            }
+
+            const checkButton = document.getElementById('check-button');
+            if (!checkButton || checkButton.disabled) {
+                return;
+            }
+
+            event.preventDefault();
+            checkApproval();
+        });
 
         // Load user info when page loads
         window.addEventListener('load', loadUserInfo);
