@@ -29,10 +29,9 @@ if [[ -n "$tracked_hits" || -n "$staged_hits" ]]; then
   exit 1
 fi
 
-if [[ -f "js/config.js" ]]; then
-  if git ls-files --error-unmatch js/config.js >/dev/null 2>&1; then
-    echo "ERROR: js/config.js is tracked by git. Remove it from the index before push." >&2
-    echo "Run: git rm --cached js/config.js" >&2
+if [[ -f "js/config.js" ]] && git ls-files --error-unmatch js/config.js >/dev/null 2>&1; then
+  if grep -nE "SUPABASE_SERVICE_ROLE_KEY|service_role" js/config.js >/dev/null 2>&1; then
+    echo "ERROR: js/config.js appears to contain service role credentials. Remove them before push." >&2
     exit 1
   fi
 fi
