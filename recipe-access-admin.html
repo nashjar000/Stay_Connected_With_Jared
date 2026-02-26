@@ -58,6 +58,14 @@
             });
         }
 
+        function getHomePath() {
+            const pathname = window.location.pathname;
+            const basePath = pathname.includes('/pages/')
+                ? pathname.split('/pages/')[0]
+                : pathname.substring(0, pathname.lastIndexOf('/'));
+            return `${basePath || ''}/index.html`;
+        }
+
         async function checkAdminAccess() {
             await waitForDependencies();
             const user = await auth.getCurrentUser();
@@ -70,7 +78,7 @@
             const isAdmin = await auth.isAdmin(user.id);
             if (!isAdmin) {
                 alert('Access denied. Admin privileges required.');
-                window.location.href = 'index.html';
+                window.location.href = getHomePath();
                 return false;
             }
 
@@ -174,7 +182,7 @@
 
         async function signOut() {
             await auth.signOut();
-            window.location.href = 'index.html';
+            window.location.href = getHomePath();
         }
 
         window.addEventListener('load', async () => {

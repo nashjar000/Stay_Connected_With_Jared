@@ -72,6 +72,14 @@
             });
         }
 
+        function getHomePath() {
+            const pathname = window.location.pathname;
+            const basePath = pathname.includes('/pages/')
+                ? pathname.split('/pages/')[0]
+                : pathname.substring(0, pathname.lastIndexOf('/'));
+            return `${basePath || ''}/index.html`;
+        }
+
         async function loadUserInfo() {
             await waitForDependencies();
             await waitForDependencies();
@@ -144,7 +152,7 @@
 
         async function signOut() {
             await auth.signOut();
-            window.location.href = 'index.html';
+            window.location.href = getHomePath();
         }
 
         document.addEventListener('keydown', (event) => {
