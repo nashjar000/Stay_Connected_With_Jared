@@ -142,16 +142,25 @@ const auth = {
 
     // Send password reset email
     async resetPassword(email) {
-        const { error } = await supabaseInstance.auth.resetPasswordForEmail(email, {
-            redirectTo: getResetRedirectUrl()
-        });
+        try {
+            console.log('Attempting to send reset email to:', email);
+            console.log('Redirect URL:', getResetRedirectUrl());
+            
+            const { error } = await supabaseInstance.auth.resetPasswordForEmail(email, {
+                redirectTo: getResetRedirectUrl()
+            });
 
-        if (error) {
-            console.error('Error sending reset email:', error);
-            return { success: false, error: error.message };
+            if (error) {
+                console.error('Error sending reset email:', error);
+                return { success: false, error: error.message || 'Failed to send reset email' };
+            }
+
+            console.log('Reset email sent successfully');
+            return { success: true };
+        } catch (err) {
+            console.error('Exception caught in resetPassword:', err);
+            return { success: false, error: err.message || 'Network error - could not reach email service' };
         }
-
-        return { success: true };
     },
 
     // Update password after reset link

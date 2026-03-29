@@ -41,11 +41,11 @@ header {
     color: white !important;
 }
 
-header a {
+header a:not(.login-link):not(.signup-link):not(.admin-link) {
     color: white !important;
 }
 
-header a:hover {
+header a:not(.login-link):not(.signup-link):not(.admin-link):hover {
     color: #ffb3e6 !important;
 }
 
@@ -317,4 +317,118 @@ button:hover {
 
 .user-info small {
     color: rgba(255, 179, 230, 0.8) !important;
+}
+
+/* User Status Component - Easter Theme */
+#user-status {
+    background-color: #ff69b4 !important;
+}
+
+.user-greeting {
+    color: white !important;
+    font-weight: 600;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 12px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+}
+
+.status-badge.approved {
+    background-color: rgba(139, 71, 137, 0.3) !important;
+    color: #ffb3e6 !important;
+    border: 1px solid rgba(255, 179, 230, 0.5) !important;
+}
+
+.status-badge.pending {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+.logout-button {
+    padding: 0.4rem 1rem !important;
+    background-color: rgba(139, 71, 137, 0.8) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 179, 230, 0.5) !important;
+    border-radius: 5px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+}
+
+.logout-button:hover {
+    background-color: rgba(139, 71, 137, 1) !important;
+    border-color: #ffb3e6 !important;
+    color: #ffb3e6 !important;
+}
+
+.delete-button {
+    padding: 0.4rem 1rem !important;
+    background-color: rgba(255, 179, 230, 0.85) !important;
+    color: #8b4789 !important;
+    border: 1px solid rgba(255, 179, 230, 0.5) !important;
+    border-radius: 5px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+}
+
+.delete-button:hover {
+    background-color: rgba(255, 179, 230, 1) !important;
+    border-color: white !important;
+}
+
+.login-link,
+.signup-link,
+.admin-link {
+    padding: 0.4rem 1rem !important;
+    border-radius: 5px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+}
+
+.login-link {
+    background-color: rgba(139, 71, 137, 0.8) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 179, 230, 0.5) !important;
+}
+
+.login-link:hover {
+    background-color: rgba(139, 71, 137, 1) !important;
+    border-color: white !important;
+    color: white !important;
+}
+
+.signup-link {
+    background-color: rgba(255, 179, 230, 0.8) !important;
+    color: #8b4789 !important;
+    border: 1px solid rgba(139, 71, 137, 0.5) !important;
+}
+
+.signup-link:hover {
+    background-color: rgba(255, 179, 230, 1) !important;
+    border-color: #8b4789 !important;
+}
+
+.admin-link {
+    background-color: rgba(139, 71, 137, 0.8) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 179, 230, 0.5) !important;
+}
+
+.admin-link:hover {
+    background-color: rgba(139, 71, 137, 1) !important;
+    border-color: white !important;
+    color: white !important;
 }
