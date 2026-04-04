@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Create dropdown menu
     const dropdown = document.createElement("div");
     dropdown.className = "dropdown";
+    dropdown.classList.add("video-dropdown");
     const dropbtn = document.createElement("button");
     dropbtn.className = "dropbtn";
     dropbtn.id = "mobileVideoButton";

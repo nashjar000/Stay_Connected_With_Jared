@@ -25,7 +25,7 @@ class ThemeManager {
                 css: `${this.pathPrefix}styles/Easter-theme.css`,
                 logo: `${this.pathPrefix}images/mylogo-Red.png`,
                 favicon: `${this.pathPrefix}images/mylogo-Red.png`,
-                quotes: 'easter',
+                quotes: 'normal',
                 audio: null,
                 specialElements: ['easter-countdown']
             },

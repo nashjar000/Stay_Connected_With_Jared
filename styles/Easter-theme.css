@@ -114,6 +114,41 @@ button:hover {
     color: #ff69b4 !important;
 }
 
+/* Video dropdown-specific styling */
+header nav .dropdown.video-dropdown .dropdown-content {
+    background-color: white !important;
+    border: 2px solid #8b4789 !important;
+}
+
+header nav .dropdown.video-dropdown .dropdown-content a {
+    color: #8b4789 !important;
+    background-color: white !important;
+    font-weight: bold !important;
+    text-shadow: none !important;
+}
+
+header nav .dropdown.video-dropdown .dropdown-content a:hover {
+    background-color: #ffb3e6 !important;
+    color: #8b4789 !important;
+}
+
+@media (max-width: 600px) {
+    .mobile-menu .video-dropdown .dropdown-content {
+        background-color: rgba(255, 255, 255, 0.98) !important;
+    }
+
+    .mobile-menu .video-dropdown .dropdown-content a {
+        color: #8b4789 !important;
+        background-color: transparent !important;
+        border-bottom: 1px solid rgba(139, 71, 137, 0.12) !important;
+    }
+
+    .mobile-menu .video-dropdown .dropdown-content a:hover {
+        background-color: #ffb3e6 !important;
+        color: #8b4789 !important;
+    }
+}
+
 /* General dropdown button styling */
 .dropbtn {
     background-color: #8b4789 !important;

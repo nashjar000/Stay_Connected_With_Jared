@@ -130,6 +130,9 @@ document.addEventListener("DOMContentLoaded", function () {
     
     function getCurrentQuotes() {
         const currentTheme = window.currentTheme || 'normal';
+        if (currentTheme === 'easter') {
+            return allQuotes.normal;
+        }
         return allQuotes[currentTheme] || allQuotes.normal;
     }
     
