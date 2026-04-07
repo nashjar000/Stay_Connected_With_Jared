@@ -27,7 +27,7 @@ class ThemeManager {
                 favicon: `${this.pathPrefix}images/mylogo-Red.png`,
                 quotes: 'normal',
                 audio: null,
-                specialElements: ['easter-countdown']
+                specialElements: []
             },
             july4: {
                 css: `${this.pathPrefix}styles/July-Fourth-theme.css`,
@@ -73,39 +73,20 @@ class ThemeManager {
         const month = now.getMonth() + 1; // JavaScript months are 0-based
         const day = now.getDate();
         const year = now.getFullYear();
+        const today = new Date(year, month - 1, day);
 
         // Valentine's Day: February 14 only
         if (month === 2 && day === 14) {
             return 'valentine';
         }
 
-        // Calculate Easter (varies each year)
-        const getEasterDate = (year) => {
-            const a = year % 19;
-            const b = Math.floor(year / 100);
-            const c = year % 100;
-            const d = Math.floor(b / 4);
-            const e = b % 4;
-            const f = Math.floor((b + 8) / 25);
-            const g = Math.floor((b - f + 1) / 3);
-            const h = (19 * a + b - d - g + 15) % 30;
-            const i = Math.floor(c / 4);
-            const k = c % 4;
-            const l = (32 + 2 * e + 2 * i - h - k) % 7;
-            const m = Math.floor((a + 11 * h + 22 * l) / 451);
-            const month = Math.floor((h + l - 7 * m + 114) / 31);
-            const day = ((h + l - 7 * m + 114) % 31) + 1;
-            return new Date(year, month - 1, day);
-        };
-
-        const easter = getEasterDate(year);
+        const easter = this.getEasterDate(year);
         const easterStart = new Date(easter);
         easterStart.setDate(easter.getDate() - 10);
         const easterEnd = new Date(easter);
-        easterEnd.setDate(easter.getDate() + 7);
 
-        // Easter Season: 10 days before to 7 days after Easter
-        if (now >= easterStart && now <= easterEnd) {
+        // Easter Season: 10 days before Easter through Easter Sunday
+        if (today >= easterStart && today <= easterEnd) {
             return 'easter';
         }
 
@@ -155,6 +136,8 @@ class ThemeManager {
         const month = now.getMonth() + 1;
         const day = now.getDate();
         const year = now.getFullYear();
+        const today = new Date(year, month - 1, day);
+        const easterDate = this.getEasterDate(year);
         const currentTheme = this.getCurrentTheme();
         const baseElements = [...(this.themes[currentTheme].specialElements || [])];
         
@@ -171,6 +154,12 @@ class ThemeManager {
                 // Avoid showing an expired Christmas countdown during the first week of January
             } else {
                 filteredElements.push('christmas-countdown');
+            }
+        } else if (currentTheme === 'easter') {
+            if (today.getTime() === easterDate.getTime()) {
+                filteredElements.push('easter-message');
+            } else {
+                filteredElements.push('easter-countdown');
             }
         }
         
@@ -190,6 +179,24 @@ class ThemeManager {
         }
         
         return filteredElements;
+    }
+
+    getEasterDate(year) {
+        const a = year % 19;
+        const b = Math.floor(year / 100);
+        const c = year % 100;
+        const d = Math.floor(b / 4);
+        const e = b % 4;
+        const f = Math.floor((b + 8) / 25);
+        const g = Math.floor((b - f + 1) / 3);
+        const h = (19 * a + b - d - g + 15) % 30;
+        const i = Math.floor(c / 4);
+        const k = c % 4;
+        const l = (32 + 2 * e + 2 * i - h - k) % 7;
+        const m = Math.floor((a + 11 * h + 22 * l) / 451);
+        const month = Math.floor((h + l - 7 * m + 114) / 31);
+        const day = ((h + l - 7 * m + 114) % 31) + 1;
+        return new Date(year, month - 1, day);
     }
     
     getThanksgivingDate(year) {

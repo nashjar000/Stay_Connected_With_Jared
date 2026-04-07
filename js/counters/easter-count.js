@@ -21,21 +21,24 @@ function easterCountdown() {
 
     const now = new Date();
     const currentYear = now.getFullYear();
+    const currentDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     let easterDate = getEasterDate(currentYear);
+    const easterDay = new Date(easterDate.getFullYear(), easterDate.getMonth(), easterDate.getDate());
     
     // If Easter has passed this year, show next year's Easter
-    if (now > easterDate) {
+    if (currentDay > easterDay) {
         easterDate = getEasterDate(currentYear + 1);
     }
 
     // Update countdown every second
     function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = easterDate.getTime() - now;
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const distance = easterDate.getTime() - now.getTime();
 
         const countdownElement = document.getElementById('easter-count-down');
         if (countdownElement) {
-            if (distance < 0) {
+            if (today.getTime() === easterDate.getTime()) {
                 countdownElement.innerHTML = "🐰 Happy Easter! 🌸";
                 return;
             }
@@ -52,12 +55,6 @@ function easterCountdown() {
     updateCountdown();
     setInterval(updateCountdown, 1000);
 }
-
-// Initialize countdown when DOM is loaded
-document.addEventListener("DOMContentLoaded", function() {
-    // Run immediately
-    easterCountdown();
-});
 
 // Also run countdown immediately if script is loaded after DOMContentLoaded
 if (document.readyState === 'loading') {
